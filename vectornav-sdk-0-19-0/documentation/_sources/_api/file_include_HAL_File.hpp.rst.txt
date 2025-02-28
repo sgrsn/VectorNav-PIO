@@ -1,0 +1,56 @@
+
+.. _file_include_HAL_File.hpp:
+
+File File.hpp
+=============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_HAL>` (``include\HAL``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\HAL\File.hpp``)
+-------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_HAL_File.hpp.rst
+
+
+
+
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_plugins_DataExport_include_ExporterAscii.hpp`
+
+- :ref:`file_plugins_DataExport_include_ExporterCsv.hpp`
+
+- :ref:`file_plugins_DataExport_include_ExporterImr.hpp`
+
+- :ref:`file_plugins_DataExport_include_ExporterRinex.hpp`
+
+- :ref:`file_plugins_DataExport_include_FileExporter.hpp`
+
+- :ref:`file_plugins_DataExport_include_SkippedByteExporter.hpp`
+
+- :ref:`file_plugins_FirmwareUpdate_include_Bootloader.hpp`
+
+- :ref:`file_plugins_FirmwareUpdate_include_FirmwareUpdater.hpp`
+
+- :ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`
+
+- :ref:`file_plugins_SimpleLogger_SimpleLogger.hpp`
+
+
+

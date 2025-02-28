@@ -1,0 +1,64 @@
+
+.. _program_listing_file_include_HAL_Timer_PC.hpp:
+
+Program Listing for File Timer_PC.hpp
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_HAL_Timer_PC.hpp>` (``include\HAL\Timer_PC.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef HAL_TIMER_PC_HPP
+   #define HAL_TIMER_PC_HPP
+   
+   #include "HAL/Timer_Base.hpp"
+   
+   namespace VN
+   {
+   
+   using time_point = std::chrono::steady_clock::time_point;
+   inline time_point now() { return std::chrono::steady_clock::now(); }
+   
+   class Timer : Timer_Base
+   {
+   public:
+       Timer() {}
+       Timer(Microseconds timerLength) : _timerLength(timerLength) {}
+   
+       void setTimerLength(Microseconds timerLength) noexcept override final
+       {
+           _timerLength = timerLength;
+           _hasStarted = false;
+       }
+   
+       void start() noexcept override final
+       {
+           _timeStarted = Clock::now();
+           _hasStarted = true;
+       }
+   
+       bool hasTimedOut() const noexcept override final
+       {
+           if (!_hasStarted) { return false; }
+           return (Clock::now() - _timeStarted) >= _timerLength;
+       }
+   
+       Nanoseconds timeElapsed() const noexcept
+       {
+           // Used only for profiling
+           if (!_hasStarted) { return 0ns; }
+           return Clock::now() - _timeStarted;
+       }
+   
+   private:
+       using Clock = std::chrono::steady_clock;
+   
+       Clock::time_point _timeStarted;
+       Microseconds _timerLength{0};
+       bool _hasStarted = false;
+   };
+   
+   }  // namespace VN
+   #endif  // HAL_TIMER_PC_HPP

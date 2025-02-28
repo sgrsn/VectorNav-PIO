@@ -1,0 +1,14 @@
+.. _exhale_function__bootloader_8hpp_1a0cb5cde6388d75f06d62584e30673975:
+
+Function VN::Bootloader::tryEnterBootloader
+===========================================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_Bootloader.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Bootloader::tryEnterBootloader(Sensor *, const Sensor::BaudRate, const Sensor::BaudRate)
+   :project: VectorNav SDK

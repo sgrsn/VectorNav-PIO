@@ -1,0 +1,14 @@
+.. _exhale_function__vn_xml_8hpp_1a07a5d136144a9ad9fe228ce7a7b64f10:
+
+Function VN::VnXml::extractMetadata
+===================================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::VnXml::extractMetadata(InputFile&)
+   :project: VectorNav SDK

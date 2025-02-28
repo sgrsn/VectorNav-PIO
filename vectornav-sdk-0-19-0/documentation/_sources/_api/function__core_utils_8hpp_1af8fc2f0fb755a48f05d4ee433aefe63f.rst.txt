@@ -1,0 +1,14 @@
+.. _exhale_function__core_utils_8hpp_1af8fc2f0fb755a48f05d4ee433aefe63f:
+
+Function VN::CalculateCRC
+=========================
+
+- Defined in :ref:`file_include_Implementation_CoreUtils.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::CalculateCRC(uint8_t *, size_t)
+   :project: VectorNav SDK

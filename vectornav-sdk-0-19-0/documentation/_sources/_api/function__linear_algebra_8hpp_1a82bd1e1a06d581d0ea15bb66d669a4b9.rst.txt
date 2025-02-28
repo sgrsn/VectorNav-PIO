@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1a82bd1e1a06d581d0ea15bb66d669a4b9:
+
+Function VN::LinAlg::PropagateQuat
+==================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::PropagateQuat(Quat, Vec3f)
+   :project: VectorNav SDK

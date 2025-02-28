@@ -1,0 +1,41 @@
+
+.. _program_listing_file_include_HAL_Thread_Base.hpp:
+
+Program Listing for File Thread_Base.hpp
+========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_HAL_Thread_Base.hpp>` (``include\HAL\Thread_Base.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef HAL_THREAD_BASE_HPP
+   #define HAL_THREAD_BASE_HPP
+   
+   #include "HAL/Duration.hpp"
+   
+   namespace VN
+   {
+   
+   class Thread_Base
+   {
+   public:
+       Thread_Base() {};
+       Thread_Base(const Thread_Base&) = delete;
+   
+       virtual ~Thread_Base() {};
+   
+       Thread_Base& operator=(const Thread_Base&) = delete;
+   
+       virtual void join() = 0;
+       virtual void detach() = 0;
+       virtual bool joinable() const = 0;
+   };
+   namespace thisThread
+   {
+   void sleepFor(const Microseconds sleepDuration) noexcept;
+   }
+   
+   }  // namespace VN
+   #endif  // HAL_THREAD_BASE_HPP

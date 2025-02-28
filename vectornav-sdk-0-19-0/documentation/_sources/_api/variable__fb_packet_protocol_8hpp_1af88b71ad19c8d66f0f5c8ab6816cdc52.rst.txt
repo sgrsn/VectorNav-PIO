@@ -1,0 +1,14 @@
+.. _exhale_variable__fb_packet_protocol_8hpp_1af88b71ad19c8d66f0f5c8ab6816cdc52:
+
+Variable VN::FbPacketProtocol::MAX_PACKET_LENGTH
+================================================
+
+- Defined in :ref:`file_include_Implementation_FbPacketProtocol.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: VN::FbPacketProtocol::MAX_PACKET_LENGTH
+   :project: VectorNav SDK

@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1a64a9a26be8c506733340ede556e062a6:
+
+Template Function VN::LinAlg::cross
+===================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::cross(const Matrix<3, 1, T>&, const Matrix<3, 1, T>&)
+   :project: VectorNav SDK

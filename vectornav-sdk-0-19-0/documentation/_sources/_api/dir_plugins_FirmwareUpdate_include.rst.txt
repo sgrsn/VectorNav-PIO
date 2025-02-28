@@ -1,0 +1,23 @@
+.. _dir_plugins_FirmwareUpdate_include:
+
+
+Directory include
+=================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_plugins_FirmwareUpdate>` (``plugins\FirmwareUpdate``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``plugins\FirmwareUpdate\include``
+
+
+Files
+-----
+
+- :ref:`file_plugins_FirmwareUpdate_include_Bootloader.hpp`
+- :ref:`file_plugins_FirmwareUpdate_include_FirmwareUpdater.hpp`
+- :ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`
+
+

@@ -1,0 +1,26 @@
+.. _exhale_class_class_v_n_1_1_firmware_updater:
+
+Class FirmwareUpdater
+=====================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_FirmwareUpdater.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: VN::FirmwareUpdater
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

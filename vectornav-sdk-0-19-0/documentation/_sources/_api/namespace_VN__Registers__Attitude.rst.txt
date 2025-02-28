@@ -1,0 +1,63 @@
+
+.. _namespace_VN__Registers__Attitude:
+
+Namespace VN::Registers::Attitude
+=================================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_attitude_1_1_mag_grav_ref_vec`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_attitude_1_1_quaternion`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_attitude_1_1_quat_mag_accel_rate`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_attitude_1_1_vpe_accel_basic_tuning`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_attitude_1_1_vpe_basic_control`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_attitude_1_1_vpe_mag_basic_tuning`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_attitude_1_1_yaw_pitch_roll`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_attitude_1_1_ypr_linear_body_accel_angular_rates`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_attitude_1_1_ypr_linear_inertial_accel_angular_rates`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_attitude_1_1_ypr_mag_accel_angular_rates`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function__registers_8hpp_1ad31b9c4346ae214f530fd94726e47a69`
+
+- :ref:`exhale_function__registers_8hpp_1ad43e9b2a7781dd8a8d6cb09a0f6f2afb`
+
+- :ref:`exhale_function__registers_8hpp_1a24432f61921018e35ec8a877f462b617`
+
+- :ref:`exhale_function__registers_8hpp_1a18ced2dd596eec871d49ee9cef977b77`
+
+- :ref:`exhale_function__registers_8hpp_1a0893f92e265f44a055569c8a619f0a85`
+
+- :ref:`exhale_function__registers_8hpp_1a3363d3ca55952b58ffebf26a83947edd`
+
+- :ref:`exhale_function__registers_8hpp_1af99afd7a046c3b90248d06e49f30d719`
+
+- :ref:`exhale_function__registers_8hpp_1a84bb5cd99b7b4e2e523c96c3defa258e`
+
+- :ref:`exhale_function__registers_8hpp_1a09642bd5fd8282313a0c1ae860173d8f`
+
+- :ref:`exhale_function__registers_8hpp_1a47a14df10da34c989657c99058e7cea8`

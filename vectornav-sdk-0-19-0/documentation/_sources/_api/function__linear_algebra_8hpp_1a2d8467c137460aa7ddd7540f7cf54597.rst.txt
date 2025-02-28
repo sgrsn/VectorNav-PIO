@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1a2d8467c137460aa7ddd7540f7cf54597:
+
+Template Function VN::LinAlg::solveLinearLeastSquares
+=====================================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::solveLinearLeastSquares(Matrix<m, n, T>, const Matrix<m, 1, T>&)
+   :project: VectorNav SDK

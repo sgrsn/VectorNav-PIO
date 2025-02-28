@@ -1,0 +1,29 @@
+.. _exhale_class_class_v_n_1_1_exporter:
+
+Class Exporter
+==============
+
+- Defined in :ref:`file_plugins_DataExport_include_Exporter.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public VN::ExporterAscii`` (:ref:`exhale_class_class_v_n_1_1_exporter_ascii`)
+- ``public VN::ExporterCsv`` (:ref:`exhale_class_class_v_n_1_1_exporter_csv`)
+- ``public VN::ExporterImr`` (:ref:`exhale_class_class_v_n_1_1_exporter_imr`)
+- ``public VN::ExporterRinex`` (:ref:`exhale_class_class_v_n_1_1_exporter_rinex`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: VN::Exporter
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

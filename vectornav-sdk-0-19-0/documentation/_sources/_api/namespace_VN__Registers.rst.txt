@@ -1,0 +1,47 @@
+
+.. _namespace_VN__Registers:
+
+Namespace VN::Registers
+=======================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN__Registers__Attitude`
+
+- :ref:`namespace_VN__Registers__ById`
+
+- :ref:`namespace_VN__Registers__GNSS`
+
+- :ref:`namespace_VN__Registers__GNSSCompass`
+
+- :ref:`namespace_VN__Registers__HardSoftIronEstimator`
+
+- :ref:`namespace_VN__Registers__Heave`
+
+- :ref:`namespace_VN__Registers__IMU`
+
+- :ref:`namespace_VN__Registers__INS`
+
+- :ref:`namespace_VN__Registers__System`
+
+- :ref:`namespace_VN__Registers__VelocityAiding`
+
+- :ref:`namespace_VN__Registers__WorldMagGravityModel`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function__registers_8hpp_1aacb97377e708020e39dec3731428ceee`

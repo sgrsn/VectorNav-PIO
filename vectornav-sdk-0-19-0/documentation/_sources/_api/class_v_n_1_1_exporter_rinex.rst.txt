@@ -1,0 +1,26 @@
+.. _exhale_class_class_v_n_1_1_exporter_rinex:
+
+Class ExporterRinex
+===================
+
+- Defined in :ref:`file_plugins_DataExport_include_ExporterRinex.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public VN::Exporter`` (:ref:`exhale_class_class_v_n_1_1_exporter`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: VN::ExporterRinex
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,68 @@
+
+.. _program_listing_file_include_HAL_File_Base.hpp:
+
+Program Listing for File File_Base.hpp
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_HAL_File_Base.hpp>` (``include\HAL\File_Base.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef HAL_FILE_BASE_HPP
+   #define HAL_FILE_BASE_HPP
+   
+   #include "TemplateLibrary/String.hpp"
+   
+   namespace VN
+   {
+   namespace Filesystem
+   {
+   using FilePath = String<256>;
+   bool exists(const FilePath& filePath) noexcept;
+   }  // namespace Filesystem
+   
+   class InputFile_Base
+   {
+   public:
+       virtual ~InputFile_Base() {};
+   
+       virtual bool open(const Filesystem::FilePath& filePath) = 0;
+   
+       virtual void close() = 0;
+   
+       virtual bool read(char* buffer, const size_t count) = 0;
+   
+       virtual bool getLine(char* buffer, const size_t capacity) = 0;
+   
+       virtual bool is_open() const = 0;
+   
+       virtual void reset() = 0;
+   };
+   
+   class OutputFile_Base
+   {
+   public:
+       virtual ~OutputFile_Base() {};
+   
+       virtual bool open(const Filesystem::FilePath& filePath) = 0;
+   
+       virtual void close() = 0;
+   
+       virtual bool write(const char* buffer, const size_t count) = 0;
+   
+       virtual bool write(const char* buffer) = 0;
+   
+       virtual bool writeLine(const char* buffer, const size_t count) = 0;
+   
+       virtual bool writeLine(const char* buffer) = 0;
+   
+       virtual bool is_open() const = 0;
+   
+       virtual void reset() = 0;
+   };
+   
+   }  // namespace VN
+   
+   #endif  // HAL_FILE_BASE_HPP

@@ -1,0 +1,14 @@
+.. _exhale_function__core_utils_8hpp_1a3f8b41aae20a8433de332b91c1928bbc:
+
+Function VN::CalculateCheckSum
+==============================
+
+- Defined in :ref:`file_include_Implementation_CoreUtils.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::CalculateCheckSum(uint8_t *, uint64_t)
+   :project: VectorNav SDK

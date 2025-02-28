@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1ad756df4a23a5529290397ad7273cfba7:
+
+Function VN::LinAlg::inverseQuat
+================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::inverseQuat(const Quat&)
+   :project: VectorNav SDK

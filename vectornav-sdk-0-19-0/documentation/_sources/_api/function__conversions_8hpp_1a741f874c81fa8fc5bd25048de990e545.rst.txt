@@ -1,0 +1,14 @@
+.. _exhale_function__conversions_8hpp_1a741f874c81fa8fc5bd25048de990e545:
+
+Function VN::Conversions::rad2deg(float)
+========================================
+
+- Defined in :ref:`file_plugins_Math_Conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Conversions::rad2deg(float)
+   :project: VectorNav SDK

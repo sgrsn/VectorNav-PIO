@@ -1,0 +1,68 @@
+
+.. _file_include_TemplateLibrary_Queue.hpp:
+
+File Queue.hpp
+==============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_TemplateLibrary>` (``include\TemplateLibrary``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\TemplateLibrary\Queue.hpp``)
+--------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_TemplateLibrary_Queue.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Config.hpp`` (:ref:`file_include_Config.hpp`)
+
+- ``HAL/Mutex.hpp``
+
+- ``array``
+
+- ``optional``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_Implementation_CommandProcessor.hpp`
+
+- :ref:`file_include_TemplateLibrary_DirectAccessQueue.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_class_v_n_1_1_queue`
+
+- :ref:`exhale_class_class_v_n_1_1_queue___mutexed`
+

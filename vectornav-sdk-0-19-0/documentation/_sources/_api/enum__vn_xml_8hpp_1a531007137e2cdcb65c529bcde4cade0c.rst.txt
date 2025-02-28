@@ -1,0 +1,14 @@
+.. _exhale_enum__vn_xml_8hpp_1a531007137e2cdcb65c529bcde4cade0c:
+
+Enum MemoryType
+===============
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: VN::VnXml::MemoryType
+   :project: VectorNav SDK

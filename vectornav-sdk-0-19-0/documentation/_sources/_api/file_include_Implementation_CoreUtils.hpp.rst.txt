@@ -1,0 +1,66 @@
+
+.. _file_include_Implementation_CoreUtils.hpp:
+
+File CoreUtils.hpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_Implementation>` (``include\Implementation``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\Implementation\CoreUtils.hpp``)
+-----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_Implementation_CoreUtils.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``stdint.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_Implementation_CommandProcessor.hpp`
+
+- :ref:`file_include_Implementation_FbPacketProtocol.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function__core_utils_8hpp_1a57a61983e4b7f58b26dd185ff5ced15c`
+
+- :ref:`exhale_function__core_utils_8hpp_1a2951998a644114d845d85ce570f8a182`
+
+- :ref:`exhale_function__core_utils_8hpp_1a3f8b41aae20a8433de332b91c1928bbc`
+
+- :ref:`exhale_function__core_utils_8hpp_1af8fc2f0fb755a48f05d4ee433aefe63f`
+

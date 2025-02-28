@@ -1,0 +1,17 @@
+.. _exhale_struct_struct_v_n_1_1_fa_packet_protocol_1_1_metadata:
+
+Struct Metadata
+===============
+
+- Defined in :ref:`file_include_Implementation_FaPacketProtocol.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: VN::FaPacketProtocol::Metadata
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_typedef__ascii_packet_protocol_8hpp_1a175440dfbd0ebd4524208ca8746ab18b:
+
+Typedef VN::AsciiPacketProtocol::DelimiterIndices
+=================================================
+
+- Defined in :ref:`file_include_Implementation_AsciiPacketProtocol.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: VN::AsciiPacketProtocol::DelimiterIndices
+   :project: VectorNav SDK

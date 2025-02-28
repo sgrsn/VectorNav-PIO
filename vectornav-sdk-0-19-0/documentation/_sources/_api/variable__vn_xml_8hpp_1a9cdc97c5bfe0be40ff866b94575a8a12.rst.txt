@@ -1,0 +1,14 @@
+.. _exhale_variable__vn_xml_8hpp_1a9cdc97c5bfe0be40ff866b94575a8a12:
+
+Variable VN::VnXml::COMPONENT_CAPACITY
+======================================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: VN::VnXml::COMPONENT_CAPACITY
+   :project: VectorNav SDK

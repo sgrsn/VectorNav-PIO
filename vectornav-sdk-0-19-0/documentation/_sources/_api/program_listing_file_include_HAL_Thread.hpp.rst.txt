@@ -1,0 +1,24 @@
+
+.. _program_listing_file_include_HAL_Thread.hpp:
+
+Program Listing for File Thread.hpp
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_HAL_Thread.hpp>` (``include\HAL\Thread.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef HAL_THREAD_HPP
+   #define HAL_THREAD_HPP
+   
+   #if (_WIN32 | __linux__ | __WASM__)
+   #include "HAL/Thread_PC.hpp"
+   #elif __MBED__
+   #include "HAL/Thread_Mbed.hpp"
+   #else
+   static_assert(false);
+   #endif
+   
+   #endif  // HAL_THREAD_HPP

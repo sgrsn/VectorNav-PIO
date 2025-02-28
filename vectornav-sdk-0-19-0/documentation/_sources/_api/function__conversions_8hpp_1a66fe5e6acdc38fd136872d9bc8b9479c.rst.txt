@@ -1,0 +1,14 @@
+.. _exhale_function__conversions_8hpp_1a66fe5e6acdc38fd136872d9bc8b9479c:
+
+Function VN::Conversions::celsius2kelvin(float)
+===============================================
+
+- Defined in :ref:`file_plugins_Math_Conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Conversions::celsius2kelvin(float)
+   :project: VectorNav SDK

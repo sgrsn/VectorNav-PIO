@@ -1,0 +1,84 @@
+
+.. _file_include_Implementation_PacketDispatcher.hpp:
+
+File PacketDispatcher.hpp
+=========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_Implementation>` (``include\Implementation``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\Implementation\PacketDispatcher.hpp``)
+------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_Implementation_PacketDispatcher.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Config.hpp`` (:ref:`file_include_Config.hpp`)
+
+- ``TemplateLibrary/ByteBuffer.hpp``
+
+- ``TemplateLibrary/Vector.hpp``
+
+- ``cstdint``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_Implementation_AsciiPacketDispatcher.hpp`
+
+- :ref:`file_include_Implementation_AsciiPacketProtocol.hpp`
+
+- :ref:`file_include_Implementation_FaPacketDispatcher.hpp`
+
+- :ref:`file_include_Implementation_FaPacketProtocol.hpp`
+
+- :ref:`file_include_Implementation_FbPacketDispatcher.hpp`
+
+- :ref:`file_include_Implementation_FbPacketProtocol.hpp`
+
+- :ref:`file_include_Implementation_PacketSynchronizer.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+
+- :ref:`exhale_class_class_v_n_1_1_packet_dispatcher`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable__packet_dispatcher_8hpp_1af92f5ed168973618a3adc67bd2f5bb90`
+

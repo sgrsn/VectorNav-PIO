@@ -1,0 +1,65 @@
+
+.. _program_listing_file_include_HAL_Serial_Base.hpp:
+
+Program Listing for File Serial_Base.hpp
+========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_HAL_Serial_Base.hpp>` (``include\HAL\Serial_Base.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef HAL_SERIAL_BASE_HPP
+   #define HAL_SERIAL_BASE_HPP
+   
+   #include "Interface/Errors.hpp"
+   #include "TemplateLibrary/String.hpp"
+   #include "TemplateLibrary/ByteBuffer.hpp"
+   #include "Interface/Command.hpp"
+   #include "Config.hpp"
+   
+   namespace VN
+   {
+   
+   class Serial_Base
+   {
+   public:
+       Serial_Base(ByteBuffer& byteBuffer) : _byteBuffer(byteBuffer) {};
+       virtual ~Serial_Base() {};
+   
+       // -------------------------------
+       // -------------------------------
+   
+       using PortName = String<Config::Serial::PortNameMaxLength>;
+   
+       virtual Error open(const PortName& portName, const uint32_t baudRate) noexcept = 0;
+   
+       virtual void close() noexcept = 0;
+   
+       virtual bool isSupportedBaudRate([[maybe_unused]] const uint32_t baudRate) const noexcept { return true; }
+   
+       virtual Error changeBaudRate(const uint32_t baudRate) noexcept = 0;
+   
+       virtual std::optional<PortName> connectedPortName() const noexcept { return _isOpen ? std::make_optional(_portName) : std::nullopt; };
+   
+       virtual std::optional<uint32_t> connectedBaudRate() const noexcept { return _isOpen ? std::make_optional(_baudRate) : std::nullopt; };
+   
+       // -------------------------------
+       // -------------------------------
+   
+       virtual Error getData() noexcept = 0;
+   
+       virtual Error send(const AsciiMessage& message) noexcept = 0;
+   
+   protected:
+       ByteBuffer& _byteBuffer;
+       static const size_t _numBytesToReadPerGetData = Config::Serial::numBytesToReadPerGetData;
+       bool _isOpen = false;
+       PortName _portName;
+       uint32_t _baudRate = 0;
+   };
+   
+   }  // namespace VN
+   
+   #endif  // HAL_SERIAL_BASE_HPP

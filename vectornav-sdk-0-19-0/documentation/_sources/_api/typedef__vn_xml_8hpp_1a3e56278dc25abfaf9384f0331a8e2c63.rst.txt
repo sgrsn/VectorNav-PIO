@@ -1,0 +1,14 @@
+.. _exhale_typedef__vn_xml_8hpp_1a3e56278dc25abfaf9384f0331a8e2c63:
+
+Typedef VN::VnXml::MemoryTypeCheck
+==================================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: VN::VnXml::MemoryTypeCheck
+   :project: VectorNav SDK

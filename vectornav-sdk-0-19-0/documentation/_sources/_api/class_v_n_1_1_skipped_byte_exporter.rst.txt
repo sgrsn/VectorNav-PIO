@@ -1,0 +1,17 @@
+.. _exhale_class_class_v_n_1_1_skipped_byte_exporter:
+
+Class SkippedByteExporter
+=========================
+
+- Defined in :ref:`file_plugins_DataExport_include_SkippedByteExporter.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: VN::SkippedByteExporter
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

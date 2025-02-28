@@ -1,0 +1,56 @@
+
+.. _file_include_HAL_Mutex_PC.hpp:
+
+File Mutex_PC.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_HAL>` (``include\HAL``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\HAL\Mutex_PC.hpp``)
+-----------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_HAL_Mutex_PC.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``HAL/Mutex_Base.hpp``
+
+- ``mutex``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_class_v_n_1_1_lock_guard`
+
+- :ref:`exhale_class_class_v_n_1_1_mutex`
+

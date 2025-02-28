@@ -1,0 +1,105 @@
+
+.. _namespace_VN__Registers__System:
+
+Namespace VN::Registers::System
+===============================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+
+- :ref:`exhale_struct_struct_v_n_1_1_registers_1_1_system_1_1_binary_output_measurements`
+
+
+
+
+
+
+
+
+
+
+
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_async_output_freq`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_async_output_type`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_baud_rate`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_binary_output`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_binary_output1`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_binary_output2`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_binary_output3`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_fw_ver`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_hw_ver`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_legacy_compatibility_settings`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_model`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_nmea_output1`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_nmea_output2`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_protocol_control`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_serial`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_sync_control`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_sync_status`
+
+- :ref:`exhale_class_class_v_n_1_1_registers_1_1_system_1_1_user_tag`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function__registers_8hpp_1a7230b29802cfd051c9dfe2d644b6a882`
+
+- :ref:`exhale_function__registers_8hpp_1a73f28d04aac4d0e7966845dc7fbb4947`
+
+- :ref:`exhale_function__registers_8hpp_1ad3a2938d010b0367d35339e852ab4110`
+
+- :ref:`exhale_function__registers_8hpp_1ac18b95b75786792cef4aff4a778fba72`
+
+- :ref:`exhale_function__registers_8hpp_1ae943123c8abd40dc58e360fe7baa6395`
+
+- :ref:`exhale_function__registers_8hpp_1af6866175891dacf9f690ba3b0f59f608`
+
+- :ref:`exhale_function__registers_8hpp_1ac88123bf9e28cd83889029d5c40e25c9`
+
+- :ref:`exhale_function__registers_8hpp_1a8d879293f4663f1934ff045bb76becd0`
+
+- :ref:`exhale_function__registers_8hpp_1a5aa43d8a5eeceb7739a257a7e1d0a88b`
+
+- :ref:`exhale_function__registers_8hpp_1a7769291dfb04d684e868b00541405772`
+
+- :ref:`exhale_function__registers_8hpp_1a5a506be5a6efdc1ebfc8e00d43a33480`
+
+- :ref:`exhale_function__registers_8hpp_1a03fa087a2be852a0444a97b6bddf80e1`
+
+- :ref:`exhale_function__registers_8hpp_1a99acb83d8df7858b855c10a3a9a298fa`
+
+- :ref:`exhale_function__registers_8hpp_1adf7e54045eef6b674c3752cf68446030`
+
+- :ref:`exhale_function__registers_8hpp_1a65556784ad30d2baa196b79d9a985e8f`
+
+- :ref:`exhale_function__registers_8hpp_1a5e0688496847f92d221c996bc97270ab`

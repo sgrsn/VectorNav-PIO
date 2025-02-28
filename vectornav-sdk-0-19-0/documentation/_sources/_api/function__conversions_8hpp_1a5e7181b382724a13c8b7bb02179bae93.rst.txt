@@ -1,0 +1,14 @@
+.. _exhale_function__conversions_8hpp_1a5e7181b382724a13c8b7bb02179bae93:
+
+Function VN::Conversions::celsius2fahren(float)
+===============================================
+
+- Defined in :ref:`file_plugins_Math_Conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Conversions::celsius2fahren(float)
+   :project: VectorNav SDK

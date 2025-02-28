@@ -1,0 +1,69 @@
+
+.. _program_listing_file_include_Implementation_FbPacketProtocol.hpp:
+
+Program Listing for File FbPacketProtocol.hpp
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_Implementation_FbPacketProtocol.hpp>` (``include\Implementation\FbPacketProtocol.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef IMPLEMENTATION_FBPACKETPROTOCOL_HPP
+   #define IMPLEMENTATION_FBPACKETPROTOCOL_HPP
+   
+   #include <cstdint>
+   
+   #include "TemplateLibrary/ByteBuffer.hpp"
+   #include "Implementation/PacketDispatcher.hpp"
+   #include "Implementation/CoreUtils.hpp"
+   #include "Interface/CompositeData.hpp"
+   #include "Config.hpp"
+   
+   namespace VN
+   {
+   
+   struct SplitPacketDetails
+   {
+       uint8_t messageType = 0;
+       uint8_t messageId = 0;
+       uint8_t totalPacketCount = 0;
+       uint8_t currentPacketCount = 0;
+       uint16_t payloadLength = 0;
+   
+       bool operator==(const SplitPacketDetails& rhs) const
+       {
+           if (messageType == rhs.messageType && messageId == rhs.messageId && totalPacketCount == rhs.totalPacketCount &&
+               currentPacketCount == rhs.currentPacketCount && payloadLength == rhs.payloadLength)
+           {
+               return true;
+           }
+           return false;
+       }
+   };
+   
+   namespace FbPacketProtocol
+   {
+   
+   using Validity = PacketDispatcher::FindPacketRetVal::Validity;
+   constexpr size_t MAX_PACKET_LENGTH = VN::Config::PacketFinders::fbPacketMaxLength;
+   
+   struct Metadata
+   {
+       SplitPacketDetails header;
+       size_t length;
+   };
+   
+   struct FindPacketReturn
+   {
+       Validity validity;
+       Metadata metadata;
+   };
+   
+   FindPacketReturn findPacket(const ByteBuffer& byteBuffer, const size_t syncByteIndex) noexcept;
+   
+   }  // namespace FbPacketProtocol
+   }  // namespace VN
+   
+   #endif  // IMPLEMENTATION_FBPACKETPROTOCOL_HPP

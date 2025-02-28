@@ -1,0 +1,53 @@
+
+.. _program_listing_file_include_Implementation_PacketDispatcher.hpp:
+
+Program Listing for File PacketDispatcher.hpp
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_Implementation_PacketDispatcher.hpp>` (``include\Implementation\PacketDispatcher.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef IMPLEMENTATION_PACKETDISPATCHER_HPP
+   #define IMPLEMENTATION_PACKETDISPATCHER_HPP
+   
+   #include <cstdint>
+   #include "TemplateLibrary/ByteBuffer.hpp"
+   #include "TemplateLibrary/Vector.hpp"
+   #include "Config.hpp"
+   
+   namespace VN
+   {
+   
+   constexpr uint8_t SYNC_BYTE_CAPACITY = 1;
+   
+   class PacketDispatcher
+   {
+   public:
+       PacketDispatcher(Vector<uint8_t, SYNC_BYTE_CAPACITY> syncBytes) : _syncBytes(syncBytes) {};
+   
+       Vector<uint8_t, SYNC_BYTE_CAPACITY> getSyncBytes() noexcept { return _syncBytes; }
+   
+       struct FindPacketRetVal
+       {
+           enum class Validity : uint8_t
+           {
+               Valid,
+               Invalid,
+               Incomplete
+           } validity;
+           size_t length;
+       };
+   
+       virtual FindPacketRetVal findPacket(const ByteBuffer& byteBuffer, const size_t syncByteIndex) noexcept = 0;
+   
+       virtual void dispatchPacket(const ByteBuffer& byteBuffer, const size_t syncByteIndex) noexcept = 0;
+   
+   private:
+       Vector<uint8_t, SYNC_BYTE_CAPACITY> _syncBytes{};
+   };
+   }  // namespace VN
+   
+   #endif  // IMPLEMENTATION_PACKETDISPATCHER_HPP

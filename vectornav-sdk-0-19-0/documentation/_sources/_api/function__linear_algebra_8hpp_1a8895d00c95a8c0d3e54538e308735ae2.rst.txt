@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1a8895d00c95a8c0d3e54538e308735ae2:
+
+Function VN::LinAlg::multiplyQuat
+=================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::multiplyQuat(const Quat&, const Quat&)
+   :project: VectorNav SDK

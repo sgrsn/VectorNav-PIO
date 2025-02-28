@@ -1,0 +1,14 @@
+.. _exhale_function__matrix_math_8hpp_1adb37797cf6a1a25fba999cbec34c87fd:
+
+Template Function VN::operator<<(std::ostream&, const Matrix<m, n, T>&)
+=======================================================================
+
+- Defined in :ref:`file_plugins_Math_MatrixMath.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::operator<<(std::ostream&, const Matrix<m, n, T>&)
+   :project: VectorNav SDK

@@ -1,0 +1,14 @@
+.. _exhale_function__file_exporter_8hpp_1a42c8d869b8649343af1dacb60adb5f40:
+
+Function VN::operator<<(std::ostream&, const FileExporter::ParsingStats&)
+=========================================================================
+
+- Defined in :ref:`file_plugins_DataExport_include_FileExporter.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::operator<<(std::ostream&, const FileExporter::ParsingStats&)
+   :project: VectorNav SDK

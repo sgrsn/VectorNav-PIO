@@ -1,0 +1,14 @@
+.. _exhale_function__ascii_packet_protocol_8hpp_1afc396632c4c23c01b70127a7e5d149f7:
+
+Function VN::AsciiPacketProtocol::asciiHeaderToMeasHeader
+=========================================================
+
+- Defined in :ref:`file_include_Implementation_AsciiPacketProtocol.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::AsciiPacketProtocol::asciiHeaderToMeasHeader(const AsciiMeasurementHeader)
+   :project: VectorNav SDK

@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1aeeafeb7a9de9fe9e74684ef16ca2688a:
+
+Function VN::LinAlg::normalizeQuat
+==================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::normalizeQuat(const Quat&)
+   :project: VectorNav SDK

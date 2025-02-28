@@ -1,0 +1,14 @@
+.. _exhale_function__bootloader_8hpp_1a9c2ae65f1430a75dae03e5fa9f175a58:
+
+Function VN::Bootloader::exitBootloader
+=======================================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_Bootloader.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Bootloader::exitBootloader(Sensor *)
+   :project: VectorNav SDK

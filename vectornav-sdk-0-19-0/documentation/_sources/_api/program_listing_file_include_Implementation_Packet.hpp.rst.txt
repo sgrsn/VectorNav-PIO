@@ -1,0 +1,70 @@
+
+.. _program_listing_file_include_Implementation_Packet.hpp:
+
+Program Listing for File Packet.hpp
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_Implementation_Packet.hpp>` (``include\Implementation\Packet.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef IMPLEMENTATION_PACKET_HPP
+   #define IMPLEMENTATION_PACKET_HPP
+   
+   #include <array>
+   #include <cstdint>
+   
+   #include "AsciiPacketProtocol.hpp"
+   #include "FaPacketProtocol.hpp"
+   
+   namespace VN
+   {
+   
+   struct PacketDetails
+   {
+       enum class SyncByte : uint8_t
+       {
+           Ascii = '$',
+           FA = 0xFA,
+           None = 0,
+       } syncByte;
+   
+       union
+       {
+           AsciiPacketProtocol::Metadata asciiMetadata;
+           FaPacketProtocol::Metadata faMetadata;
+       };
+       PacketDetails() : syncByte(SyncByte::None), faMetadata() {}
+   };
+   
+   struct Packet
+   {
+       Packet(size_t length) : buffer(new uint8_t[length]), size(length) {}
+   
+       template <size_t Capacity>
+       Packet(std::array<uint8_t, Capacity>& externalBuffer) : buffer(externalBuffer.data()), size(Capacity), _autoAllocated(false)
+       {
+       }
+       ~Packet()
+       {
+           if (_autoAllocated) { delete[] buffer; }
+       }
+   
+       Packet(const Packet&) = delete;
+       Packet& operator=(const Packet&) = delete;
+       Packet(Packet&&) = delete;
+       Packet& operator=(Packet&&) = delete;
+   
+       PacketDetails details{};
+       uint8_t* buffer;
+       size_t size = 0;
+   
+   private:
+       const bool _autoAllocated = true;
+   };
+   
+   }  // namespace VN
+   
+   #endif  // IMPLEMENTATION_PACKET_HPP

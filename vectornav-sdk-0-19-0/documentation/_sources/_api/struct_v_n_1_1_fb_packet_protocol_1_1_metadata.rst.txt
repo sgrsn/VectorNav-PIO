@@ -1,0 +1,17 @@
+.. _exhale_struct_struct_v_n_1_1_fb_packet_protocol_1_1_metadata:
+
+Struct Metadata
+===============
+
+- Defined in :ref:`file_include_Implementation_FbPacketProtocol.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: VN::FbPacketProtocol::Metadata
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

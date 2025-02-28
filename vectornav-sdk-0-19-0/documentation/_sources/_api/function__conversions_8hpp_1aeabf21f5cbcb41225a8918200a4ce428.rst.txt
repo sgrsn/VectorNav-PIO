@@ -1,0 +1,14 @@
+.. _exhale_function__conversions_8hpp_1aeabf21f5cbcb41225a8918200a4ce428:
+
+Function VN::Conversions::kelvin2fahren(double)
+===============================================
+
+- Defined in :ref:`file_plugins_Math_Conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Conversions::kelvin2fahren(double)
+   :project: VectorNav SDK

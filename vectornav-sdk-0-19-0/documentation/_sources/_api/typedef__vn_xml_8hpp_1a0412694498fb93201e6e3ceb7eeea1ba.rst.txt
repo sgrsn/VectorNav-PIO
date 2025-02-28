@@ -1,0 +1,14 @@
+.. _exhale_typedef__vn_xml_8hpp_1a0412694498fb93201e6e3ceb7eeea1ba:
+
+Typedef VN::VnXml::HardwareIdCheck
+==================================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: VN::VnXml::HardwareIdCheck
+   :project: VectorNav SDK

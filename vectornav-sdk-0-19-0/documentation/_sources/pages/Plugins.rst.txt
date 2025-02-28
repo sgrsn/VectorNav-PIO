@@ -1,0 +1,93 @@
+Plugins
+#######
+
+Data Export
+===========
+
+:class:`VN::Exporter`
+
+:class:`VN::ExporterAscii`
+
+:class:`VN::ExporterCsv`
+
+:class:`VN::ExporterRinex`
+
+:class:`VN::FileExporter`
+
+Math
+====
+
+:ref:`namespace_VN__Conversions`
+
+:ref:`namespace_VN__LinAlg`
+
+:class:`VN::Matrix`
+
+Simple Logger
+=============
+
+:class:`VN::SimpleLogger`
+
+Register Scan
+=============
+
+:class:`VN::SensorConfigurator`
+
+Firmware Update
+===============
+The Firmware Update plugin houses everything necessary to update the firmware on a VectorNav unit. For most use cases, this ought to be a single call to the :func:`VN::FirmwareUpdater::updateFirmware` method.
+It is overloaded to accept either a list of .vnx files or a .vnxml file.
+
+These two methods are the preferred methods of calling :func:`VN::FirmwareUpdater::updateFirmware`. Alternatively, a :class:`VN::InputFile` object can be provided using the overloaded methods for a .vnx file or a .vnxml file.
+
+The plugin will work with any sensor which accepts the :class:`VN::SetBootLoader` command.
+
+
+Usage
+-----
+
+As demonstrated in the Firmware Update example, to use the Firmware Update plugin we must create our ``Sensor`` object, connect to it, and create our ``FirmwareUpdater`` object.
+
+.. code-block:: cpp
+
+    Sensor sensor;
+    sensor.autoConnect(PortName);
+    FirmwareUpdater firmwareUpdater;
+
+In most cases :type:`VN::Filesystem::FilePath` and pass it to our `updateFirmware` method. The path can be either relative or absolute. 
+
+.. code-block:: cpp
+
+    VN::Filesystem::FilePath pathToUpload("./VN100Firmware.vnxml");
+    firmwareUpdater.updateFirmware(&sensor, pathToUpload);
+
+Alternatively, we may need to use individual vnx files. These can be used, and the order specified, using the other overload of the `updateFirmware` method.
+
+.. code-block:: cpp
+
+    Files pathToUpload "./VN100Firmware.vnxml";
+    firmwareUpdater.updateFirmware(&sensor, pathToUpload);
+
+The example can be run as a command-line executable, with the usage defined as:
+
+.. literalinclude:: ../../Examples/FirmwareUpdate/main.cpp
+   :linenos:
+   :lineno-match:
+   :language: c++
+   :start-after: usage
+   :end-at: ;
+   :caption: Firmware Update Example Command Line Usage (Examples/FirmwareUpdate/main.cpp)
+
+For example, the command line can be used as
+
+.. code-block::
+
+    >> ./firmwareUpdate.exe --PortName=COM8 --Nav=./VN310NavFirmware.vnx --Imu=./VN310IMUFirmware.vnx --Gnss=./VN310GnssFirmware --bootloaderBaudRate=460800
+
+which would connect to the sensor using the port COM8 at default 115200 bps, upload the selected nav firmware file, then the IMU firmware file, then the GNSS firmware file. Each firmware update would occur at 460800 bps.
+
+.. warning::
+    As a part of the firmware update, this plugin will issue a Restore Factory Settings. To ensure preservation of configuration settings, it is recommended to perform a register scan before updating the firmware version.
+
+.. note::
+    To speed up the firmware update, the bootloader can be set to update at higher rates using the ``bootloaderBaudRate`` parameter.

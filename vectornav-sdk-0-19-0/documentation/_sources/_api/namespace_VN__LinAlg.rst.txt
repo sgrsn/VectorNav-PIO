@@ -1,0 +1,66 @@
+
+.. _namespace_VN__LinAlg:
+
+Namespace VN::LinAlg
+====================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+
+- :ref:`exhale_class_class_v_n_1_1_lin_alg_1_1_eigen_decomposition`
+
+- :ref:`exhale_class_class_v_n_1_1_lin_alg_1_1_linear_least_squares`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a64a9a26be8c506733340ede556e062a6`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a3837b6ec5adb154d0e4cb2dca12ac9f8`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a06e09a1971833039cb7866e4a601da5b`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1aec93ea462bf7c27e4a244dd10a1b3219`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a9e18ea86ba4fa3e824ba5f6eec68280b`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1ac15ef471c8c094825df9bd1065a13f30`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a2c3160849c3c603bcbeb9eaf3b3639ae`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1ad756df4a23a5529290397ad7273cfba7`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a8895d00c95a8c0d3e54538e308735ae2`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a444bc7d5f0ceb6c2d4bb12fc55ac694a`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a910cd5a6e8b00a72a71c23f8b9b240c5`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1aeeafeb7a9de9fe9e74684ef16ca2688a`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1ad56697b8b6ed303486c3a5600bb838df`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a82bd1e1a06d581d0ea15bb66d669a4b9`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a6bed6e4bcb3e23b7938c7430e3308bed`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1aa8e8cd1d7ff81a05b331b87e292282de`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a2d8467c137460aa7ddd7540f7cf54597`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a74c319e9ed127489f7ff92f41e5f2ba1`
+
+- :ref:`exhale_function__linear_algebra_8hpp_1a93a6f49b86da01e833a41b60a818f59d`

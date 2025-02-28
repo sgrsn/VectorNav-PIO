@@ -1,0 +1,14 @@
+.. _exhale_variable__register_scan_8cpp_1a142eeb221f724dead52d8fe7d9d9da90:
+
+Variable VN::RegScanFactory
+===========================
+
+- Defined in :ref:`file_plugins_RegisterScan_RegisterScan.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: VN::RegScanFactory
+   :project: VectorNav SDK

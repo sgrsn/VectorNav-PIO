@@ -1,0 +1,100 @@
+
+.. _program_listing_file_plugins_SimpleLogger_SimpleLogger.hpp:
+
+Program Listing for File SimpleLogger.hpp
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_plugins_SimpleLogger_SimpleLogger.hpp>` (``plugins\SimpleLogger\SimpleLogger.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef SIMPLELOGGER_HPP
+   #define SIMPLELOGGER_HPP
+   
+   #include <cstdint>
+   
+   #include "Interface/Sensor.hpp"
+   #include "HAL/File.hpp"
+   #include "TemplateLibrary/ByteBuffer.hpp"
+   
+   namespace VN
+   {
+   
+   class SimpleLogger
+   {
+   public:
+       SimpleLogger(ByteBuffer& bufferToLog, const Filesystem::FilePath& filePath) : _bufferToLog(bufferToLog) { _logFile.open(filePath); }
+   
+       ~SimpleLogger() { stop(); }
+   
+       SimpleLogger(const SimpleLogger&) = delete;
+       SimpleLogger& operator=(const SimpleLogger&) = delete;
+       SimpleLogger(SimpleLogger&&) = delete;
+       SimpleLogger& operator=(SimpleLogger&&) = delete;
+   
+       static int32_t logBuffer(OutputFile& outputFile, ByteBuffer& buffer)
+       {
+           if (!outputFile.is_open()) { return -1; }
+           const size_t bufferSize = buffer.size();
+           if (bufferSize == 0) { return 0; }
+           size_t numLinearBytes = buffer.numLinearBytes();
+   
+           const size_t bytesToLog = std::min(bufferSize, numLinearBytes);
+           if (outputFile.write(reinterpret_cast<const char*>(buffer.head()), bytesToLog)) { return -1; }
+           size_t bytesLogged = bytesToLog;
+           buffer.discard(bytesLogged);
+           if (bufferSize > numLinearBytes)
+           {
+               numLinearBytes = buffer.numLinearBytes();
+               bytesLogged += numLinearBytes;
+               if (outputFile.write(reinterpret_cast<const char*>(buffer.head()), numLinearBytes)) { return -1; }  // Write the second section
+               buffer.discard(numLinearBytes);
+           }
+           return bytesLogged;
+       }
+   
+       bool start()
+       {
+           if (!_logFile.is_open()) { return true; }
+           _logging = true;
+           _loggingThread = std::make_unique<Thread>(&SimpleLogger::_log, this);
+           return false;
+       }
+   
+       void stop()
+       {
+           if (_logging)
+           {
+               _logging = false;
+               _loggingThread->join();
+           }
+       }
+   
+       bool isLogging() { return _logging; }
+   
+       size_t numBytesLogged() { return _numBytesLogged; }
+   
+   protected:
+       void _log()
+       {
+           while (_logging)
+           {
+               _numBytesLogged += logBuffer(_logFile, _bufferToLog);
+               thisThread::sleepFor(sleepDuration);
+           }
+           _numBytesLogged += logBuffer(_logFile, _bufferToLog);
+           _logFile.close();
+       }
+   
+       Microseconds sleepDuration = 1ms;
+       std::atomic<bool> _logging = false;
+       OutputFile _logFile;
+       ByteBuffer& _bufferToLog;
+       std::unique_ptr<Thread> _loggingThread = nullptr;
+       size_t _numBytesLogged = 0;
+   };
+   
+   }  // namespace VN
+   #endif  // SIMPLELOGGER_HPP

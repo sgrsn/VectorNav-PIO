@@ -1,0 +1,72 @@
+
+.. _program_listing_file_include_Implementation_CommandProcessor.hpp:
+
+Program Listing for File CommandProcessor.hpp
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_Implementation_CommandProcessor.hpp>` (``include\Implementation\CommandProcessor.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef IMPLEMENTATION_COMMANDPROCESSOR_HPP
+   #define IMPLEMENTATION_COMMANDPROCESSOR_HPP
+   
+   #include <functional>
+   #include <memory>  // Used for shared_ptr
+   #include <assert.h>
+   #include "Config.hpp"
+   #include "HAL/Mutex.hpp"
+   #include "TemplateLibrary/String.hpp"
+   #include "TemplateLibrary/Queue.hpp"
+   #include "Implementation/CoreUtils.hpp"
+   #include "Interface/Command.hpp"
+   #include "Interface/Errors.hpp"
+   #include "Implementation/AsciiPacketProtocol.hpp"
+   
+   namespace VN
+   {
+   
+   class CommandProcessor
+   {
+   public:
+       using AsyncErrorQueuePush = std::function<void(AsyncError&&)>;
+       CommandProcessor(AsyncErrorQueuePush asyncErrorQueuePush) : _asyncErrorQueuePush(asyncErrorQueuePush) {}
+   
+       struct RegisterCommandReturn
+       {
+           enum class Error
+           {
+               None,
+               CommandQueueFull,
+               CommandResent
+           } error;
+           AsciiMessage message;
+       };
+       
+       struct QueueItem {
+           Command* cmd;
+           Microseconds timeoutThreshold = Config::CommandProcessor::commandRemovalTimeoutLength;
+       };
+       
+       RegisterCommandReturn registerCommand(Command* pCommand, const Microseconds timeoutThreshold = Config::CommandProcessor::commandRemovalTimeoutLength) noexcept;
+   
+       bool matchResponse(const AsciiMessage& response, const AsciiPacketProtocol::Metadata& metadata) noexcept;
+   
+       int queueSize() const noexcept;
+       int queueCapacity() const noexcept;
+       void popCommandFromQueueBack() noexcept;
+       std::optional<QueueItem> getFrontCommand() noexcept;
+   
+   
+   private:
+       AsyncErrorQueuePush _asyncErrorQueuePush = nullptr;
+   
+       Queue<QueueItem, Config::CommandProcessor::commandProcQueueCapacity> _cmdQueue{};
+       mutable Mutex _mutex;
+   };
+   
+   }  // namespace VN
+   
+   #endif  // IMPLEMENTATION_COMMANDPROCESSOR_HPP

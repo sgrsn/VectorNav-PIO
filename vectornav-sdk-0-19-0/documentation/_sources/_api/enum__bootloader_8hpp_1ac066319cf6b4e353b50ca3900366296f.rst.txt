@@ -1,0 +1,14 @@
+.. _exhale_enum__bootloader_8hpp_1ac066319cf6b4e353b50ca3900366296f:
+
+Enum FailureMode
+================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_Bootloader.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: VN::Bootloader::FailureMode
+   :project: VectorNav SDK

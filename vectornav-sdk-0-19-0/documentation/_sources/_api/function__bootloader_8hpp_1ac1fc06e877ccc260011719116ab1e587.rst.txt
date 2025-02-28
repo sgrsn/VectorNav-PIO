@@ -1,0 +1,14 @@
+.. _exhale_function__bootloader_8hpp_1ac1fc06e877ccc260011719116ab1e587:
+
+Function VN::Bootloader::sendRecords
+====================================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_Bootloader.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Bootloader::sendRecords(Sensor *, InputFile&, const size_t)
+   :project: VectorNav SDK

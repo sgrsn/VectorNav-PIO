@@ -1,0 +1,17 @@
+.. _exhale_class_class_v_n_1_1_lin_alg_1_1_eigen_decomposition:
+
+Class EigenDecomposition
+========================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: VN::LinAlg::EigenDecomposition
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

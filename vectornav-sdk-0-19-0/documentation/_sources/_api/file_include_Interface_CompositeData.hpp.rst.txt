@@ -1,0 +1,89 @@
+
+.. _file_include_Interface_CompositeData.hpp:
+
+File CompositeData.hpp
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_Interface>` (``include\Interface``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\Interface\CompositeData.hpp``)
+----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_Interface_CompositeData.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Config.hpp`` (:ref:`file_include_Config.hpp`)
+
+- ``Implementation/AsciiHeader.hpp``
+
+- ``Implementation/BinaryHeader.hpp``
+
+- ``Implementation/BinaryMeasurementDefinitions.hpp``
+
+- ``Interface/Registers.hpp``
+
+- ``assert.h``
+
+- ``optional``
+
+- ``variant``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_Implementation_AsciiPacketProtocol.hpp`
+
+- :ref:`file_include_Implementation_FaPacketProtocol.hpp`
+
+- :ref:`file_include_Implementation_FbPacketProtocol.hpp`
+
+- :ref:`file_include_Implementation_QueueDefinitions.hpp`
+
+- :ref:`file_plugins_DataExport_include_ExporterImr.hpp`
+
+- :ref:`file_plugins_DataExport_include_ExporterRinex.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+
+
+
+
+
+
+
+- :ref:`exhale_class_class_v_n_1_1_composite_data`
+

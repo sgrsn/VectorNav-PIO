@@ -1,0 +1,14 @@
+.. _exhale_function__exporter_csv_utils_8hpp_1a19c297a87458437004c3c4e5f38301b5:
+
+Function VN::csvTypeLookup
+==========================
+
+- Defined in :ref:`file_plugins_DataExport_include_ExporterCsvUtils.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::csvTypeLookup(size_t, size_t)
+   :project: VectorNav SDK

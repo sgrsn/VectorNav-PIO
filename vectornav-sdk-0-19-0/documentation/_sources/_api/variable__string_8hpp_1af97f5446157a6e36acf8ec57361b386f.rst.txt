@@ -1,0 +1,14 @@
+.. _exhale_variable__string_8hpp_1af97f5446157a6e36acf8ec57361b386f:
+
+Variable VN::StringUtils::stringSplitMaximumSize
+================================================
+
+- Defined in :ref:`file_include_TemplateLibrary_String.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: VN::StringUtils::stringSplitMaximumSize
+   :project: VectorNav SDK

@@ -1,0 +1,14 @@
+.. _exhale_function__conversions_8hpp_1a411a56b646c5db3b4f3dae17d8aec529:
+
+Function VN::Conversions::yprInDegs2Quat
+========================================
+
+- Defined in :ref:`file_plugins_Math_Conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Conversions::yprInDegs2Quat(const Ypr&)
+   :project: VectorNav SDK

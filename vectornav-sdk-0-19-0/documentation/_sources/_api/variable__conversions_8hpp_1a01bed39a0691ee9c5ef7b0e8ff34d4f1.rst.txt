@@ -1,0 +1,14 @@
+.. _exhale_variable__conversions_8hpp_1a01bed39a0691ee9c5ef7b0e8ff34d4f1:
+
+Variable VN::Conversions::C_E2
+==============================
+
+- Defined in :ref:`file_plugins_Math_Conversions.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: VN::Conversions::C_E2
+   :project: VectorNav SDK

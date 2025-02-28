@@ -1,0 +1,35 @@
+
+.. _program_listing_file_include_HAL_Mutex.hpp:
+
+Program Listing for File Mutex.hpp
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_HAL_Mutex.hpp>` (``include\HAL\Mutex.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef HAL_MUTEX_HPP
+   #define HAL_MUTEX_HPP
+   
+   #include "Config.hpp"
+   
+   #if (THREADING_ENABLE)
+   
+   #ifdef __CLI__
+   #include "HAL/Mutex_CLI.hpp"
+   #elif (_WIN32 | __linux__)
+   #include "HAL/Mutex_PC.hpp"
+   #elif __MBED__
+   #include "HAL/Mutex_MBED.hpp"
+   #else
+   static_assert(false);
+   #endif
+   
+   #else  // THREADING_ENABLE
+   
+   #include "HAL/Mutex_Disabled.hpp"
+   
+   #endif
+   #endif  // HAL_MUTEX_HPP

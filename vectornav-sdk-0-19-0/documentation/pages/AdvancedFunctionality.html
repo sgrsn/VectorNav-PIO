@@ -1,0 +1,418 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Advanced Functionality &#8212; VectorNav SDK 0.19.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Memory Constrained" href="MemoryConstrained.html" />
+    <link rel="prev" title="Key Functionality" href="KeyFunctionality.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="MemoryConstrained.html" title="Memory Constrained"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="KeyFunctionality.html" title="Key Functionality"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Advanced Functionality</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="advanced-functionality">
+<h1>Advanced Functionality<a class="headerlink" href="#advanced-functionality" title="Permalink to this headline">¶</a></h1>
+<section id="non-blocking-commands">
+<h2>Non-Blocking Commands<a class="headerlink" href="#non-blocking-commands" title="Permalink to this headline">¶</a></h2>
+<dl>
+<dt>In some cases, it is necessary to send commands without blocking, perform other operations, and later return to validate the unit’s response. This is what the generic <a class="reference internal" href="../_api/class_v_n_1_1_sensor.html#_CPPv4N2VN6Sensor11sendCommandEP7Command20SendCommandBlockModeK12MicrosecondsK12Microseconds" title="VN::Sensor::sendCommand"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Sensor::sendCommand()</span></code></a> method is for. To do so:</dt><dd><ol class="arabic">
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">Command</span></code> object that we would like to send to the unit</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Command Instantiation (Examples/Commands/main.cpp)</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">39</span><span class="w">    </span><span class="n">KnownMagneticDisturbance</span><span class="w"> </span><span class="nf">kmd</span><span class="p">(</span><span class="n">KnownMagneticDisturbance</span><span class="o">::</span><span class="n">State</span><span class="o">::</span><span class="n">Present</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</li>
+<li><p>Call the <code class="docutils literal notranslate"><span class="pre">sendCommand</span></code> method with our <code class="docutils literal notranslate"><span class="pre">Command</span></code> object and the waitMode specified as <code class="docutils literal notranslate"><span class="pre">Sensor::SendCommandBlockMode::None</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Send Command (Examples/Commands/main.cpp)</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">49</span><span class="w">    </span><span class="n">latestError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">sendCommand</span><span class="p">(</span><span class="o">&amp;</span><span class="n">kmd</span><span class="p">,</span><span class="w"> </span><span class="n">Sensor</span><span class="o">::</span><span class="n">SendCommandBlockMode</span><span class="o">::</span><span class="n">None</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</li>
+</ol>
+</dd>
+</dl>
+<p>A full list of available commands can be found in <a class="reference internal" href="../_api/file_include_Interface_Commands.hpp.html#file-include-interface-commands-hpp"><span class="std std-ref">File Commands.hpp</span></a>.</p>
+<p>The command will then be sent to the unit and added to a queue, waiting for a corresponding response from the unit. When a command response (i.e. non-measurement ASCII packet) is seen from the unit, the response will attempt to be matched with the oldest command sent in the queue.
+If the response matches, the function exits. If not, it will continue through the queue (popping each command from the queue) until either the response is matched to a command or the queue is empty. This is done because VectorNav units always respond to commands in the order in which they were received. Any synchronous VnError is considered a valid response to any command.</p>
+<p>When you are ready to check the unit’s response, you can do so using <a class="reference internal" href="../_api/class_v_n_1_1_command.html#_CPPv4NK2VN7Command11getResponseEv" title="VN::Command::getResponse"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Command::getResponse()</span></code></a>;</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Print Command Response (Examples/Commands/main.cpp)</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">66</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">kmd</span><span class="p">.</span><span class="n">getResponse</span><span class="p">().</span><span class="n">empty</span><span class="p">())</span>
+<span class="linenos">67</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">68</span><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error: KMD did not receive a valid response.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">69</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="linenos">70</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">71</span><span class="w">    </span><span class="k">else</span>
+<span class="linenos">72</span><span class="w">    </span><span class="p">{</span>
+<span class="linenos">73</span><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;KMD response: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">kmd</span><span class="p">.</span><span class="n">getResponse</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<dl>
+<dt>If the response is empty, a couple of things may be happening:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>The command is still in the command queue, awaiting a response</dt><dd><p>If this is the case, <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Command::isAwaitingResponse()</span></code> will return <code class="docutils literal notranslate"><span class="pre">true</span></code>. Whether a command is “awaiting a response” is not time-based; rather, it will be awaiting a response until any command response attempts to match with that command. As such, the correct response could either be to check again later (if only a brief period has elapsed) or to resend the command, assuming it was not received.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Command Is Awaiting Response</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">kmd</span><span class="p">.</span><span class="n">isAwaitingResponse</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// The kmd command is still in the queue. It could either be too early to have heard a response, or this command should be resent.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<ul class="simple">
+<li><dl class="simple">
+<dt>The command has received an invalid response</dt><dd><p>In this case, a response has attempted to be matched with the <code class="docutils literal notranslate"><span class="pre">Command</span></code> object. This likely means that the unit did not hear the command and was responding to a subsequent command. Most likely, we should try to resend the command.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Now that we know we have a valid response, we should make sure the response is not a VnError using <a class="reference internal" href="../_api/class_v_n_1_1_command.html#_CPPv4NK2VN7Command8getErrorEv" title="VN::Command::getError"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Command::getError()</span></code></a> (if the response is any VnError, the unit did not apply the command).</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">Ensuring Response Isn’t Error (Examples/Commands/main.cpp)</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">75</span><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">Error</span><span class="o">&gt;</span><span class="w"> </span><span class="n">error_maybe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kmd</span><span class="p">.</span><span class="n">getError</span><span class="p">();</span>
+<span class="linenos">76</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error_maybe</span><span class="p">.</span><span class="n">has_value</span><span class="p">())</span>
+<span class="linenos">77</span><span class="w">        </span><span class="p">{</span>
+<span class="linenos">78</span><span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\t</span><span class="s">Error: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">error_maybe</span><span class="p">.</span><span class="n">value</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="linenos">79</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">error_maybe</span><span class="p">.</span><span class="n">value</span><span class="p">());</span>
+<span class="linenos">80</span><span class="w">        </span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>If the value returned from <code class="docutils literal notranslate"><span class="pre">getError</span></code> is empty, no error occurred and the command was accepted by the unit.</p>
+<p>If the value returned is not empty, the error can either be printed to a log using <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::VnException::what()</span></code> or identified using <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::VnException::errorCode()</span></code>. Every possible <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">VN::VnException</span></code> in the SDK is guaranteed to have an error code, and each error code is present in the enum class <a class="reference internal" href="../_api/enum__errors_8hpp_1a1176d97ac8230053c095d40f6ddd9541.html#_CPPv4N2VN5ErrorE" title="VN::Error"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">VN::Error</span></code></a>.</p>
+<p>Because <em>Read Register</em> and <em>Write Register</em> are simply specialized commands to the unit, sending the commands non-blocking is very similar to sending any other command non-blocking. The only additional step is the conversion between the <code class="docutils literal notranslate"><span class="pre">Register</span></code> object and the <code class="docutils literal notranslate"><span class="pre">Command</span></code> object.</p>
+<section id="non-blocking-read-register">
+<h3>Non-Blocking Read Register<a class="headerlink" href="#non-blocking-read-register" title="Permalink to this headline">¶</a></h3>
+<p>Just like any other <em>Read Register</em> command, we first need to instantiate our <code class="docutils literal notranslate"><span class="pre">Register</span></code> object.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Instantiating Register Object</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">VpeBasicControl</span><span class="w"> </span><span class="n">vpeBasicControl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>We then can produce a <code class="docutils literal notranslate"><span class="pre">Command</span></code> object for the <em>Read Register</em> command using the <a class="reference internal" href="../_api/class_v_n_1_1_register.html#_CPPv4N2VN8Register13toReadCommandEv" title="VN::Register::toReadCommand"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Register::toReadCommand()</span></code></a> method.</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Register To Read Command</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Command</span><span class="w"> </span><span class="n">vpeBasicControlRRGCommand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vpeBasicControl</span><span class="p">.</span><span class="n">toReadCommand</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<p>Now that we have a <code class="docutils literal notranslate"><span class="pre">Command</span></code> object, we can send it non-blocking using the steps in <a class="reference internal" href="#non-blocking-commands"><span class="std std-ref">Non-Blocking Commands</span></a>. After checking for a response and ensuring the response is valid, we can repopulate the original <code class="docutils literal notranslate"><span class="pre">Register</span></code> object fields using <a class="reference internal" href="../_api/class_v_n_1_1_register.html#_CPPv4N2VN8Register11fromCommandER7Command" title="VN::Register::fromCommand"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Register::fromCommand()</span></code></a>.</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">Register From Read Command</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">errorOccured</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vpeBasicControl</span><span class="p">.</span><span class="n">fromCommand</span><span class="p">(</span><span class="n">vpeBasicControlRRGCommand</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>Assuming the command received a non-error, valid response, the fields of <code class="docutils literal notranslate"><span class="pre">vpeBasicControl</span></code> are now populated with the values from the VectorNav unit, and we can access them as normal members of the object.</p>
+</section>
+<section id="non-blocking-write-register">
+<h3>Non-Blocking Write Register<a class="headerlink" href="#non-blocking-write-register" title="Permalink to this headline">¶</a></h3>
+<p>Writing a register without blocking is very similar to reading a register without blocking. The only difference is the method called to create the <em>Write Register</em> command rather than the <em>Read Register</em> command.</p>
+<p>Very similar to the first step in <a class="reference internal" href="KeyFunctionality.html#writing-registers"><span class="std std-ref">Writing Registers</span></a>, we create our <code class="docutils literal notranslate"><span class="pre">Register</span></code> object, populating it with the desired configuration values.</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">Instantiating Register Object (Examples/Commands/main.cpp)</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">42</span><span class="w">    </span><span class="n">VpeBasicControl</span><span class="w"> </span><span class="n">vpeBasicControl</span><span class="p">;</span>
+<span class="linenos">43</span><span class="w">    </span><span class="n">vpeBasicControl</span><span class="p">.</span><span class="n">headingMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VpeBasicControl</span><span class="o">::</span><span class="n">HeadingMode</span><span class="o">::</span><span class="n">Absolute</span><span class="p">;</span>
+<span class="linenos">44</span><span class="w">    </span><span class="n">vpeBasicControl</span><span class="p">.</span><span class="n">filteringMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VpeBasicControl</span><span class="o">::</span><span class="n">FilteringMode</span><span class="o">::</span><span class="n">AdaptivelyFiltered</span><span class="p">;</span>
+<span class="linenos">45</span><span class="w">    </span><span class="n">vpeBasicControl</span><span class="p">.</span><span class="n">tuningMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VpeBasicControl</span><span class="o">::</span><span class="n">TuningMode</span><span class="o">::</span><span class="n">Adaptive</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>We then can produce a <code class="docutils literal notranslate"><span class="pre">Command</span></code> object for the <em>Write Register</em> command using the <a class="reference internal" href="../_api/class_v_n_1_1_configuration_register.html#_CPPv4N2VN21ConfigurationRegister14toWriteCommandEv" title="VN::ConfigurationRegister::toWriteCommand"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::ConfigurationRegister::toWriteCommand()</span></code></a> method.</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">Register To Write Command (Examples/Commands/main.cpp)</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="linenos">46</span><span class="w">    </span><span class="n">Command</span><span class="w"> </span><span class="n">vpeBasicControlWRG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vpeBasicControl</span><span class="p">.</span><span class="n">toWriteCommand</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<p>Now that we have our <code class="docutils literal notranslate"><span class="pre">Command</span></code> object for the <em>Write Register</em> command, we can send it to the unit and validate acceptance following the steps in <a class="reference internal" href="#non-blocking-commands"><span class="std std-ref">Non-Blocking Commands</span></a>.</p>
+</section>
+</section>
+<section id="subscribe-to-an-unparsed-packet">
+<h2>Subscribe to an Unparsed Packet<a class="headerlink" href="#subscribe-to-an-unparsed-packet" title="Permalink to this headline">¶</a></h2>
+<p>In some cases, it is desired to subscribe to specific measurement packets without using the <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object. For this, the <a class="reference internal" href="../_api/class_v_n_1_1_sensor.html#_CPPv4N2VN6Sensor18subscribeToMessageEP21PacketQueue_InterfaceRK24BinaryOutputMeasurementsK22FaSubscriberFilterType" title="VN::Sensor::subscribeToMessage"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Sensor::subscribeToMessage()</span></code></a> method can be used. The interface we will use to receive the packets is a <a class="reference internal" href="../_api/typedef__queue_definitions_8hpp_1a395d01d9e9e393e27775fc092882d5a0.html#_CPPv4I_8uint16_tEN2VN11PacketQueueE" title="VN::PacketQueue"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">VN::PacketQueue</span></code></a>, on which the <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> object will place any matching packet. The constructor requires a single argument of the queue capacity:</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">Instantiating Filtered Packet Queue</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">PacketQueue</span><span class="w"> </span><span class="nf">PacketQueue</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>Regardless of whether the full packet can be parsed, so long as the validated packet can be identified and the packet header meets the requirements of the specified filter, the packet will be placed on the registered queue.</p>
+<p>To unsubscribe from a message, <a class="reference internal" href="../_api/class_v_n_1_1_sensor.html#_CPPv4N2VN6Sensor22unsubscribeFromMessageEP21PacketQueue_InterfaceK8SyncByte" title="VN::Sensor::unsubscribeFromMessage"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Sensor::unsubscribeFromMessage()</span></code></a> can be used.</p>
+<section id="subscribing-to-ascii-measurement-packets">
+<h3>Subscribing to ASCII Measurement Packets<a class="headerlink" href="#subscribing-to-ascii-measurement-packets" title="Permalink to this headline">¶</a></h3>
+<p>For ASCII measurement packets, we can define a filter using the enums provided in <a class="reference internal" href="../_api/class_v_n_1_1_sensor.html#_CPPv4N2VN6Sensor25AsciiSubscriberFilterTypeE" title="VN::Sensor::AsciiSubscriberFilterType"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">VN::Sensor::AsciiSubscriberFilterType</span></code></a> (aliased from <a class="reference internal" href="../_api/class_v_n_1_1_ascii_packet_dispatcher.html#_CPPv4N2VN21AsciiPacketDispatcher20SubscriberFilterTypeE" title="VN::AsciiPacketDispatcher::SubscriberFilterType"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">VN::AsciiPacketDispatcher::SubscriberFilterType</span></code></a>)</p>
+<p>For example, if we would like to subscribe to the <em>VNINS</em> message, we can use the following call:</p>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">Subscribing to VNINS</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sensor</span><span class="p">.</span><span class="n">subscribeToMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">PacketQueue</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;VNINS&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Sensor</span><span class="o">::</span><span class="n">AsciiSubscriberFilterType</span><span class="o">::</span><span class="n">StartsWith</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>or, if we would like to subscribe to any NMEA message (that is, any message whose header does not begin with VN), we can use the following call:</p>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">Subscribing to Non-VN ASCII Packets</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sensor</span><span class="p">.</span><span class="n">subscribeToMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">PacketQueue</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;VN&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Sensor</span><span class="o">::</span><span class="n">AsciiSubscriberFilterType</span><span class="o">::</span><span class="n">DoesNotStartWith</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>A maximum of <code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">Config::Sensor::asciiPacketSubscriberCapacity</span></code> ASCII packet filters can be registered concurrently.</p>
+</section>
+<section id="subscribing-to-binary-measurement-packets">
+<h3>Subscribing to Binary Measurement Packets<a class="headerlink" href="#subscribing-to-binary-measurement-packets" title="Permalink to this headline">¶</a></h3>
+<p>For a binary measurement, we can define a filter using the enums provided in <a class="reference internal" href="../_api/class_v_n_1_1_sensor.html#_CPPv4N2VN6Sensor22FaSubscriberFilterTypeE" title="VN::Sensor::FaSubscriberFilterType"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">VN::Sensor::FaSubscriberFilterType</span></code></a> (aliased from <a class="reference internal" href="../_api/class_v_n_1_1_fa_packet_dispatcher.html#_CPPv4N2VN18FaPacketDispatcher20SubscriberFilterTypeE" title="VN::FaPacketDispatcher::SubscriberFilterType"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">VN::FaPacketDispatcher::SubscriberFilterType</span></code></a>)</p>
+<p>A maximum of <code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">Config::Sensor::faPacketSubscriberCapacity</span></code> binary packet filters can be registered concurrently.</p>
+</section>
+</section>
+<section id="receiving-unparsed-bytes">
+<h2>Receiving Unparsed Bytes<a class="headerlink" href="#receiving-unparsed-bytes" title="Permalink to this headline">¶</a></h2>
+<p>Most applications are only interested in validated packets, received either as command responses or as measurements in a <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object.
+Although validated packets are sufficient in most uses, the VNSDK also includes the ability to receive and log all bytes.
+This section details how to receive bytes from the unit which are not necessarily part of any known packet.</p>
+<section id="all-received-bytes">
+<h3>All Received Bytes<a class="headerlink" href="#all-received-bytes" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to receive all bytes received from the unit. The most common application for this is to log each byte to a file. Because we don’t want to bottleneck the packet finding and measurement parsing occurring on the <em>listening thread</em> with any possible File I/O, we need to provide an output buffer to the <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> object, using which we can access the bytes of interest.</p>
+<p>We first create a <a class="reference internal" href="../_api/class_v_n_1_1_byte_buffer.html#_CPPv4N2VN10ByteBufferE" title="VN::ByteBuffer"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">VN::ByteBuffer</span></code></a> object of the appropriate size, then register it with the <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> object using <a class="reference internal" href="../_api/class_v_n_1_1_sensor.html#_CPPv4N2VN6Sensor26registerReceivedByteBufferEPC10ByteBuffer" title="VN::Sensor::registerReceivedByteBuffer"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Sensor::registerReceivedByteBuffer()</span></code></a>. All subsequent received bytes will be placed on that queue, to be read when necessary.</p>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">Instantiate and Register Byte Buffer</span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ByteBuffer</span><span class="w"> </span><span class="nf">receivedByteBuffer</span><span class="p">(</span><span class="mi">4096</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">sensor</span><span class="p">.</span><span class="n">registerReceivedByteBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">receivedByteBuffer</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>When we would like our byte buffer to cease being populated, we can deregister the buffer using the <a class="reference internal" href="../_api/class_v_n_1_1_sensor.html#_CPPv4N2VN6Sensor28deregisterReceivedByteBufferEv" title="VN::Sensor::deregisterReceivedByteBuffer"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Sensor::deregisterReceivedByteBuffer()</span></code></a> method.</p>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">Deregister Received Byte Buffer</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sensor</span><span class="p">.</span><span class="n">deregisterReceivedByteBuffer</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<p>Only one byte buffer at a time can be registered for all received bytes.</p>
+</section>
+<section id="skipped-bytes">
+<h3>Skipped Bytes<a class="headerlink" href="#skipped-bytes" title="Permalink to this headline">¶</a></h3>
+<p>A skipped byte is any byte received by the <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> object that is not part of a valid packet.
+Logging this can be useful when identifying dropped packets due to hardware noise, or when using an experimental message type that is unsupported by the SDK.</p>
+<p>Very similar to registering a received byte buffer, we need to instantiate and register a <code class="docutils literal notranslate"><span class="pre">ByteBuffer</span></code> object as the interface to access the skipped bytes using <a class="reference internal" href="../_api/class_v_n_1_1_sensor.html#_CPPv4N2VN6Sensor25registerSkippedByteBufferEPC10ByteBuffer" title="VN::Sensor::registerSkippedByteBuffer"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Sensor::registerSkippedByteBuffer()</span></code></a>. We can do this using</p>
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">Instantiate and Register Skipped Byte Buffer</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ByteBuffer</span><span class="w"> </span><span class="nf">skippedByteBuffer</span><span class="p">(</span><span class="mi">4096</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">sensor</span><span class="p">.</span><span class="n">registerSkippedByteBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">skippedByteBuffer</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>and can later deregister this buffer using the <a class="reference internal" href="../_api/class_v_n_1_1_sensor.html#_CPPv4N2VN6Sensor27deregisterSkippedByteBufferEv" title="VN::Sensor::deregisterSkippedByteBuffer"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Sensor::deregisterSkippedByteBuffer()</span></code></a> method:</p>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">Deregister Skipped Byte Buffer</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">sensor</span><span class="p">.</span><span class="n">deregsiterSkippedByteBuffer</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<p>Only one byte buffer at a time can be registered for skipped bytes.</p>
+</section>
+</section>
+<section id="receiving-unexpected-ascii-messages">
+<h2>Receiving Unexpected ASCII Messages<a class="headerlink" href="#receiving-unexpected-ascii-messages" title="Permalink to this headline">¶</a></h2>
+<p>As discussed in <a class="reference internal" href="#non-blocking-commands"><span class="std std-ref">Non-Blocking Commands</span></a>, each outgoing command (whether set to <code class="docutils literal notranslate"><span class="pre">blocking</span></code> or not) is placed in a queue to await a response. Any non-measurement, valid ASCII messages from the unit that is not expected by a command in that queue will be placed on the <em>unexpected message queue</em>. In most cases, this will include asynchronous VN Error messages, defined following <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">VN::SensorExceptions::SensorAsynchronous</span></code> as</p>
+<ul class="simple">
+<li><p><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">VN::SensorExceptions::HardFault</span></code></p></li>
+<li><p><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">VN::SensorExceptions::WatchdogReset</span></code></p></li>
+<li><p><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">VN::SensorExceptions::OutputBufferOverflow</span></code></p></li>
+<li><p><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">VN::SensorExceptions::ErrorBufferOverflow</span></code></p></li>
+</ul>
+<p>In rare cases, a message can be placed on this queue because of hardware noise. It is possible the unit received (and is responding to) a command that was not sent by the SDK or that the response message was corrupted in reception, but remained a valid packet by the CRC check. For robustness, it is best to log the <cite>unexpected message queue</cite> and monitor it for any messages.</p>
+<p>The unexpected message queue can be accessed using <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Sensor::unexpectedQueueSize()</span></code> and <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">VN::Sensor::getUnexpectedMessage()</span></code>.</p>
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<p>The file <a class="reference internal" href="../_api/file_include_Debug.hpp.html#file-include-debug-hpp"><span class="std std-ref">File Debug.hpp</span></a> contains helpful macros for SDK debug logging. Standard debugging is available in two levels, each with their own macro (<code class="docutils literal notranslate"><span class="pre">VN_DEBUG_1</span></code>, <code class="docutils literal notranslate"><span class="pre">VN_DEBUG_2</span></code>) that are called upon various SDK events but are disabled by default. The debug messages default to off (<code class="docutils literal notranslate"><span class="pre">0</span></code>) but can be enabled by setting <code class="docutils literal notranslate"><span class="pre">CURRENT_VN_DEBUG_LEVEL</span></code> to the desired level.
+In addition, <code class="docutils literal notranslate"><span class="pre">VN_ASSERT</span></code> and <code class="docutils literal notranslate"><span class="pre">VN_ABORT</span></code> are provided to output the filename and line number on which an assert failed, or an abort is called.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>While <code class="docutils literal notranslate"><span class="pre">VN_DEBUG</span></code> can be helpful for debugging, high-rate measurement data often induces latency due to the speed of <code class="docutils literal notranslate"><span class="pre">std::cout</span></code>, introducing a new issue. In this case, it may be beneficial to instead add each received debug message to a <code class="docutils literal notranslate"><span class="pre">Vector</span></code> and output every message together in batches, or at the end of the test.
+This can be accomplished using <code class="docutils literal notranslate"><span class="pre">VN_LIGHTWEIGHT_DEBUG</span></code>.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../Documentation.html" title="Documentation">
+          <img class="logo" src="../_static/VectorNav_LogoStacked_ForWeb_RGB_Full-Color.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../Documentation.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="MigrationGuide.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="KeyFunctionality.html">Key Functionality</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Functionality</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#non-blocking-commands">Non-Blocking Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subscribe-to-an-unparsed-packet">Subscribe to an Unparsed Packet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#receiving-unparsed-bytes">Receiving Unparsed Bytes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#receiving-unexpected-ascii-messages">Receiving Unexpected ASCII Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging">Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MemoryConstrained.html">Memory Constrained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NonOsUsage.html">Non-Os Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_index.html">VNSDK API</a></li>
+</ul>
+</div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="KeyFunctionality.html"
+                          title="Previous page">&larr; Key Functionality</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="MemoryConstrained.html"
+                          title="Next page">&rarr; Memory Constrained</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/pages/AdvancedFunctionality.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="MemoryConstrained.html" title="Memory Constrained"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="KeyFunctionality.html" title="Key Functionality"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Advanced Functionality</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, VectorNav Technologies.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

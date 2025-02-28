@@ -1,0 +1,33 @@
+
+.. _program_listing_file_include_Implementation_QueueDefinitions.hpp:
+
+Program Listing for File QueueDefinitions.hpp
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_Implementation_QueueDefinitions.hpp>` (``include\Implementation\QueueDefinitions.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef IMPLEMENTATION_QUEUEDEFINITIONS_HPP
+   #define IMPLEMENTATION_QUEUEDEFINITIONS_HPP
+   
+   #include <memory>
+   
+   #include "TemplateLibrary/DirectAccessQueue.hpp"
+   #include "Implementation/Packet.hpp"
+   #include "Interface/CompositeData.hpp"
+   #include "Config.hpp"
+   
+   namespace VN
+   {
+   using MeasurementQueue = DirectAccessQueue<CompositeData, Config::PacketDispatchers::compositeDataQueueCapacity>;
+   
+   using PacketQueue_Interface = DirectAccessQueue_Interface<Packet>;
+   
+   template <uint16_t Capacity>
+   using PacketQueue = DirectAccessQueue<Packet, Capacity>;
+   }  // namespace VN
+   
+   #endif  // IMPLEMENTATION_QUEUEDEFINITIONS_HPP

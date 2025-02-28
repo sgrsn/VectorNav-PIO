@@ -1,0 +1,104 @@
+
+.. _file_include_Interface_Sensor.hpp:
+
+File Sensor.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_Interface>` (``include\Interface``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\Interface\Sensor.hpp``)
+---------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_Interface_Sensor.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Config.hpp`` (:ref:`file_include_Config.hpp`)
+
+- ``HAL/Serial.hpp``
+
+- ``HAL/Serial_Base.hpp``
+
+- ``HAL/Thread.hpp``
+
+- ``HAL/Timer.hpp``
+
+- ``Implementation/AsciiHeader.hpp``
+
+- ``Implementation/AsciiPacketDispatcher.hpp``
+
+- ``Implementation/CommandProcessor.hpp``
+
+- ``Implementation/FaPacketDispatcher.hpp``
+
+- ``Implementation/FbPacketDispatcher.hpp``
+
+- ``Implementation/MeasurementDatatypes.hpp``
+
+- ``Implementation/PacketSynchronizer.hpp``
+
+- ``Implementation/QueueDefinitions.hpp``
+
+- ``Interface/Command.hpp``
+
+- ``Interface/Commands.hpp``
+
+- ``Interface/Errors.hpp``
+
+- ``Interface/Registers.hpp``
+
+- ``array``
+
+- ``atomic``
+
+- ``memory``
+
+- ``optional``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_plugins_FirmwareUpdate_include_Bootloader.hpp`
+
+- :ref:`file_plugins_FirmwareUpdate_include_FirmwareUpdater.hpp`
+
+- :ref:`file_plugins_RegisterScan_RegisterScan.hpp`
+
+- :ref:`file_plugins_SimpleLogger_SimpleLogger.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_class_v_n_1_1_sensor`
+

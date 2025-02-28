@@ -1,0 +1,14 @@
+.. _exhale_function__conversions_8hpp_1af18a307e396a9f4e9e3e11a3d9dc5eaf:
+
+Function VN::Conversions::deg2rad(double)
+=========================================
+
+- Defined in :ref:`file_plugins_Math_Conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Conversions::deg2rad(double)
+   :project: VectorNav SDK

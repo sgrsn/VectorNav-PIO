@@ -1,0 +1,14 @@
+.. _exhale_variable__config_8hpp_1a787383a22cecce56da7c647883fb02fb:
+
+Variable VN::Config::Serial::PortNameMaxLength
+==============================================
+
+- Defined in :ref:`file_include_Config.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: VN::Config::Serial::PortNameMaxLength
+   :project: VectorNav SDK

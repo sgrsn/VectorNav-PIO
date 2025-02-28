@@ -1,0 +1,14 @@
+.. _exhale_typedef__vn_xml_8hpp_1a1825956e166b00bd67b3d2b1ffc07eb1:
+
+Typedef VN::VnXml::Metadata
+===========================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: VN::VnXml::Metadata
+   :project: VectorNav SDK

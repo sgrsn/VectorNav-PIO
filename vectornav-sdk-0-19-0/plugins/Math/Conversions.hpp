@@ -1,0 +1,266 @@
+// The MIT License (MIT)
+// 
+// VectorNav SDK (v0.19.0)
+// Copyright (c) 2024 VectorNav Technologies, LLC
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+#pragma once
+
+#ifndef CORE_CONVERSIONS_HPP
+#define CORE_CONVERSIONS_HPP
+
+#define _USE_MATH_DEFINES
+
+#include <math.h>
+#include <cmath>
+#include "TemplateLibrary/Matrix.hpp"
+#include "MatrixMath.hpp"
+#include "Implementation/MeasurementDatatypes.hpp"
+#include "LinearAlgebra.hpp"
+
+namespace VN
+{
+namespace Conversions
+{
+
+// ******
+// Angles
+// ******
+
+inline float rad2deg(float angleInRads) noexcept { return angleInRads * 180.0f / static_cast<float>(M_PI); }
+
+inline double rad2deg(double angleInRads) noexcept { return angleInRads * 180.0 / static_cast<double>(M_PI); }
+
+inline float deg2rad(float angleInDegs) noexcept { return angleInDegs * static_cast<float>(M_PI) / 180.0f; }
+
+inline double deg2rad(double angleInDegs) noexcept { return angleInDegs * static_cast<double>(M_PI) / 180.0; }
+
+inline Vec3f deg2rad(Vec3f vec) noexcept { return vec * (static_cast<float>(M_PI) / 180.0f); }
+
+inline Vec3f rad2deg(Vec3f vec) noexcept { return vec * (180.0f / static_cast<float>(M_PI)); }
+
+inline Ypr deg2rad(Ypr ypr) noexcept
+{
+    ypr.yaw *= (static_cast<float>(M_PI) / 180.0f);
+    ypr.pitch *= (static_cast<float>(M_PI) / 180.0f);
+    ypr.roll *= (static_cast<float>(M_PI) / 180.0f);
+    return ypr;
+}
+
+inline Ypr rad2deg(Ypr ypr) noexcept
+{
+    ypr.yaw *= (180.0f / static_cast<float>(M_PI));
+    ypr.pitch *= (180.0f / static_cast<float>(M_PI));
+    ypr.roll *= (180.0f / static_cast<float>(M_PI));
+    return ypr;
+}
+
+// ***********
+// Temperature
+// ***********
+
+inline float celsius2fahren(float tempInCelsius) noexcept { return (tempInCelsius * 9.0f) / 5.0f + 32.0f; }
+
+inline double celsius2fahren(double tempInCelsius) noexcept { return (tempInCelsius * 9.0) / 5.0 + 32.0; }
+
+inline float fahren2celsius(float tempInFahren) noexcept { return (tempInFahren - 32.0f) * 5.0f / 9.0f; }
+
+inline double fahren2celsius(double tempInFahren) noexcept { return (tempInFahren - 32.0) * 5.0 / 9.0; }
+
+inline float celsius2kelvin(float tempInCelsius) noexcept { return tempInCelsius + 273.15f; }
+
+inline double celsius2kelvin(double tempInCelsius) noexcept { return tempInCelsius + 273.15; }
+
+inline float kelvin2celsius(float tempInKelvin) noexcept { return tempInKelvin - 273.15f; }
+
+inline double kelvin2celsius(double tempInKelvin) noexcept { return tempInKelvin - 273.15; }
+
+inline float fahren2kelvin(float tempInFahren) noexcept { return celsius2kelvin(fahren2celsius(tempInFahren)); }
+
+inline double fahren2kelvin(double tempInFahren) noexcept { return celsius2kelvin(fahren2celsius(tempInFahren)); }
+
+inline float kelvin2fahren(float tempInKelvin) noexcept { return celsius2fahren(tempInKelvin - 273.15f); }
+
+inline double kelvin2fahren(double tempInKelvin) noexcept { return celsius2fahren(tempInKelvin - 273.15); }
+
+// ********
+// Attitude
+// ********
+
+inline Quat yprInRads2Quat(const Ypr& ypr) noexcept
+{
+    float c1 = std::cos(ypr.yaw / 2.0f);
+    float s1 = std::sin(ypr.yaw / 2.0f);
+    float c2 = std::cos(ypr.pitch / 2.0f);
+    float s2 = std::sin(ypr.pitch / 2.0f);
+    float c3 = std::cos(ypr.roll / 2.0f);
+    float s3 = std::sin(ypr.roll / 2.0f);
+
+    return Quat({c1 * c2 * s3 - s1 * s2 * c3, c1 * s2 * c3 + s1 * c2 * s3, s1 * c2 * c3 - c1 * s2 * s3}, c1 * c2 * c3 + s1 * s2 * s3);
+}
+
+inline Quat yprInDegs2Quat(const Ypr& ypr) noexcept { return yprInRads2Quat(deg2rad(ypr)); }
+
+inline Mat3f yprInRads2Dcm(const Ypr& ypr) noexcept
+{
+    float st1 = std::sin(ypr.yaw);
+    float ct1 = std::cos(ypr.yaw);
+    float st2 = std::sin(ypr.pitch);
+    float ct2 = std::cos(ypr.pitch);
+    float st3 = std::sin(ypr.roll);
+    float ct3 = std::cos(ypr.roll);
+
+    return Mat3f({ct2 * ct1, ct2 * st1, -st2, st3 * st2 * ct1 - ct3 * st1, st3 * st2 * st1 + ct3 * ct1, st3 * ct2, ct3 * st2 * ct1 + st3 * st1,
+                  ct3 * st2 * st1 - st3 * ct1, ct3 * ct2});
+}
+
+inline Mat3f yprInDegs2Dcm(const Ypr& ypr) noexcept { return yprInRads2Dcm(deg2rad(ypr)); }
+
+inline Ypr quat2YprInRads(const Quat& quat) noexcept
+{
+    float q1 = quat.vector[0];
+    float q2 = quat.vector[1];
+    float q3 = quat.vector[2];
+    float q0 = quat.scalar;
+
+    return Ypr(std::atan2(2.0f * (q1 * q2 + q0 * q3), q0 * q0 + q1 * q1 - q2 * q2 - q3 * q3), std::asin(-2.0f * (q1 * q3 - q0 * q2)),
+               std::atan2(2.0f * (q2 * q3 + q0 * q1), q0 * q0 - q1 * q1 - q2 * q2 + q3 * q3));
+}
+
+inline Ypr quat2YprInDegs(const Quat& quat) noexcept { return rad2deg(quat2YprInRads(quat)); }
+
+inline Mat3f quat2dcm(const Quat& quat) noexcept
+{
+    float q1 = quat.vector[0];
+    float q2 = quat.vector[1];
+    float q3 = quat.vector[2];
+    float q0 = quat.scalar;
+
+    return Mat3f({q0 * q0 + q1 * q1 - q2 * q2 - q3 * q3, 2.f * (q1 * q2 + q0 * q3), 2.f * (q1 * q3 - q0 * q2), 2.f * (q1 * q2 - q0 * q3),
+                  q0 * q0 - q1 * q1 + q2 * q2 - q3 * q3, 2.f * (q2 * q3 + q0 * q1), 2.f * (q1 * q3 + q0 * q2), 2.f * (q2 * q3 - q0 * q1),
+                  q0 * q0 - q1 * q1 - q2 * q2 + q3 * q3});
+}
+
+inline Ypr dcm2YprInRads(const Mat3f& dcm) noexcept { return Ypr(std::atan2(dcm(0, 1), dcm(0, 0)), -(std::asin(dcm(0, 2))), std::atan2(dcm(1, 2), dcm(2, 2))); }
+
+inline Ypr dcm2YprInDegs(const Mat3f& dcm) noexcept { return rad2deg(dcm2YprInRads(dcm)); }
+
+inline Quat dcm2quat(const Mat3f& dcm) noexcept
+{
+    float tr = dcm(0, 0) + dcm(1, 1) + dcm(2, 2);
+
+    std::array<float, 4> index{tr, dcm(0, 0), dcm(1, 1), dcm(2, 2)};
+
+    uint8_t maxIndex = 0;
+    for (uint8_t i = 1; i < 4; i++) { maxIndex = (index[i] > index[i - 1]) ? i : maxIndex; }
+
+    Quat q;
+
+    switch (maxIndex)
+    {
+        case 0:
+            q.scalar = tr + 1;
+            q.vector = {dcm(1, 2) - dcm(2, 1), dcm(2, 0) - dcm(0, 2), dcm(0, 1) - dcm(1, 0)};
+            break;
+        case 1:
+            q.scalar = dcm(1, 2) - dcm(2, 1);
+            q.vector = {2 * dcm(0, 0) - tr + 1, dcm(0, 1) + dcm(1, 0), dcm(2, 0) + dcm(0, 2)};
+            break;
+        case 2:
+            q.scalar = dcm(2, 0) - dcm(0, 2);
+            q.vector = {dcm(0, 1) + dcm(1, 0), 2 * dcm(1, 1) - tr + 1, dcm(1, 2) + dcm(2, 1)};
+            break;
+        case 3:
+            q.scalar = dcm(0, 1) - dcm(1, 0);
+            q.vector = {dcm(2, 0) + dcm(0, 2), dcm(2, 1) + dcm(1, 2), 2 * dcm(2, 2) - tr + 1};
+            break;
+    }
+
+    return LinAlg::normalizeQuat(q);
+}
+
+inline float course_over_ground(float velNedX, float velNedY) noexcept { return std::atan2(velNedY, velNedX); }
+
+inline float course_over_ground(const Vec3f& velNed) noexcept { return course_over_ground(velNed[0], velNed[1]); }
+
+inline float speed_over_ground(const float velNedX, const float velNedY) noexcept { return std::sqrt(velNedX * velNedX + velNedY * velNedY); }
+
+inline float speed_over_ground(const Vec3f& velNed) noexcept { return speed_over_ground(velNed[0], velNed[1]); }
+
+constexpr double C_EARTHF = 0.003352810664747;
+constexpr double C_EARTHR = 6378137.0;
+constexpr double C_E2 = 0.0066943799901413295;
+constexpr double C_EPSILON = 0.99664718933525254;
+constexpr double C_ABAR = 42697.672707180049;
+constexpr double C_BBAR = 42841.31151331366;
+
+inline Lla ecef2lla(const Vec3d& ecef) noexcept
+{
+    double rho = std::sqrt(ecef[0] * ecef[0] + ecef[1] * ecef[1]);
+    double beta = std::atan2(ecef[2], C_EPSILON * rho);
+    double sb = std::sin(beta);
+    double cb = std::cos(beta);
+    double phi = std::atan2(ecef[2] + C_BBAR * sb * sb * sb, rho - C_ABAR * cb * cb * cb);
+    double betaNew = std::atan2(C_EPSILON * std::sin(phi), std::cos(phi));
+
+    int count = 0;
+    while ((std::fabs(beta - betaNew) < 1e-11) && (count < 5))
+    {
+        beta = betaNew;
+        sb = std::sin(betaNew);
+        cb = std::cos(betaNew);
+        phi = std::atan2(ecef[2] + C_BBAR * sb * sb * sb, rho - C_EPSILON * cb * cb * cb);
+        betaNew = std::atan2(C_EPSILON * sin(phi), cos(phi));
+        count++;
+    }
+
+    beta = std::sin(phi);
+    betaNew = C_EARTHR / std::sqrt(1.0 - C_E2 * (beta * beta));
+
+    return Lla{rad2deg(phi), rad2deg(std::atan2(ecef[1], ecef[0])), rho * std::cos(phi) + (ecef[2] + C_E2 * betaNew * beta) * beta - betaNew};
+}
+
+inline Vec3d lla2ecef(const Lla& lla) noexcept
+{
+    Lla llar{deg2rad(lla.lat), deg2rad(lla.lon), lla.alt};
+
+    double comp_f_sq = (1 - C_EARTHF) * (1 - C_EARTHF);
+    double lambda_s = std::atan(comp_f_sq * std::tan(llar.lat));
+
+    double sinLam = std::sin(lambda_s);
+    double cosLam = std::cos(lambda_s);
+    double r_s = sqrt(C_EARTHR * C_EARTHR / (1.0 + (((1.0 / comp_f_sq) - 1.0) * sinLam * sinLam)));
+
+    double cosLat = std::cos(llar.lat);
+    double sinLat = std::sin(llar.lat);
+    double cosLon = std::cos(llar.lon);
+    double sinLon = std::sin(llar.lon);
+
+    return Vec3d{
+        (r_s * cosLam * cosLon) + (llar.alt * cosLat * cosLon),
+        (r_s * cosLam * sinLon) + (llar.alt * cosLat * sinLon),
+        (r_s * sinLam) + (llar.alt * sinLat),
+    };
+}
+
+}  // namespace Conversions
+}  // namespace VN
+
+#endif  // CORE_CONVERSIONS_HPP

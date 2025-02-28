@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1a93a6f49b86da01e833a41b60a818f59d:
+
+Template Function VN::LinAlg::transpose
+=======================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::transpose(const Matrix<m, n, T>&)
+   :project: VectorNav SDK

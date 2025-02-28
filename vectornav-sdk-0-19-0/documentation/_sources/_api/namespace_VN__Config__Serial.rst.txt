@@ -1,0 +1,22 @@
+
+.. _namespace_VN__Config__Serial:
+
+Namespace VN::Config::Serial
+============================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable__config_8hpp_1abd997e93dae45fcbeac14b6ae7511922`
+
+- :ref:`exhale_variable__config_8hpp_1a787383a22cecce56da7c647883fb02fb`

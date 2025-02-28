@@ -1,0 +1,14 @@
+.. _exhale_enum__bootloader_8hpp_1ab297793051213ea605b88b47da10d12b:
+
+Enum Error
+==========
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_Bootloader.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: VN::Bootloader::Error
+   :project: VectorNav SDK

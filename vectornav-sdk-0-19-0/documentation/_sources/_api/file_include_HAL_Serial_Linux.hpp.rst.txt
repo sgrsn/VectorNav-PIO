@@ -1,0 +1,74 @@
+
+.. _file_include_HAL_Serial_Linux.hpp:
+
+File Serial_Linux.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_HAL>` (``include\HAL``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\HAL\Serial_Linux.hpp``)
+---------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_HAL_Serial_Linux.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``HAL/Serial_Base.hpp``
+
+- ``Interface/Errors.hpp``
+
+- ``cstddef``
+
+- ``cstdint``
+
+- ``cstring``
+
+- ``fcntl.h``
+
+- ``linux/serial.h``
+
+- ``optional``
+
+- ``string``
+
+- ``sys/ioctl.h``
+
+- ``termios.h``
+
+- ``unistd.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_class_v_n_1_1_serial`
+

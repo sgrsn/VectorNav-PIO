@@ -1,0 +1,160 @@
+
+.. _file_plugins_Math_Conversions.hpp:
+
+File Conversions.hpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_plugins_Math>` (``plugins\Math``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``plugins\Math\Conversions.hpp``)
+---------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_plugins_Math_Conversions.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Implementation/MeasurementDatatypes.hpp``
+
+- ``LinearAlgebra.hpp`` (:ref:`file_plugins_Math_LinearAlgebra.hpp`)
+
+- ``MatrixMath.hpp`` (:ref:`file_plugins_Math_MatrixMath.hpp`)
+
+- ``TemplateLibrary/Matrix.hpp``
+
+- ``cmath``
+
+- ``math.h``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+- :ref:`namespace_VN__Conversions`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function__conversions_8hpp_1a1c64985c80a504bbd31c04fe8a763e15`
+
+- :ref:`exhale_function__conversions_8hpp_1a5e7181b382724a13c8b7bb02179bae93`
+
+- :ref:`exhale_function__conversions_8hpp_1a66fe5e6acdc38fd136872d9bc8b9479c`
+
+- :ref:`exhale_function__conversions_8hpp_1a661d310c77896dec43537a786d44ab4a`
+
+- :ref:`exhale_function__conversions_8hpp_1ae92a9cfa3d71aeb4fcb4e5a334285c4d`
+
+- :ref:`exhale_function__conversions_8hpp_1a17324c43ec7d5739914095f9f52e917f`
+
+- :ref:`exhale_function__conversions_8hpp_1a690fb15c6debf12d2009df2e7c1ec7ed`
+
+- :ref:`exhale_function__conversions_8hpp_1a1a142b3717123ba1eb0ba590fad0072d`
+
+- :ref:`exhale_function__conversions_8hpp_1a8f9c94116ca1f0525d60f7efa792b3e6`
+
+- :ref:`exhale_function__conversions_8hpp_1a13cb0c2d07a9b8d90c7e33b022f4d069`
+
+- :ref:`exhale_function__conversions_8hpp_1ace15872c2f53dfb78a3ae6c17c0e2749`
+
+- :ref:`exhale_function__conversions_8hpp_1af18a307e396a9f4e9e3e11a3d9dc5eaf`
+
+- :ref:`exhale_function__conversions_8hpp_1a282a6cbc9aedd0cd67864a229f80823c`
+
+- :ref:`exhale_function__conversions_8hpp_1a34718a005c4e473d6df4427d53fddcea`
+
+- :ref:`exhale_function__conversions_8hpp_1a495c3fea28746e1819cfee8fabfdc726`
+
+- :ref:`exhale_function__conversions_8hpp_1a0a7639203b7bd19ee5a0982070eecebe`
+
+- :ref:`exhale_function__conversions_8hpp_1af7e33b8803b74b3455909168d8f58f35`
+
+- :ref:`exhale_function__conversions_8hpp_1a4092fcab058c3f6c12ef367a9cff7d4d`
+
+- :ref:`exhale_function__conversions_8hpp_1a8a85140def6f3c3a7c2d9db133acd42d`
+
+- :ref:`exhale_function__conversions_8hpp_1a1da9fd80ac4ed835f8527e6a1efe0391`
+
+- :ref:`exhale_function__conversions_8hpp_1a05c78e84c360799543cdf2c700f125c3`
+
+- :ref:`exhale_function__conversions_8hpp_1aeabf21f5cbcb41225a8918200a4ce428`
+
+- :ref:`exhale_function__conversions_8hpp_1a43d15406cdc81e5d0507b3f2a761fd4e`
+
+- :ref:`exhale_function__conversions_8hpp_1a6fb18c9fb1bfdd7d087cd3ba432b3f61`
+
+- :ref:`exhale_function__conversions_8hpp_1ad10810fac28631a8397aa56bccbb1b6f`
+
+- :ref:`exhale_function__conversions_8hpp_1a8640da9f6132f03717c02684cf588003`
+
+- :ref:`exhale_function__conversions_8hpp_1a023bdee970e43f4b0d8d5c3ca8d86032`
+
+- :ref:`exhale_function__conversions_8hpp_1a741f874c81fa8fc5bd25048de990e545`
+
+- :ref:`exhale_function__conversions_8hpp_1a87e51dff327108935d550099c37aa535`
+
+- :ref:`exhale_function__conversions_8hpp_1aa27fbb9928f212a8b8b82a90b0b09840`
+
+- :ref:`exhale_function__conversions_8hpp_1a7071e66e9a1eedc2948383e5cfeedd8a`
+
+- :ref:`exhale_function__conversions_8hpp_1addcc342d36a344d18475f5fbf0f3b825`
+
+- :ref:`exhale_function__conversions_8hpp_1ad4f43e8bcae7f25986daa9f06d2b6f77`
+
+- :ref:`exhale_function__conversions_8hpp_1a411a56b646c5db3b4f3dae17d8aec529`
+
+- :ref:`exhale_function__conversions_8hpp_1a8b888b76e8e72adcaaa5b25ab1768df7`
+
+- :ref:`exhale_function__conversions_8hpp_1a58f4110b458abb908aba87697cd2e21b`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define__conversions_8hpp_1a525335710b53cb064ca56b936120431e`
+
+- :ref:`exhale_define__conversions_8hpp_1adf7525bfa931b78e7f146221826fe60b`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable__conversions_8hpp_1ac4f2e7a08309b69ec4622fb9c380d52a`
+
+- :ref:`exhale_variable__conversions_8hpp_1ac94c8f1cc0d53c87159572a2986dd603`
+
+- :ref:`exhale_variable__conversions_8hpp_1a01bed39a0691ee9c5ef7b0e8ff34d4f1`
+
+- :ref:`exhale_variable__conversions_8hpp_1a15ba5957bd2c38e1bb296cfe5938f99d`
+
+- :ref:`exhale_variable__conversions_8hpp_1ae57bb92db9bade09f1bba03133e3b7b6`
+
+- :ref:`exhale_variable__conversions_8hpp_1adb8a16954f941bc5823e3ecedfee508c`
+

@@ -1,0 +1,22 @@
+.. _dir_plugins_RegisterScan:
+
+
+Directory RegisterScan
+======================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_plugins>` (``plugins``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``plugins\RegisterScan``
+
+
+Files
+-----
+
+- :ref:`file_plugins_RegisterScan_RegisterScan.cpp`
+- :ref:`file_plugins_RegisterScan_RegisterScan.hpp`
+
+

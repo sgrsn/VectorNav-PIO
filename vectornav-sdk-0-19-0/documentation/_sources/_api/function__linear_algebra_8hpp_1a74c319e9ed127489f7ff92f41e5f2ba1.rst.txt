@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1a74c319e9ed127489f7ff92f41e5f2ba1:
+
+Template Function VN::LinAlg::solveLinearSystemLU
+=================================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::solveLinearSystemLU(Matrix<n, n, T>, const Matrix<n, 1, T>&)
+   :project: VectorNav SDK

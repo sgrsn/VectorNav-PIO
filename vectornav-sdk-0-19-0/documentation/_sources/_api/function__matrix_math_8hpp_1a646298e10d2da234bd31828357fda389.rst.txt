@@ -1,0 +1,14 @@
+.. _exhale_function__matrix_math_8hpp_1a646298e10d2da234bd31828357fda389:
+
+Template Function VN::element_div
+=================================
+
+- Defined in :ref:`file_plugins_Math_MatrixMath.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::element_div(Matrix<m, n, T>, const Matrix<m, n, T>&)
+   :project: VectorNav SDK

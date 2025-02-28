@@ -1,0 +1,14 @@
+.. _exhale_variable__skipped_byte_exporter_8hpp_1a2c1e2b36abfeb21056f86105fe2d8bd4:
+
+Variable VN::SKIPPED_BYTE_BUFFER_CAPACITY
+=========================================
+
+- Defined in :ref:`file_plugins_DataExport_include_SkippedByteExporter.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: VN::SKIPPED_BYTE_BUFFER_CAPACITY
+   :project: VectorNav SDK

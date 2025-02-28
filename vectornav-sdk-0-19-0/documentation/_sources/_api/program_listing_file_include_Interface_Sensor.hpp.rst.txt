@@ -1,0 +1,233 @@
+
+.. _program_listing_file_include_Interface_Sensor.hpp:
+
+Program Listing for File Sensor.hpp
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_Interface_Sensor.hpp>` (``include\Interface\Sensor.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INTERFACE_SENSOR_HPP
+   #define INTERFACE_SENSOR_HPP
+   
+   #include <atomic>
+   #include <memory>
+   #include <optional>
+   #include <array>
+   
+   #include "Config.hpp"
+   #include "Implementation/MeasurementDatatypes.hpp"
+   #include "HAL/Serial_Base.hpp"
+   #include "Interface/Command.hpp"
+   #include "Interface/Errors.hpp"
+   #include "HAL/Serial.hpp"
+   #include "HAL/Thread.hpp"
+   #include "HAL/Timer.hpp"
+   #include "Implementation/QueueDefinitions.hpp"
+   #include "Implementation/PacketSynchronizer.hpp"
+   #include "Interface/Commands.hpp"
+   #include "Implementation/CommandProcessor.hpp"
+   #include "Implementation/AsciiPacketDispatcher.hpp"
+   #include "Implementation/AsciiHeader.hpp"
+   #include "Implementation/FaPacketDispatcher.hpp"
+   #include "Implementation/FbPacketDispatcher.hpp"
+   #include "Interface/Registers.hpp"
+   
+   namespace VN
+   {
+   
+   class SensorTestHarness;
+   
+   class Sensor
+   {
+   public:
+       // ------------------------------------------
+       // ------------------------------------------
+       Sensor();
+   
+       template <size_t MainByteBufferCapacity, size_t FbByteBufferCapacity>
+       Sensor(std::array<uint8_t, MainByteBufferCapacity>& mainBuffer, std::array<uint8_t, FbByteBufferCapacity>& fbBuffer);
+   
+       ~Sensor();
+   
+       // ------------------------------------------
+       // ------------------------------------------
+   
+       using BaudRate = Registers::System::BaudRate::BaudRates;
+   
+       Error connect(const Serial_Base::PortName& portName, const BaudRate baudRate) noexcept;
+   
+       Error autoConnect(const Serial_Base::PortName& portName) noexcept;
+   
+       bool verifySensorConnectivity() noexcept;
+   
+       std::optional<Serial_Base::PortName> connectedPortName() const noexcept { return _serial.connectedPortName(); };
+   
+       std::optional<BaudRate> connectedBaudRate() const noexcept
+       {
+           auto connectedBaudRate = _serial.connectedBaudRate();
+           return connectedBaudRate ? std::make_optional(static_cast<BaudRate>(*connectedBaudRate)) : std::nullopt;
+       };
+   
+       Error changeBaudRate(const BaudRate newBaudRate) noexcept;
+   
+       Error changeHostBaudRate(const BaudRate newBaudRate) noexcept;
+   
+       void disconnect() noexcept;
+   
+       // ------------------------------------------
+       // ------------------------------------------
+   
+       using CompositeDataQueueReturn = DirectAccessQueue_Interface<CompositeData>::value_type;
+   
+       bool hasMeasurement() const noexcept { return !_measurementQueue.isEmpty(); }
+   
+       CompositeDataQueueReturn getNextMeasurement(const bool block = true) noexcept;
+   
+       CompositeDataQueueReturn getMostRecentMeasurement(const bool block = true) noexcept;
+   
+       // ------------------------------------------
+       // ------------------------------------------
+   
+       enum class SendCommandBlockMode
+       {
+           None,            
+           Block,           
+           BlockWithRetry,  
+       };
+   
+       Error readRegister(Register* registerToRead, const bool retryOnFailure = true) noexcept;
+   
+       Error writeRegister(ConfigurationRegister* registerToWrite, const bool retryOnFailure = true) noexcept;
+   
+       Error writeSettings() noexcept;
+   
+       Error reset() noexcept;
+   
+       Error restoreFactorySettings() noexcept;
+   
+       Error knownMagneticDisturbance(const KnownMagneticDisturbance::State state) noexcept;
+   
+       Error knownAccelerationDisturbance(const KnownAccelerationDisturbance::State state) noexcept;
+   
+       Error setInitialHeading(const float heading) noexcept;
+       Error setInitialHeading(const Ypr& ypr) noexcept;
+       Error setInitialHeading(const Quat& quat) noexcept;
+   
+       Error asyncOutputEnable(const AsyncOutputEnable::State state) noexcept;
+   
+       Error setFilterBias() noexcept;
+   
+       Error setBootloader(const SetBootLoader::Processor processorId) noexcept;
+   
+       Error sendCommand(Command* commandToSend, SendCommandBlockMode waitMode, const Microseconds waitLength = Config::Sensor::commandSendTimeoutLength, const Microseconds timeoutThreshold = Config::CommandProcessor::commandRemovalTimeoutLength) noexcept;
+   
+       Error serialSend(const AsciiMessage& msgToSend) noexcept;
+   
+       // ------------------------------------------
+       // ------------------------------------------
+   
+       void registerSkippedByteBuffer(ByteBuffer* const skippedByteBuffer) noexcept { _packetSynchronizer.registerSkippedByteBuffer(skippedByteBuffer); }
+   
+       void deregisterSkippedByteBuffer() noexcept { _packetSynchronizer.deregisterSkippedByteBuffer(); }
+   
+       void registerReceivedByteBuffer(ByteBuffer* const receivedByteBuffer) noexcept { _packetSynchronizer.registerReceivedByteBuffer(receivedByteBuffer); };
+   
+       void deregisterReceivedByteBuffer() noexcept { _packetSynchronizer.deregisterReceivedByteBuffer(); };
+   
+       using SyncByte = PacketDetails::SyncByte;
+       using FaSubscriberFilterType = FaPacketDispatcher::SubscriberFilterType;
+       using BinaryOutputMeasurements = Registers::System::BinaryOutputMeasurements;
+       using AsciiSubscriberFilterType = AsciiPacketDispatcher::SubscriberFilterType;
+   
+       Error subscribeToMessage(PacketQueue_Interface* queueToSubscribe,
+                                const BinaryOutputMeasurements& binaryOutputMeasurementFilter = BinaryOutputMeasurements{},
+                                const FaSubscriberFilterType filterType = FaSubscriberFilterType::ExactMatch) noexcept;
+   
+       Error subscribeToMessage(PacketQueue_Interface* queueToSubscribe, const AsciiHeader& asciiHeaderFilter = AsciiHeader{},
+                                const AsciiSubscriberFilterType filterType = AsciiSubscriberFilterType::StartsWith) noexcept;
+   
+       void unsubscribeFromMessage(PacketQueue_Interface* queueToUnsubscribe, const SyncByte syncByte) noexcept;
+   
+       void unsubscribeFromMessage(PacketQueue_Interface* queueToUnsubscribe, const BinaryOutputMeasurements& filter) noexcept;
+   
+       void unsubscribeFromMessage(PacketQueue_Interface* queueToUnsubscribe, const AsciiHeader& filter) noexcept;
+   
+       // ------------------------------------------
+       // ------------------------------------------
+   #if (!THREADING_ENABLE)
+   
+       Error loadMainBufferFromSerial() noexcept;
+   
+       bool processNextPacket() noexcept;
+   #endif
+   
+       friend class SensorTestHarness;
+   
+       // -------------------------------
+       // -------------------------------
+   
+       size_t asynchronousErrorQueueSize() const noexcept;
+   
+       std::optional<AsyncError> getAsynchronousError() noexcept;
+   
+   private:
+       //-------------------------------
+       // Connectivity
+       //-------------------------------
+       ByteBuffer _mainByteBuffer{Config::PacketFinders::mainBufferCapacity};
+       Serial _serial{_mainByteBuffer};
+   
+   #if (THREADING_ENABLE)
+       std::atomic<bool> _listening = false;
+       std::unique_ptr<Thread> _listeningThread = nullptr;
+       void _listen() noexcept;
+       Error loadMainBufferFromSerial() noexcept;
+       bool processNextPacket() noexcept;
+       void _startListening() noexcept;
+       void _stopListening() noexcept;
+   #endif
+   
+       // -------------------------------
+       // Measurement Operators
+       // -------------------------------
+       MeasurementQueue _measurementQueue{Config::PacketDispatchers::compositeDataQueueCapacity};
+       Sensor::CompositeDataQueueReturn _blockOnMeasurement(Timer& timer, const Microseconds sleepLength) noexcept;
+   
+       //-------------------------------
+       // Command Operators
+       //-------------------------------
+       CommandProcessor _commandProcessor{[this](AsyncError&& error) { _asyncErrorQueue.put(std::move(error)); }};
+       Error _blockOnCommand(Command* commandToWait, Timer& timer) noexcept;
+   
+       // -------------------------------
+       // Packet Processing
+       // -------------------------------
+       FaPacketDispatcher _faPacketDispatcher{&_measurementQueue, Config::PacketDispatchers::cdEnabledMeasTypes};
+       AsciiPacketDispatcher _asciiPacketDispatcher{&_measurementQueue, Config::PacketDispatchers::cdEnabledMeasTypes, &_commandProcessor};
+       FbPacketDispatcher _fbPacketDispatcher{&_faPacketDispatcher, Config::PacketFinders::fbBufferCapacity};
+   
+       PacketSynchronizer _packetSynchronizer{_mainByteBuffer, [this](AsyncError&& error) { _asyncErrorQueue.put(std::move(error)); }};
+   
+       // -------------------------------
+       // Error handling
+       // -------------------------------
+   
+       Queue_Mutexed<AsyncError, Config::Errors::asyncErrorQueueCapacity> _asyncErrorQueue{};
+   };
+   
+   template <size_t MainByteBufferCapacity, size_t FbBufferCapacity>
+   Sensor::Sensor(std::array<uint8_t, MainByteBufferCapacity>& mainBuffer, std::array<uint8_t, FbBufferCapacity>& fbBuffer)
+       : _mainByteBuffer(mainBuffer.data(), mainBuffer.size()), _fbPacketDispatcher(&_faPacketDispatcher, fbBuffer.data(), fbBuffer.size())
+   {
+       // Set up packet synchronizer
+       _packetSynchronizer.addDispatcher(&_faPacketDispatcher);
+       _packetSynchronizer.addDispatcher(&_asciiPacketDispatcher);
+       _packetSynchronizer.addDispatcher(&_fbPacketDispatcher);
+   }
+   }  // namespace VN
+   
+   #endif  // INTERFACE_SENSOR_HPP

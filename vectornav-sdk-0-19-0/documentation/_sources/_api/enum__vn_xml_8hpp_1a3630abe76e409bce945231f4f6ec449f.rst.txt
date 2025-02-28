@@ -1,0 +1,14 @@
+.. _exhale_enum__vn_xml_8hpp_1a3630abe76e409bce945231f4f6ec449f:
+
+Enum HardwareId
+===============
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: VN::VnXml::HardwareId
+   :project: VectorNav SDK

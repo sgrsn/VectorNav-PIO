@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1a6bed6e4bcb3e23b7938c7430e3308bed:
+
+Template Function VN::LinAlg::sign
+==================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::sign(T)
+   :project: VectorNav SDK

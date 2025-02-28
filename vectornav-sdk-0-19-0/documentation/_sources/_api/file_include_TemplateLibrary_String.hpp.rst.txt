@@ -1,0 +1,166 @@
+
+.. _file_include_TemplateLibrary_String.hpp:
+
+File String.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_TemplateLibrary>` (``include\TemplateLibrary``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\TemplateLibrary\String.hpp``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_TemplateLibrary_String.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Debug.hpp`` (:ref:`file_include_Debug.hpp`)
+
+- ``TemplateLibrary/Vector.hpp``
+
+- ``algorithm``
+
+- ``cerrno``
+
+- ``charconv``
+
+- ``cstddef``
+
+- ``cstdint``
+
+- ``cstdlib``
+
+- ``cstring``
+
+- ``iterator``
+
+- ``limits``
+
+- ``optional``
+
+- ``string``
+
+- ``type_traits``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_HAL_File_Base.hpp`
+
+- :ref:`file_include_HAL_File_PC.hpp`
+
+- :ref:`file_include_HAL_Serial_Base.hpp`
+
+- :ref:`file_include_Implementation_AsciiHeader.hpp`
+
+- :ref:`file_include_Implementation_AsciiPacketProtocol.hpp`
+
+- :ref:`file_include_Implementation_BinaryHeader.hpp`
+
+- :ref:`file_include_Implementation_CommandProcessor.hpp`
+
+- :ref:`file_include_Implementation_MeasurementDatatypes.hpp`
+
+- :ref:`file_include_Interface_Command.hpp`
+
+- :ref:`file_include_Interface_Errors.hpp`
+
+- :ref:`file_plugins_FirmwareUpdate_include_FirmwareUpdater.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+- :ref:`namespace_VN__StringUtils`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structstd_1_1hash_3_01_v_n_1_1_string_3_01_capacity_01_4_01_4`
+
+- :ref:`exhale_class_class_v_n_1_1_string`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function__string_8hpp_1aba0f21abf8a54f5c8e9e767895553af7`
+
+- :ref:`exhale_function__string_8hpp_1ac3a3b2217d54420a4e98e5bb3dcb8932`
+
+- :ref:`exhale_function__string_8hpp_1a333ebd2111201c51c068ddd60a1e591b`
+
+- :ref:`exhale_function__string_8hpp_1ae285a23fafa8a36658e3d2bfa7a0e2cf`
+
+- :ref:`exhale_function__string_8hpp_1a136e7cc3c708acdfe729fa9a8de78e94`
+
+- :ref:`exhale_function__string_8hpp_1a9df0e775bdd843eea2127e8ecfab223f`
+
+- :ref:`exhale_function__string_8hpp_1aedd4026b97bc6651c8ac45a8e215af0a`
+
+- :ref:`exhale_function__string_8hpp_1adecd05d0fe27bfb2a9eed995ce41c4e0`
+
+- :ref:`exhale_function__string_8hpp_1abf4fe9e21c3505031a676092dcf52f78`
+
+- :ref:`exhale_function__string_8hpp_1a5a1b821fb9170241bc8f91a6e35e2768`
+
+- :ref:`exhale_function__string_8hpp_1a8b6c8246350c260fed70da7d97872c0f`
+
+- :ref:`exhale_function__string_8hpp_1a91b59476010f99aebca19ec6be0a6a66`
+
+- :ref:`exhale_function__string_8hpp_1a0b448d5b7b13f2e6e9e33d08dfe749c4`
+
+- :ref:`exhale_function__string_8hpp_1a25c7fdfeb839c37e37d2b8a3240161e1`
+
+- :ref:`exhale_function__string_8hpp_1a4c2330416880496c0cdcdf80497df76f`
+
+- :ref:`exhale_function__string_8hpp_1aa511ebcd64005708f8213fd5c9b481cb`
+
+- :ref:`exhale_function__string_8hpp_1a9c1883a95d61546768f44fa6cb76a79c`
+
+- :ref:`exhale_function__string_8hpp_1aae9c685e92674b36cea8eec820f0bd0b`
+
+- :ref:`exhale_function__string_8hpp_1ab5b60717104fefe91af0bfe780ba7250`
+
+- :ref:`exhale_function__string_8hpp_1a93f089873151a4e92398f6144c5cc5db`
+
+- :ref:`exhale_function__string_8hpp_1ab31bce87059503e8ba8852332868844c`
+
+- :ref:`exhale_function__string_8hpp_1a028207c72d33e7d8bcbcaa31abc3733f`
+
+- :ref:`exhale_function__string_8hpp_1a8fe0f1f2c15e5fee0cb541ab4d1bad5a`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable__string_8hpp_1af97f5446157a6e36acf8ec57361b386f`
+

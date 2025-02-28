@@ -1,0 +1,14 @@
+.. _exhale_function__conversions_8hpp_1a05c78e84c360799543cdf2c700f125c3:
+
+Function VN::Conversions::kelvin2fahren(float)
+==============================================
+
+- Defined in :ref:`file_plugins_Math_Conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Conversions::kelvin2fahren(float)
+   :project: VectorNav SDK

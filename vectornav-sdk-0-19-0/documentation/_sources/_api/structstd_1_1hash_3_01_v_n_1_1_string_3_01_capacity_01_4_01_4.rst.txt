@@ -1,0 +1,17 @@
+.. _exhale_struct_structstd_1_1hash_3_01_v_n_1_1_string_3_01_capacity_01_4_01_4:
+
+Template Struct hash< VN::String< Capacity > >
+==============================================
+
+- Defined in :ref:`file_include_TemplateLibrary_String.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: std::hash< VN::String< Capacity > >
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

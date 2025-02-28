@@ -1,0 +1,14 @@
+.. _exhale_variable__config_8hpp_1aab856f0e15fdcc6326945af1cf9c0f37:
+
+Variable VN::Config::PacketFinders::fbPacketMaxLength
+=====================================================
+
+- Defined in :ref:`file_include_Config.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: VN::Config::PacketFinders::fbPacketMaxLength
+   :project: VectorNav SDK

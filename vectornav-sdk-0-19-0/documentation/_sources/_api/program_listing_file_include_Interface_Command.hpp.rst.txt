@@ -1,0 +1,140 @@
+
+.. _program_listing_file_include_Interface_Command.hpp:
+
+Program Listing for File Command.hpp
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_Interface_Command.hpp>` (``include\Interface\Command.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INTERFACE_COMMAND_HPP
+   #define INTERFACE_COMMAND_HPP
+   
+   #include "Implementation/MeasurementDatatypes.hpp"
+   #include "TemplateLibrary/String.hpp"
+   #include "Interface/Errors.hpp"
+   #include "HAL/Mutex.hpp"
+   #include "HAL/Timer.hpp"
+   
+   namespace VN
+   {
+   
+   using AsciiMessage = String<Config::CommandProcessor::messageMaxLength>;
+   
+   class Command
+   {
+   public:
+       Command(const AsciiMessage& commandString = "", const uint8_t numCharToMatch = 3) : _commandString(commandString), _numCharToMatch(numCharToMatch) {}
+   
+       virtual ~Command() = default;
+   
+       Command(const Command& other)
+       {
+           LockGuard lock(other._mutex);
+           _commandString = other._commandString;
+           _numCharToMatch = other._numCharToMatch;
+           _awaitingResponse = other._awaitingResponse;
+           _responseMatched = other._responseMatched;
+           _sentTime = other._sentTime;
+           _responseTime = other._responseTime;
+       }
+   
+       Command& operator=(const Command& other)
+       {
+           if (this == &other) { return *this; }
+   
+           LockGuard thisLock(_mutex);
+           LockGuard otherLock(other._mutex);
+   
+           _commandString = other._commandString;
+           _numCharToMatch = other._numCharToMatch;
+           _awaitingResponse = other._awaitingResponse;
+           _responseMatched = other._responseMatched;
+           _sentTime = other._sentTime;
+           _responseTime = other._responseTime;
+           return *this;
+       }
+   
+       Command(Command&& other) noexcept
+       {
+           LockGuard lock(other._mutex);
+   
+           _commandString = std::move(other._commandString);
+           _numCharToMatch = other._numCharToMatch;
+           _awaitingResponse = other._awaitingResponse;
+           _responseMatched = other._responseMatched;
+           _sentTime = other._sentTime;
+           _responseTime = other._responseTime;
+       }
+   
+       Command& operator=(Command&& other) noexcept
+       {
+           LockGuard lock(other._mutex);
+   
+           _commandString = std::move(other._commandString);
+           _numCharToMatch = other._numCharToMatch;
+           _awaitingResponse = other._awaitingResponse;
+           _responseMatched = other._responseMatched;
+           _sentTime = other._sentTime;
+           _responseTime = other._responseTime;
+   
+           return *this;
+       }
+   
+       // -------------------------------
+       // -------------------------------
+   
+       bool isAwaitingResponse() const noexcept;
+   
+       bool hasValidResponse() const noexcept;
+   
+       std::optional<Error> getError() const noexcept;
+   
+       AsciiMessage getResponse() const noexcept;
+   
+       time_point getSentTime() const noexcept
+       {
+           LockGuard lock(_mutex);
+           return _sentTime;
+       }
+   
+       time_point getResponseTime() const noexcept
+       {
+           LockGuard lock(_mutex);
+           return _responseTime;
+       }
+   
+       void setStale() noexcept {
+           LockGuard lock(_mutex);
+           _awaitingResponse = false;
+           _responseMatched = false;
+       }
+       
+       // -------------------------------
+       // -------------------------------
+   
+       virtual AsciiMessage getCommandString() noexcept;
+   
+       virtual bool matchResponse(const AsciiMessage& responseToCheck, const time_point timestamp) noexcept;
+   
+       void prepareToSend() noexcept;
+   
+       static bool isMatchingError(const AsciiMessage& errIn) noexcept;
+   
+   protected:
+       AsciiMessage _commandString;
+       uint8_t _numCharToMatch;
+       bool _awaitingResponse = false;
+       bool _responseMatched = false;
+       mutable Mutex _mutex;
+       time_point _sentTime;
+       time_point _responseTime;
+       bool _hasValidResponse() const noexcept;
+       static std::optional<uint16_t> _getErrorValue(const AsciiMessage& errIn) noexcept;
+   };
+   }  // namespace VN
+   
+   #endif  // INTERFACE_COMMAND_HPP

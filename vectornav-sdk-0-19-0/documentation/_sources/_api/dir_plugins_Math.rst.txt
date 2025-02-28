@@ -1,0 +1,23 @@
+.. _dir_plugins_Math:
+
+
+Directory Math
+==============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_plugins>` (``plugins``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``plugins\Math``
+
+
+Files
+-----
+
+- :ref:`file_plugins_Math_Conversions.hpp`
+- :ref:`file_plugins_Math_LinearAlgebra.hpp`
+- :ref:`file_plugins_Math_MatrixMath.hpp`
+
+

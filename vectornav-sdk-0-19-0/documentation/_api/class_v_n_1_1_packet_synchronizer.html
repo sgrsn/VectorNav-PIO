@@ -1,0 +1,276 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Class PacketSynchronizer &#8212; VectorNav SDK 0.19.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class PollBinaryOutputMessage" href="class_v_n_1_1_poll_binary_output_message.html" />
+    <link rel="prev" title="Class PacketDispatcher" href="class_v_n_1_1_packet_dispatcher.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="class_v_n_1_1_poll_binary_output_message.html" title="Class PollBinaryOutputMessage"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="class_v_n_1_1_packet_dispatcher.html" title="Class PacketDispatcher"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pages/api_index.html" >VNSDK API</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="full_api_index.html" accesskey="U">Full API Index</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Class PacketSynchronizer</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="class-packetsynchronizer">
+<span id="exhale-class-class-v-n-1-1-packet-synchronizer"></span><h1>Class PacketSynchronizer<a class="headerlink" href="#class-packetsynchronizer" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_Implementation_PacketSynchronizer.hpp.html#file-include-implementation-packetsynchronizer-hpp"><span class="std std-ref">File PacketSynchronizer.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN18PacketSynchronizerE">
+<span id="_CPPv3N2VN18PacketSynchronizerE"></span><span id="_CPPv2N2VN18PacketSynchronizerE"></span><span id="VN::PacketSynchronizer"></span><span class="target" id="class_v_n_1_1_packet_synchronizer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PacketSynchronizer</span></span></span><a class="headerlink" href="#_CPPv4N2VN18PacketSynchronizerE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN18PacketSynchronizer19AsyncErrorQueuePushE">
+<span id="_CPPv3N2VN18PacketSynchronizer19AsyncErrorQueuePushE"></span><span id="_CPPv2N2VN18PacketSynchronizer19AsyncErrorQueuePushE"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1a27d21a1bc36aef29129126832295ca11"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AsyncErrorQueuePush</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="struct_v_n_1_1_async_error.html#_CPPv4N2VN10AsyncErrorE" title="VN::AsyncError"><span class="n"><span class="pre">AsyncError</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N2VN18PacketSynchronizer19AsyncErrorQueuePushE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN18PacketSynchronizer9SyncBytesE">
+<span id="_CPPv3N2VN18PacketSynchronizer9SyncBytesE"></span><span id="_CPPv2N2VN18PacketSynchronizer9SyncBytesE"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1a5baca289ffbc4158b6d8bce0cf3295e2"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SyncBytes</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="class_v_n_1_1_vector.html#_CPPv4I0_6size_tEN2VN6VectorE" title="VN::Vector"><span class="n"><span class="pre">Vector</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">uint8_t</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="variable__packet_dispatcher_8hpp_1af92f5ed168973618a3adc67bd2f5bb90.html#_CPPv4N2VN18SYNC_BYTE_CAPACITYE" title="VN::SYNC_BYTE_CAPACITY"><span class="n"><span class="pre">SYNC_BYTE_CAPACITY</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N2VN18PacketSynchronizer9SyncBytesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN18PacketSynchronizer18PacketSynchronizerER10ByteBuffer19AsyncErrorQueuePush6size_t">
+<span id="_CPPv3N2VN18PacketSynchronizer18PacketSynchronizerER10ByteBuffer19AsyncErrorQueuePush6size_t"></span><span id="_CPPv2N2VN18PacketSynchronizer18PacketSynchronizerER10ByteBuffer19AsyncErrorQueuePush6size_t"></span><span id="VN::PacketSynchronizer::PacketSynchronizer__ByteBufferR.AsyncErrorQueuePush.s"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1a95821e8bd6659d9c453d3eccfc0b0c0a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PacketSynchronizer</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="class_v_n_1_1_byte_buffer.html#_CPPv4N2VN10ByteBufferE" title="VN::ByteBuffer"><span class="n"><span class="pre">ByteBuffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">byteBuffer</span></span>, <a class="reference internal" href="#_CPPv4N2VN18PacketSynchronizer19AsyncErrorQueuePushE" title="VN::PacketSynchronizer::AsyncErrorQueuePush"><span class="n"><span class="pre">AsyncErrorQueuePush</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">asyncErrorQueuePush</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">nullptr</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nominalSerialPush</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Config</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Serial</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="variable__config_8hpp_1abd997e93dae45fcbeac14b6ae7511922.html#_CPPv4N2VN6Config6Serial24numBytesToReadPerGetDataE" title="VN::Config::Serial::numBytesToReadPerGetData"><span class="n"><span class="pre">numBytesToReadPerGetData</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2VN18PacketSynchronizer18PacketSynchronizerER10ByteBuffer19AsyncErrorQueuePush6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN18PacketSynchronizer13addDispatcherEP16PacketDispatcher">
+<span id="_CPPv3N2VN18PacketSynchronizer13addDispatcherEP16PacketDispatcher"></span><span id="_CPPv2N2VN18PacketSynchronizer13addDispatcherEP16PacketDispatcher"></span><span id="VN::PacketSynchronizer::addDispatcher__PacketDispatcherP"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1afe844c8507bca9c1d85afd657553ee91"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addDispatcher</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="class_v_n_1_1_packet_dispatcher.html#_CPPv4N2VN16PacketDispatcherE" title="VN::PacketDispatcher"><span class="n"><span class="pre">PacketDispatcher</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">packetParser</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN18PacketSynchronizer13addDispatcherEP16PacketDispatcher" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN18PacketSynchronizer18dispatchNextPacketEv">
+<span id="_CPPv3N2VN18PacketSynchronizer18dispatchNextPacketEv"></span><span id="_CPPv2N2VN18PacketSynchronizer18dispatchNextPacketEv"></span><span id="VN::PacketSynchronizer::dispatchNextPacket"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1ad85c1dc87a004eae5ffcff408d7a57e3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dispatchNextPacket</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN18PacketSynchronizer18dispatchNextPacketEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN18PacketSynchronizer25registerSkippedByteBufferEPC10ByteBuffer">
+<span id="_CPPv3N2VN18PacketSynchronizer25registerSkippedByteBufferEPC10ByteBuffer"></span><span id="_CPPv2N2VN18PacketSynchronizer25registerSkippedByteBufferEPC10ByteBuffer"></span><span id="VN::PacketSynchronizer::registerSkippedByteBuffer__ByteBufferPC"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1aaa9e968552349b730828c3d9ce3532ed"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">registerSkippedByteBuffer</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="class_v_n_1_1_byte_buffer.html#_CPPv4N2VN10ByteBufferE" title="VN::ByteBuffer"><span class="n"><span class="pre">ByteBuffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">skippedByteBuffer</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN18PacketSynchronizer25registerSkippedByteBufferEPC10ByteBuffer" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN18PacketSynchronizer27deregisterSkippedByteBufferEv">
+<span id="_CPPv3N2VN18PacketSynchronizer27deregisterSkippedByteBufferEv"></span><span id="_CPPv2N2VN18PacketSynchronizer27deregisterSkippedByteBufferEv"></span><span id="VN::PacketSynchronizer::deregisterSkippedByteBuffer"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1a8cacd0ccba1c168b33cc8391b4aee5e3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deregisterSkippedByteBuffer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN18PacketSynchronizer27deregisterSkippedByteBufferEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN18PacketSynchronizer26registerReceivedByteBufferEPC10ByteBuffer">
+<span id="_CPPv3N2VN18PacketSynchronizer26registerReceivedByteBufferEPC10ByteBuffer"></span><span id="_CPPv2N2VN18PacketSynchronizer26registerReceivedByteBufferEPC10ByteBuffer"></span><span id="VN::PacketSynchronizer::registerReceivedByteBuffer__ByteBufferPC"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1a97b9aeb1ebf37affe38ca2ca78533773"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">registerReceivedByteBuffer</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="class_v_n_1_1_byte_buffer.html#_CPPv4N2VN10ByteBufferE" title="VN::ByteBuffer"><span class="n"><span class="pre">ByteBuffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">receivedByteBuffer</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN18PacketSynchronizer26registerReceivedByteBufferEPC10ByteBuffer" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN18PacketSynchronizer28deregisterReceivedByteBufferEv">
+<span id="_CPPv3N2VN18PacketSynchronizer28deregisterReceivedByteBufferEv"></span><span id="_CPPv2N2VN18PacketSynchronizer28deregisterReceivedByteBufferEv"></span><span id="VN::PacketSynchronizer::deregisterReceivedByteBuffer"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1a9ec0413ae9f7fafa27943b7eebbd6734"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deregisterReceivedByteBuffer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN18PacketSynchronizer28deregisterReceivedByteBufferEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN18PacketSynchronizer19getValidPacketCountERK9SyncBytes">
+<span id="_CPPv3NK2VN18PacketSynchronizer19getValidPacketCountERK9SyncBytes"></span><span id="_CPPv2NK2VN18PacketSynchronizer19getValidPacketCountERK9SyncBytes"></span><span id="VN::PacketSynchronizer::getValidPacketCount__SyncBytesCRC"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1af494475b27dc0f8b77dae73ddb9be99a"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getValidPacketCount</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2VN18PacketSynchronizer9SyncBytesE" title="VN::PacketSynchronizer::SyncBytes"><span class="n"><span class="pre">SyncBytes</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">syncByte</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK2VN18PacketSynchronizer19getValidPacketCountERK9SyncBytes" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN18PacketSynchronizer21getInvalidPacketCountERK9SyncBytes">
+<span id="_CPPv3NK2VN18PacketSynchronizer21getInvalidPacketCountERK9SyncBytes"></span><span id="_CPPv2NK2VN18PacketSynchronizer21getInvalidPacketCountERK9SyncBytes"></span><span id="VN::PacketSynchronizer::getInvalidPacketCount__SyncBytesCRC"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1afcee0c8b245d0d402e8f427d451ec9b3"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInvalidPacketCount</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2VN18PacketSynchronizer9SyncBytesE" title="VN::PacketSynchronizer::SyncBytes"><span class="n"><span class="pre">SyncBytes</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">syncByte</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK2VN18PacketSynchronizer21getInvalidPacketCountERK9SyncBytes" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN18PacketSynchronizer19getSkippedByteCountEv">
+<span id="_CPPv3NK2VN18PacketSynchronizer19getSkippedByteCountEv"></span><span id="_CPPv2NK2VN18PacketSynchronizer19getSkippedByteCountEv"></span><span id="VN::PacketSynchronizer::getSkippedByteCountC"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1a519f5741196400115a8184d7a7de8103"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSkippedByteCount</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK2VN18PacketSynchronizer19getSkippedByteCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN18PacketSynchronizer20getReceivedByteCountEv">
+<span id="_CPPv3NK2VN18PacketSynchronizer20getReceivedByteCountEv"></span><span id="_CPPv2NK2VN18PacketSynchronizer20getReceivedByteCountEv"></span><span id="VN::PacketSynchronizer::getReceivedByteCountC"></span><span class="target" id="class_v_n_1_1_packet_synchronizer_1aa9b747ce0c61ed00a87b2049f2fd5884"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getReceivedByteCount</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK2VN18PacketSynchronizer20getReceivedByteCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../Documentation.html" title="Documentation">
+          <img class="logo" src="../_static/VectorNav_LogoStacked_ForWeb_RGB_Full-Color.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../Documentation.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/MigrationGuide.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/GettingStarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/KeyFunctionality.html">Key Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/AdvancedFunctionality.html">Advanced Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/MemoryConstrained.html">Memory Constrained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/NonOsUsage.html">Non-Os Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/Plugins.html">Plugins</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/api_index.html">VNSDK API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="class_v_n_1_1_sensor.html">Class Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="class_v_n_1_1_composite_data.html">Class CompositeData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registers_api.html">Register API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="full_api_index.html">Full API Index</a></li>
+</ul>
+</li>
+</ul>
+</div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="class_v_n_1_1_packet_dispatcher.html"
+                          title="Previous page">&larr; Class PacketDispatcher</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="class_v_n_1_1_poll_binary_output_message.html"
+                          title="Next page">&rarr; Class PollBinaryOutputMessage</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_api/class_v_n_1_1_packet_synchronizer.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="class_v_n_1_1_poll_binary_output_message.html" title="Class PollBinaryOutputMessage"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="class_v_n_1_1_packet_dispatcher.html" title="Class PacketDispatcher"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pages/api_index.html" >VNSDK API</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="full_api_index.html" >Full API Index</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Class PacketSynchronizer</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, VectorNav Technologies.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

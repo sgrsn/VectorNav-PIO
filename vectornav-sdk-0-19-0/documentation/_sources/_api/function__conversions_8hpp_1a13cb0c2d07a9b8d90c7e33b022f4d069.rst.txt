@@ -1,0 +1,14 @@
+.. _exhale_function__conversions_8hpp_1a13cb0c2d07a9b8d90c7e33b022f4d069:
+
+Function VN::Conversions::deg2rad(Ypr)
+======================================
+
+- Defined in :ref:`file_plugins_Math_Conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Conversions::deg2rad(Ypr)
+   :project: VectorNav SDK

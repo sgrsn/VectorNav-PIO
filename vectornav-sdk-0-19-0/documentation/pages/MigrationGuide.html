@@ -1,0 +1,462 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Migration Guide &#8212; VectorNav SDK 0.19.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Getting Started" href="GettingStarted.html" />
+    <link rel="prev" title="VectorNav C++ SDK" href="../Documentation.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="GettingStarted.html" title="Getting Started"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Documentation.html" title="VectorNav C++ SDK"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Migration Guide</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="migration-guide">
+<h1>Migration Guide<a class="headerlink" href="#migration-guide" title="Permalink to this headline">¶</a></h1>
+<section id="notable-changes-and-features">
+<span id="migrationguide"></span><h2>Notable Changes and Features<a class="headerlink" href="#notable-changes-and-features" title="Permalink to this headline">¶</a></h2>
+<section id="highlights">
+<h3>Highlights<a class="headerlink" href="#highlights" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Significant performance improvements</p></li>
+<li><p>Memory and behavior configurability</p></li>
+<li><p>Added measurements and registers</p></li>
+<li><p>Ability to parse dynamically sized measurements (e.g. SatInfo)</p></li>
+<li><p>Compatibility with embedded systems</p></li>
+<li><p>New plugin support (For a list of available plugins in the VNSDK, see <a class="reference internal" href="#plugin-list"><span class="std std-ref">Plugin List</span></a>)</p></li>
+<li><p>Compatibility with FB packets</p></li>
+</ul>
+</section>
+<section id="config-file">
+<h3>Config File<a class="headerlink" href="#config-file" title="Permalink to this headline">¶</a></h3>
+<p>Any memory or behavior configurability variables are located in this file.
+This allows the user to change any variables needed and reduces the need to look through and edit the source code for memory or timing adjustments.</p>
+</section>
+<section id="separable-hal">
+<h3>Separable HAL<a class="headerlink" href="#separable-hal" title="Permalink to this headline">¶</a></h3>
+<p>The Hardware Abstraction Layer (HAL) abstracts hardware interfacing (e.g. serial interactions) so that the VNSDK can be easily ported between computing platforms and hardware systems. This is separated to allow the user to create a custom class to be used by the VNSDK for their hardware.
+For more information see <a class="reference internal" href="NonOsUsage.html#custom-hal-class"><span class="std std-ref">Custom HAL Class</span></a>.</p>
+</section>
+<section id="single-threaded-operation">
+<h3>Single-Threaded Operation<a class="headerlink" href="#single-threaded-operation" title="Permalink to this headline">¶</a></h3>
+<p>The VNSDK by default spawns a second thread for serial port monitoring, packet finding, and packet parsing; this can be disabled for resource-constrained systems. For more information, see <a class="reference internal" href="NonOsUsage.html#single-threaded-operation"><span class="std std-ref">Single-Threaded Operation</span></a>.</p>
+</section>
+</section>
+<section id="migrating-from-the-vectornav-programming-library-to-the-vnsdk">
+<h2>Migrating from the VectorNav Programming Library to the VNSDK<a class="headerlink" href="#migrating-from-the-vectornav-programming-library-to-the-vnsdk" title="Permalink to this headline">¶</a></h2>
+<p>In the VectorNav Programming Library, a <code class="docutils literal notranslate"><span class="pre">VnSensor</span></code> object is created with each read or write register command as a method of that object.
+In the VNSDK, a <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> object is still created for interaction, but now only two methods, <cite>readRegister</cite> and <cite>writeRegister</cite>, exist for register interaction.
+Each register is now its own class that will be populated when a <cite>readRegister</cite> or <cite>writeRegister</cite> request is sent.
+The examples below will show differences between frequently used commands.</p>
+<section id="naming-conventions">
+<h3>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Method, member, and variable names are written in <strong>camelCase</strong></dt><dd><p>For example, a composite data variable accessing the accel value will be written as compositeData.imu.accel</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Types, enumeration values, namespaces, and classes are written in <strong>PascalCase</strong></dt><dd><p>For example, a register enum for the serial port will be written as SerialPort</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="error-handling">
+<h3>Error Handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h3>
+<p>Before explaining how to read and write registers, the user should know the differences in handling errors between the two softwares.
+In the VectorNav Programming Library, if an error occurred—such as an <code class="docutils literal notranslate"><span class="pre">InsufficientBaudRate</span></code> error—the program would throw an exception and crash if unhandled.
+The VNSDK does not have exceptions but instead will return an error code.</p>
+<p>If trying to configure the unit to output a larger data message than the baud rate can handle, the exception the VectorNav Programming Library would throw is</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">&gt;</span> <span class="pre">terminate</span> <span class="pre">called</span> <span class="pre">after</span> <span class="pre">throwing</span> <span class="pre">an</span> <span class="pre">instance</span> <span class="pre">of</span> <span class="pre">vn::sensors::sensor_error</span>
+<span class="pre">&gt;</span> <span class="pre">what():</span>&#160; <span class="pre">received</span> <span class="pre">sensor</span> <span class="pre">error</span> <span class="pre">InsufficientBaudRate</span>
+<span class="pre">`</span></code></p>
+<p>Using the VNSDK, the error code handling appears as</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creating register object</span>
+<span class="n">Registers</span><span class="o">::</span><span class="n">System</span><span class="o">::</span><span class="n">AsyncOutputFreq</span><span class="w"> </span><span class="n">asyncDataOutputFrequency</span><span class="p">;</span>
+<span class="n">asyncDataOutputFrequency</span><span class="p">.</span><span class="n">adof</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Registers</span><span class="o">::</span><span class="n">System</span><span class="o">::</span><span class="n">AsyncOutputFreq</span><span class="o">::</span><span class="n">Adof</span><span class="o">::</span><span class="n">Rate200Hz</span><span class="p">;</span>
+<span class="n">asyncDataOutputFrequency</span><span class="p">.</span><span class="n">serialPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Registers</span><span class="o">::</span><span class="n">System</span><span class="o">::</span><span class="n">AsyncOutputFreq</span><span class="o">::</span><span class="n">SerialPort</span><span class="o">::</span><span class="n">Serial1</span><span class="p">;</span>
+
+<span class="c1">// Writing to register</span>
+<span class="n">Error</span><span class="w"> </span><span class="n">latestError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">writeRegister</span><span class="p">(</span><span class="o">&amp;</span><span class="n">asyncDataOutputFrequency</span><span class="p">);</span>
+
+<span class="c1">// Handling the error output</span>
+<span class="hll"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">latestError</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Error</span><span class="o">::</span><span class="n">None</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">latestError</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; encountered when configuring register &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">asyncDataOutputFrequency</span><span class="p">.</span><span class="n">id</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (&quot;</span>
+</span><span class="hll"><span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">asyncDataOutputFrequency</span><span class="p">.</span><span class="n">name</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span class="hll"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">latestError</span><span class="p">);</span>
+</span><span class="hll"><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span class="hll"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;ADOF configured</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span class="hll"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>which would output</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">&gt;</span> <span class="pre">Error12:</span> <span class="pre">InsufficientBaudRate</span> <span class="pre">encountered</span> <span class="pre">when</span> <span class="pre">configuring</span> <span class="pre">register</span> <span class="pre">(AsyncOutputFreq)</span>
+<span class="pre">`</span></code></p>
+<p>All errors that can be raised are defined in <a class="reference internal" href="../_api/enum__errors_8hpp_1a1176d97ac8230053c095d40f6ddd9541.html#_CPPv4N2VN5ErrorE" title="VN::Error"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">VN::Error</span></code></a>.</p>
+</section>
+<section id="connecting-to-the-unit">
+<h3>Connecting to the Unit<a class="headerlink" href="#connecting-to-the-unit" title="Permalink to this headline">¶</a></h3>
+<p>For both software packages, the serial port name is strictly necessary to connect to the unit.
+For the VectorNav Programming Library, the baud rate must also be known.
+With the VNSDK, there is an option to specify the baud rate using the <code class="docutils literal notranslate"><span class="pre">connect</span></code> method, but now there is an <code class="docutils literal notranslate"><span class="pre">autoConnect</span></code> method that will scan the specified port for the unit’s baud rate.</p>
+<p>To communicate with the unit, a sensor object has to be created before a connection can be established.
+In the VectorNav Programming Library this is done by</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">VnSensor</span><span class="w"> </span><span class="n">vs</span><span class="p">;</span>
+<span class="hll"><span class="n">vs</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">SensorPort</span><span class="p">,</span><span class="w"> </span><span class="n">SensorBaudRate</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>While in the VNSDK, the sensor is connected using the <cite>autoConnect</cite> method below:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Sensor</span><span class="w"> </span><span class="n">sensor</span><span class="p">;</span>
+<span class="hll"><span class="n">Error</span><span class="w"> </span><span class="n">latestError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">autoConnect</span><span class="p">(</span><span class="n">portName</span><span class="p">);</span>
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">latestError</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Error</span><span class="o">::</span><span class="n">None</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">latestError</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; encountered when connecting to &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">portName</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;.</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">latestError</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Connected to &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">portName</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; at &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">connectedBaudRate</span><span class="p">().</span><span class="n">value</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="registers">
+<h3>Registers<a class="headerlink" href="#registers" title="Permalink to this headline">¶</a></h3>
+<section id="bitfields">
+<h4>Bitfields<a class="headerlink" href="#bitfields" title="Permalink to this headline">¶</a></h4>
+<p>Bitfields in the VNSDK are all defined as <a class="reference external" href="https://en.cppreference.com/w/cpp/language/union">unions</a> which contain a <a class="reference external" href="https://en.cppreference.com/w/cpp/language/bit_field">bitfield</a> and the underlying type in the <code class="docutils literal notranslate"><span class="pre">_value</span></code> member. As such, each bit can be accessed as a member of a struct, or the raw value can be accessed directly as the <code class="docutils literal notranslate"><span class="pre">_value</span></code> member.</p>
+</section>
+<section id="enumerations">
+<h4>Enumerations<a class="headerlink" href="#enumerations" title="Permalink to this headline">¶</a></h4>
+<p>All enumerations in the VNSDK are defined as <a class="reference external" href="https://en.cppreference.com/w/cpp/language/enum#Scoped_enumerations">scoped classes</a> nested in the respective Register class, rather than <a class="reference external" href="https://en.cppreference.com/w/cpp/language/enum#Unscoped_enumerations">unscoped enums</a>.</p>
+</section>
+<section id="reading-registers">
+<h4>Reading Registers<a class="headerlink" href="#reading-registers" title="Permalink to this headline">¶</a></h4>
+<p>Using the Programming Library, the user would create a VnSensor object and call the respective read register method.
+For example, the following code reads the YPR register (Register 8) using the Programming Library.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create sensor object</span>
+<span class="n">VnSensor</span><span class="w"> </span><span class="n">vs</span><span class="p">;</span>
+
+<span class="c1">// Connect to the unit</span>
+<span class="w">    </span><span class="n">vs</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">SensorPort</span><span class="p">,</span><span class="w"> </span><span class="n">SensorBaudRate</span><span class="p">);</span>
+
+<span class="c1">// Read from the YPR register</span>
+<span class="hll"><span class="n">vec3f</span><span class="w"> </span><span class="n">ypr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vs</span><span class="p">.</span><span class="n">readYawPitchRoll</span><span class="p">();</span>
+</span><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Current YPR: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ypr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In the VNSDK, the user creates the Sensor object and passes a pointer to a Register object they’d like to read to the <code class="docutils literal notranslate"><span class="pre">readRegister</span></code> method.
+This looks like</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create sensor object</span>
+<span class="n">Sensor</span><span class="w"> </span><span class="n">sensor</span><span class="p">;</span>
+
+<span class="c1">// Connect to the unit</span>
+<span class="n">Error</span><span class="w"> </span><span class="n">latestError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">autoConnect</span><span class="p">(</span><span class="n">portName</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">latestError</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Error</span><span class="o">::</span><span class="n">None</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">latestError</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; encountered when connecting to &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">portName</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;.</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">latestError</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Connected to &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">portName</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; at &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">connectedBaudRate</span><span class="p">().</span><span class="n">value</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Create register object</span>
+<span class="n">Registers</span><span class="o">::</span><span class="n">Attitude</span><span class="o">::</span><span class="n">YawPitchRoll</span><span class="w"> </span><span class="n">yprRegister</span><span class="p">;</span>
+
+<span class="c1">// Read from the YPR register</span>
+<span class="hll"><span class="n">latestError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">readRegister</span><span class="p">(</span><span class="o">&amp;</span><span class="n">yprRegister</span><span class="p">);</span>
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">latestError</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Error</span><span class="o">::</span><span class="n">None</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">latestError</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; encountered when reading register &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">yprRegister</span><span class="p">.</span><span class="n">id</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">yprRegister</span><span class="p">.</span><span class="n">name</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">latestError</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Current Reading:  Yaw - &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">yprRegister</span><span class="p">.</span><span class="n">yaw</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; , Pitch - &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">yprRegister</span><span class="p">.</span><span class="n">pitch</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; , Roll - &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">yprRegister</span><span class="p">.</span><span class="n">roll</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="writing-registers">
+<h4>Writing Registers<a class="headerlink" href="#writing-registers" title="Permalink to this headline">¶</a></h4>
+<p>Writing to the registers incorporates the same changes as reading the registers.
+The following examples will show the difference between writing to the <em>AsyncDataOutputType</em> register (Register 6).
+To configure the VectorNav Programming Library to output the <em>VNYPR</em> message, create the sensor object and then write to the <em>AsyncDataOutputType</em> register:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create Sensor object</span>
+<span class="n">VnSensor</span><span class="w"> </span><span class="n">vs</span><span class="p">;</span>
+
+<span class="c1">// Connect to the unit</span>
+<span class="w">    </span><span class="n">vs</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="n">SensorPort</span><span class="p">,</span><span class="w"> </span><span class="n">SensorBaudRate</span><span class="p">);</span>
+
+<span class="c1">// Output the YPR async data message</span>
+<span class="n">vs</span><span class="p">.</span><span class="n">writeAsyncDataOutputType</span><span class="p">(</span><span class="n">VNYPR</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In the VNSDK, a Register object has to be created and passed to the <code class="docutils literal notranslate"><span class="pre">writeRegister</span></code> method, much like reading a register.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create sensor object</span>
+<span class="n">Sensor</span><span class="w"> </span><span class="n">sensor</span><span class="p">;</span>
+
+<span class="c1">// Connect to the unit</span>
+<span class="n">Error</span><span class="w"> </span><span class="n">latestError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">autoConnect</span><span class="p">(</span><span class="n">portName</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">latestError</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Error</span><span class="o">::</span><span class="n">None</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">latestError</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; encountered when connecting to &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">portName</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;.</span><span class="se">\t</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">latestError</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Connected to &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">portName</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; at &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">connectedBaudRate</span><span class="p">().</span><span class="n">value</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Create register object</span>
+<span class="n">Registers</span><span class="o">::</span><span class="n">System</span><span class="o">::</span><span class="n">AsyncOutputType</span><span class="w"> </span><span class="n">asyncDataOutputType</span><span class="p">;</span>
+
+<span class="c1">// Set output type as YPR on serial port 1</span>
+<span class="n">asyncDataOutputType</span><span class="p">.</span><span class="n">ador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Registers</span><span class="o">::</span><span class="n">System</span><span class="o">::</span><span class="n">AsyncOutputType</span><span class="o">::</span><span class="n">Ador</span><span class="o">::</span><span class="n">YPR</span><span class="p">;</span>
+<span class="n">asyncDataOutputType</span><span class="p">.</span><span class="n">serialPort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Registers</span><span class="o">::</span><span class="n">System</span><span class="o">::</span><span class="n">AsyncOutputType</span><span class="o">::</span><span class="n">SerialPort</span><span class="o">::</span><span class="n">Serial1</span><span class="p">;</span>
+
+<span class="c1">// Write to the AsyncDataOutputType register</span>
+<span class="n">latestError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">writeRegister</span><span class="p">(</span><span class="o">&amp;</span><span class="n">asyncDataOutputType</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">latestError</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">Error</span><span class="o">::</span><span class="n">None</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">latestError</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; encountered when configuring register &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">asyncDataOutputType</span><span class="p">.</span><span class="n">id</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">asyncDataOutputType</span><span class="p">.</span><span class="n">name</span><span class="p">()</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">latestError</span><span class="p">);</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;ADOR configured</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="extracting-asynchronous-data">
+<h3>Extracting Asynchronous Data<a class="headerlink" href="#extracting-asynchronous-data" title="Permalink to this headline">¶</a></h3>
+<p>In the Programming Library, two methods exist to extract asynchronous measurements: using callbacks to parse and consume a raw packet and using a <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object with the <code class="docutils literal notranslate"><span class="pre">EzAsyncData</span></code> class. Because the VNSDK is tightly integrated with its <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> class, this section outlines how to migrate between <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> classes.</p>
+<section id="the-compositedata-class">
+<h4>The <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> Class<a class="headerlink" href="#the-compositedata-class" title="Permalink to this headline">¶</a></h4>
+<p>Both the Programming Library and VNSDK provide a <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> class that are reasonably similar to each other. In both codebases, each <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object allocates memory for every possible measurement output from the unit, optionally containing a subset of those measurements.
+The Programming Library’s <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> class maintains public data members, getters, setters, and present booleans.
+The VNSDK’s <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> only contains public data members, instead opting to report which variables are present using a <a class="reference external" href="https://en.cppreference.com/w/cpp/utility/optional">std::optional</a>. In this way, the Programming Library’s <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> class feels more like a true class, whereas the VNSDK feels more like a data structure.</p>
+<p>The first distinction is in organization; the Programming Library’s <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> contains each measurement type accessor by getter methods at the top level, whereas the VNSDK’s <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> contains each measurement type directly accessable, organized in their respective binary groups, as defined by the Interface Control Document (ICD).</p>
+<p>For example, to access the ypr field in the Programming Library’s <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object would be accessed by <code class="docutils literal notranslate"><span class="pre">cd.yawPitchRoll()</span></code>, whereas using the SDK’s <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object would be <code class="docutils literal notranslate"><span class="pre">cd.attitdue.ypr</span></code>.</p>
+<p>The second distinction is in the reporting of updated or nonupdated measurement types; the Programming Library’s <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> provides <code class="docutils literal notranslate"><span class="pre">has</span></code> methods which return a bool of whether the requested measurement type is present.
+The VNSDK’s <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object natively holds each measurement type inside a <a class="reference external" href="https://en.cppreference.com/w/cpp/utility/optional">std::optional</a>, eliminating the need for a separate method to check if it is present.</p>
+<p>For example, the presence of that same ypr measurement in the Programming Library would be validated by <cite>cd.hasYawPitchRoll()</cite>, whereas in the VNSDK would be validated by <cite>cd.attitude.ypr.has_value()</cite> (or any other mechanism made available by <a class="reference external" href="https://en.cppreference.com/w/cpp/utility/optional">std::optional</a>)</p>
+<p>There also are some minor measurement type name changes (i.e. Programming Library’s <code class="docutils literal notranslate"><span class="pre">yawPitchRoll</span></code> to VNSDK’s <code class="docutils literal notranslate"><span class="pre">ypr</span></code>), where the VNSDK’s <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> naming will always match the latest ICD.</p>
+</section>
+<section id="compositedata-accessor-methods">
+<h4><code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> Accessor Methods<a class="headerlink" href="#compositedata-accessor-methods" title="Permalink to this headline">¶</a></h4>
+<p>The Programming Library’s <code class="docutils literal notranslate"><span class="pre">VnSensor</span></code> class does not natively handle <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> classes, so a separate class—<cite>EzAsyncData</cite>—has to handle parsing and reporting the objects.
+In contrast, the VNSDK’s <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> class natively parses to <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> objects and reports them to the user. Both <code class="docutils literal notranslate"><span class="pre">EzAsyncData</span></code> and <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> produce exactly one <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object per measurement message received from the unit.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">EzAsyncData</span></code> class provides two methods to retrieve data: <code class="docutils literal notranslate"><span class="pre">EzAsyncData::currentData</span></code> and <code class="docutils literal notranslate"><span class="pre">EzAsyncData::getNextData</span></code>; the <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> class provides <code class="docutils literal notranslate"><span class="pre">Sensor::getNextMeasurement</span></code> and <code class="docutils literal notranslate"><span class="pre">Sensor::getMostRecentMeasurement</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">EzAsyncData</span></code> class maintains only the latest measurement received, whereas the VNSDK maintains a queue of <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> objects. As such, there are some minor differences between the two codebases to note when accessing <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> objects.</p>
+<p>In most cases—where the polling rate for the latest measurement data exceeds the unit’s measurement output rate—a call to <code class="docutils literal notranslate"><span class="pre">EzAsyncData::currentData</span></code> is similar in use to non-blocking calls of both <code class="docutils literal notranslate"><span class="pre">Sensor::getNextMeasurement</span></code> and <code class="docutils literal notranslate"><span class="pre">Sensor::getMostRecentMeasurement</span></code>.
+In these cases, <code class="docutils literal notranslate"><span class="pre">EzAsyncData::currentData</span></code> will repeatedly output a <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object parsed from the most recent measurement packet, whereas the <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> methods will output that <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object only once.
+When the polling rate exceeds the output rate, <code class="docutils literal notranslate"><span class="pre">EzAsyncData::nextData</span></code> is nearly identical to a blocking call of both <code class="docutils literal notranslate"><span class="pre">Sensor::getNextMeasurement</span></code> and <code class="docutils literal notranslate"><span class="pre">Sensor::getMostRecentMeasurement</span></code>, but should probably be replaced with a blocking call to <code class="docutils literal notranslate"><span class="pre">Sensor::getMostRecentMeasurement</span></code>.</p>
+<p>When the user’s measurement polling rate subceeds the unit’s measurement output rate, the presence of a <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> queue in the <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> class is more apparent. In this case, <code class="docutils literal notranslate"><span class="pre">EzAsyncData::currentData</span></code> is identical to a non-blocking call of <code class="docutils literal notranslate"><span class="pre">Sensor::getMostRecentMeasurement</span></code>.
+While there is no direct analogue to <code class="docutils literal notranslate"><span class="pre">EzAsyncData::nextData</span></code>, it is most similar to a blocking call of <code class="docutils literal notranslate"><span class="pre">Sensor::getMostRecentMeasurement</span></code>, with the exception that <code class="docutils literal notranslate"><span class="pre">Sensor::getMostRecentMeasurement</span></code> returns immediately if a measurement is present in the queue upon invocation—
+<code class="docutils literal notranslate"><span class="pre">EzAsyncData::nextData</span></code> necessarily blocks upon receipt of a measurement subsequent to the invocation.
+In this case, <code class="docutils literal notranslate"><span class="pre">EzAsyncData</span></code> drops <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> objects parsed between polls, whereas <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> maintains all <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> objects parsed (until the queue capacity is reached).
+Consequently, the user can successively read all the measurement packets since their last poll using <code class="docutils literal notranslate"><span class="pre">Sensor::getNextMeasurement</span></code> to prevent data loss.</p>
+<p>The syntax to retrieve a <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object is slightly different between the two codebases. Both <code class="docutils literal notranslate"><span class="pre">EzAsyncData</span></code> methods return a <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object by value, whereas both <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> methods return a custom <code class="docutils literal notranslate"><span class="pre">OwningPtr</span></code> class to the <code class="docutils literal notranslate"><span class="pre">CompositeData</span></code> object of interest.
+As such, the <code class="docutils literal notranslate"><span class="pre">EzAsyncData</span></code> methods are guaranteed to return an object, whereas the <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> methods may return a null pointer if no object currently exists in the queue (if called non-blocking) or the timeout has been exceeded (if called blocking).
+As such, using <code class="docutils literal notranslate"><span class="pre">EzAsyncData::currentData</span></code> the user has to compare their stored value against the most recent value to determine if it has updated; using either <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> method, each get call is guaranteed to return an unretrieved, unique set of measurement, but each call must check whether the pointer returned is null.</p>
+</section>
+</section>
+</section>
+<section id="plugin-list">
+<h2>Plugin List<a class="headerlink" href="#plugin-list" title="Permalink to this headline">¶</a></h2>
+<section id="enhanced-firmware-update">
+<h3>Enhanced Firmware Update<a class="headerlink" href="#enhanced-firmware-update" title="Permalink to this headline">¶</a></h3>
+<p>While this plugin is available in the Programming Library, it has been updated with the issuance of the VNSDK.
+The new Firmware Update plugin has the ability to accept both <em>VNX</em> and <em>VNXML</em> files, contains significant stability improvements, and must more flexible and simple syntax.
+This plugin allows the users to update their unit’s firmware without having to connect it to VectorNav’s GUI, Control Center, or creating their own embedded updater.
+All firmware updates must be performed over the main port, UART-1, and communication must be established before an update can occur.
+More information on this plugin can be found in the <a class="reference internal" href="Plugins.html#firmware-update"><span class="std std-ref">Firmware Update</span></a> section.</p>
+</section>
+<section id="register-scan">
+<h3>Register Scan<a class="headerlink" href="#register-scan" title="Permalink to this headline">¶</a></h3>
+<p>The Register Scan plugin is a newly added plugin unique to the VNSDK.
+This plugin is capable of producing an XML file containing the non-default registers on the unit, or uploading an XML file of register values to the unit. It is similar to and interoperable with the “Save Config” and “Load Config” buttons on Control Center.
+Additional information can be found on the <a class="reference internal" href="Plugins.html#register-scan"><span class="std std-ref">Register Scan</span></a> page.</p>
+</section>
+<section id="simple-logger">
+<h3>Simple Logger<a class="headerlink" href="#simple-logger" title="Permalink to this headline">¶</a></h3>
+<p>The Simple Logger plugin allows users to easily log all bytes received from the unit to a binary file without the need to parse the packets.
+The Programming Library did not have any native capability to do this, and was most often accomplished by custom code utilizing the <cite>RawDataReceivedHandler</cite>.</p>
+</section>
+<section id="file-export">
+<h3>File Export<a class="headerlink" href="#file-export" title="Permalink to this headline">¶</a></h3>
+<p>The File Export plugin can export data into formats such as a <em>CSV</em>, <em>TXT</em>, or <em>RINEX</em> file.
+The plugin can handle data from either previously logged binary files or data directly from a VectorNav unit.
+Additionally, it can handle outputting to multiple different formats at once.</p>
+</section>
+<section id="ros2">
+<h3>ROS2<a class="headerlink" href="#ros2" title="Permalink to this headline">¶</a></h3>
+<p>The new ROS2 plugin allows the user to integrate a VectorNav unit in a system running ROS2.
+The plugin will configure the connected unit according to an included yaml file upon startup and subsequently publish each received measurement under custom topics.
+There is a message for each group in the Binary output messages and each group can be subscribed to individually.</p>
+</section>
+<section id="math">
+<h3>Math<a class="headerlink" href="#math" title="Permalink to this headline">¶</a></h3>
+<p>The Math plugin that includes data conversions, matrix, and linear algebra.
+The Conversions file contains angle, temperature, and attitude conversions; the Matrix file contains basic matrix operations; the Linear Algebra file contains any math pertaining to vectors and matrices.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../Documentation.html" title="Documentation">
+          <img class="logo" src="../_static/VectorNav_LogoStacked_ForWeb_RGB_Full-Color.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../Documentation.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Migration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#notable-changes-and-features">Notable Changes and Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#migrating-from-the-vectornav-programming-library-to-the-vnsdk">Migrating from the VectorNav Programming Library to the VNSDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plugin-list">Plugin List</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="GettingStarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="KeyFunctionality.html">Key Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AdvancedFunctionality.html">Advanced Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MemoryConstrained.html">Memory Constrained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NonOsUsage.html">Non-Os Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_index.html">VNSDK API</a></li>
+</ul>
+</div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../Documentation.html"
+                          title="Previous page">&larr; VectorNav C++ SDK</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="GettingStarted.html"
+                          title="Next page">&rarr; Getting Started</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/pages/MigrationGuide.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="GettingStarted.html" title="Getting Started"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../Documentation.html" title="VectorNav C++ SDK"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Migration Guide</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, VectorNav Technologies.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

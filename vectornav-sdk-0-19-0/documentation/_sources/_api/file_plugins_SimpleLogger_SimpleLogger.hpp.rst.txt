@@ -1,0 +1,58 @@
+
+.. _file_plugins_SimpleLogger_SimpleLogger.hpp:
+
+File SimpleLogger.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_plugins_SimpleLogger>` (``plugins\SimpleLogger``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``plugins\SimpleLogger\SimpleLogger.hpp``)
+------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_plugins_SimpleLogger_SimpleLogger.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``HAL/File.hpp``
+
+- ``Interface/Sensor.hpp``
+
+- ``TemplateLibrary/ByteBuffer.hpp``
+
+- ``cstdint``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_class_v_n_1_1_simple_logger`
+

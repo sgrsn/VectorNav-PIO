@@ -1,0 +1,47 @@
+
+.. _program_listing_file_include_Implementation_CoreUtils.hpp:
+
+Program Listing for File CoreUtils.hpp
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_Implementation_CoreUtils.hpp>` (``include\Implementation\CoreUtils.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef CORE_COREUTILS_HPP
+   #define CORE_COREUTILS_HPP
+   
+   #include <stdint.h>
+   
+   namespace VN
+   {
+   
+   inline void _calculateCheckSum(uint8_t* checksum, uint8_t byte) noexcept { *checksum ^= byte; }
+   
+   inline uint8_t CalculateCheckSum(uint8_t* buffer, uint64_t bufferSize) noexcept
+   {
+       uint8_t checksum = 0;
+       for (uint64_t i = 0; i < bufferSize; i++) { _calculateCheckSum(&checksum, buffer[i]); }
+       return checksum;
+   }
+   
+   inline void _calculateCRC(uint16_t* crc, uint8_t byte) noexcept
+   {
+       *crc = static_cast<uint16_t>((*crc >> 8) | (*crc << 8));
+       *crc ^= byte;
+       *crc ^= ((*crc & 0xFF) >> 4);
+       *crc ^= ((*crc << 8) << 4);
+       *crc ^= (((*crc & 0xFF) << 4) << 1);
+   }
+   
+   inline uint16_t CalculateCRC(uint8_t* buffer, size_t bufferSize) noexcept
+   {
+       uint16_t crc = 0;
+       for (size_t i = 0; i < bufferSize; i++) { _calculateCRC(&crc, buffer[i]); }
+       return crc;
+   }
+   
+   }  // namespace VN
+   #endif  // CORE_COREUTILS_HPP

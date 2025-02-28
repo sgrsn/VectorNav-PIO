@@ -1,0 +1,83 @@
+
+.. _file_include_Interface_Command.hpp:
+
+File Command.hpp
+================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_Interface>` (``include\Interface``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\Interface\Command.hpp``)
+----------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_Interface_Command.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``HAL/Mutex.hpp``
+
+- ``HAL/Timer.hpp``
+
+- ``Implementation/MeasurementDatatypes.hpp``
+
+- ``Interface/Errors.hpp``
+
+- ``TemplateLibrary/String.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_HAL_Serial_Base.hpp`
+
+- :ref:`file_include_Implementation_CommandProcessor.hpp`
+
+- :ref:`file_include_Interface_Commands.hpp`
+
+- :ref:`file_include_Interface_Sensor.hpp`
+
+- :ref:`file_plugins_DataExport_include_ExporterAscii.hpp`
+
+- :ref:`file_plugins_FirmwareUpdate_include_FirmwareUpdater.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_class_v_n_1_1_command`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef__command_8hpp_1ac3acfe4b91a3c68083e27bef5cd68c2b`
+

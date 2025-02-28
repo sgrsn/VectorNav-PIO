@@ -1,0 +1,26 @@
+.. _exhale_class_class_v_n_1_1_service_port_switch:
+
+Class ServicePortSwitch
+=======================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_FirmwareUpdater.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public VN::Command`` (:ref:`exhale_class_class_v_n_1_1_command`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: VN::ServicePortSwitch
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

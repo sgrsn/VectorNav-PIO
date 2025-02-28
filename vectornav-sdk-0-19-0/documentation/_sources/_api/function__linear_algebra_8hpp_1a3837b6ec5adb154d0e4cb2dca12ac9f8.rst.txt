@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1a3837b6ec5adb154d0e4cb2dca12ac9f8:
+
+Template Function VN::LinAlg::dot(const Matrix<3, 1, T>&, const Matrix<3, 1, S>&)
+=================================================================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::dot(const Matrix<3, 1, T>&, const Matrix<3, 1, S>&)
+   :project: VectorNav SDK

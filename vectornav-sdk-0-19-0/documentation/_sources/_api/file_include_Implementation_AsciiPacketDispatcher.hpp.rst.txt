@@ -1,0 +1,77 @@
+
+.. _file_include_Implementation_AsciiPacketDispatcher.hpp:
+
+File AsciiPacketDispatcher.hpp
+==============================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_Implementation>` (``include\Implementation``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\Implementation\AsciiPacketDispatcher.hpp``)
+-----------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_Implementation_AsciiPacketDispatcher.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Config.hpp`` (:ref:`file_include_Config.hpp`)
+
+- ``Implementation/AsciiPacketProtocol.hpp``
+
+- ``Implementation/CommandProcessor.hpp``
+
+- ``Implementation/MeasurementDatatypes.hpp``
+
+- ``Implementation/PacketDispatcher.hpp``
+
+- ``Implementation/QueueDefinitions.hpp``
+
+- ``cstdint``
+
+- ``functional``
+
+- ``optional``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_Interface_Sensor.hpp`
+
+- :ref:`file_plugins_DataExport_include_FileExporter.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+
+- :ref:`exhale_class_class_v_n_1_1_ascii_packet_dispatcher`
+

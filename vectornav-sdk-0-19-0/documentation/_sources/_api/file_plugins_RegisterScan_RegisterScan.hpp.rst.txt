@@ -1,0 +1,70 @@
+
+.. _file_plugins_RegisterScan_RegisterScan.hpp:
+
+File RegisterScan.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_plugins_RegisterScan>` (``plugins\RegisterScan``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``plugins\RegisterScan\RegisterScan.hpp``)
+------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_plugins_RegisterScan_RegisterScan.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Interface/Registers.hpp``
+
+- ``Interface/Sensor.hpp``
+
+- ``cstdint``
+
+- ``filesystem``
+
+- ``functional``
+
+- ``string``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_plugins_RegisterScan_RegisterScan.cpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_class_v_n_1_1_sensor_configurator`
+

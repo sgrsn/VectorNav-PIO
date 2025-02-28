@@ -1,0 +1,109 @@
+
+.. _program_listing_file_plugins_DataExport_include_SkippedByteExporter.hpp:
+
+Program Listing for File SkippedByteExporter.hpp
+================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_plugins_DataExport_include_SkippedByteExporter.hpp>` (``plugins\DataExport\include\SkippedByteExporter.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef DATAEXPORT_SKIPPEDBYTEEXPORTER_HPP
+   #define DATAEXPORT_SKIPPEDBYTEEXPORTER_HPP
+   
+   #include <atomic>
+   #include <cstdio>
+   #include <HAL/Thread.hpp>
+   
+   #if THREADING_ENABLE
+   #include "HAL/Thread.hpp"
+   #endif
+   #include "HAL/File.hpp"
+   #include "TemplateLibrary/ByteBuffer.hpp"
+   #include "Exporter.hpp"
+   
+   namespace VN
+   {
+   
+   constexpr size_t SKIPPED_BYTE_BUFFER_CAPACITY = 1024 * 5;
+   
+   class SkippedByteExporter
+   {
+   public:
+       SkippedByteExporter(const Filesystem::FilePath& outputDir, const size_t& byteCapacity = SKIPPED_BYTE_BUFFER_CAPACITY)
+           : _filePath{outputDir}, _queue{byteCapacity}
+       {
+           if (!_filePath.empty() && _filePath.back() != std::filesystem::path::preferred_separator)
+           {
+               _filePath = _filePath + std::filesystem::path::preferred_separator;
+           }
+       }
+   
+       ~SkippedByteExporter() = default;
+   
+       void exportToFile()
+       {
+           std::array<uint8_t, 1024 * 20> tmpBuffer;
+           while (!_queue.isEmpty())
+           {
+               size_t bytes_to_get = std::min(tmpBuffer.size(), _queue.size());
+               _queue.get(tmpBuffer.data(), bytes_to_get);
+               _file.write(reinterpret_cast<const char*>(tmpBuffer.data()), bytes_to_get);
+           }
+       }
+   
+   #if THREADING_ENABLE
+       bool start()
+       {
+           if (_thread == nullptr) { _logging = true; }
+           else { return true; }
+           _thread = std::make_unique<Thread>(&SkippedByteExporter::_export, this);
+           return false;
+       }
+   
+       void stop()
+       {
+           _logging = false;
+           _thread->join();
+       }
+   
+       bool isLogging() const { return _logging; }
+   #endif
+   
+       ByteBuffer* getQueuePtr() { return &_queue; }
+   
+   private:
+       Filesystem::FilePath _filePath;
+       OutputFile _file;
+       ByteBuffer _queue;
+   #if THREADING_ENABLE
+       std::atomic<bool> _logging = false;
+       std::unique_ptr<Thread> _thread = nullptr;
+   #endif
+   
+       void _init_file()
+       {
+           Filesystem::FilePath fileName;
+           std::snprintf(fileName.begin(), fileName.capacity(), "%sskippedBytes.bin", _filePath.c_str());
+           _file = OutputFile(fileName);
+       }
+   
+   #if THREADING_ENABLE
+       void _export()
+       {
+           _init_file();
+           while (_logging)
+           {
+               thisThread::sleepFor(1ms);
+               exportToFile();
+           }
+           exportToFile();
+       }
+   #endif
+   };
+   
+   }  // namespace VN
+   
+   #endif  // DATAEXPORT_SKIPPEDBYTEEXPORTER_HPP

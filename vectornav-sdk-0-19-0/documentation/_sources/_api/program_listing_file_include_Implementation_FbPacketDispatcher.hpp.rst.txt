@@ -1,0 +1,59 @@
+
+.. _program_listing_file_include_Implementation_FbPacketDispatcher.hpp:
+
+Program Listing for File FbPacketDispatcher.hpp
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_Implementation_FbPacketDispatcher.hpp>` (``include\Implementation\FbPacketDispatcher.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef IMPLEMENTATION_FBPACKETDISPATCHER_HPP
+   #define IMPLEMENTATION_FBPACKETDISPATCHER_HPP
+   
+   #include <cstdint>
+   
+   #include "TemplateLibrary/ByteBuffer.hpp"
+   #include "Implementation/PacketDispatcher.hpp"
+   #include "Implementation/FaPacketDispatcher.hpp"
+   #include "Implementation/FbPacketProtocol.hpp"
+   #include "Implementation/BinaryHeader.hpp"
+   #include "TemplateLibrary/ByteBuffer.hpp"
+   #include "Config.hpp"
+   
+   namespace VN
+   {
+   
+   class FbPacketDispatcher : public PacketDispatcher
+   {
+   public:
+       FbPacketDispatcher(FaPacketDispatcher* faSubsciberInvoker, const size_t byteBufferCapacity)
+           : PacketDispatcher({0xFB}), _faPacketDispatcher(faSubsciberInvoker), _fbByteBuffer(byteBufferCapacity)
+       {
+       }
+   
+       FbPacketDispatcher(FaPacketDispatcher* faSubsciberInvoker, uint8_t* bufferHead, size_t bufferCapacity)
+           : PacketDispatcher({0xFB}), _faPacketDispatcher(faSubsciberInvoker), _fbByteBuffer(bufferHead, bufferCapacity)
+       {
+       }
+   
+       PacketDispatcher::FindPacketRetVal findPacket(const ByteBuffer& byteBuffer, const size_t syncByteIndex) noexcept override;
+   
+       void dispatchPacket(const ByteBuffer& byteBuffer, const size_t syncByteIndex) noexcept override;
+   
+   private:
+       FaPacketDispatcher* _faPacketDispatcher;
+       ByteBuffer _fbByteBuffer;
+       FbPacketProtocol::Metadata _latestPacketMetadata{};
+       FbPacketProtocol::Metadata _previousPacketMetadata{};
+   
+       void _resetFbBuffer() noexcept;
+       void _addFaPacketCrc() noexcept;
+       bool _moveBytesFromMainBufferToFbBuffer(SplitPacketDetails splitPacketDetails, const ByteBuffer& byteBuffer, const size_t numOfBytesToMove,
+                                               const size_t startingIndex) noexcept;
+   };
+   }  // namespace VN
+   
+   #endif  // IMPLEMENTATION_FBPACKETDISPATCHER_HPP

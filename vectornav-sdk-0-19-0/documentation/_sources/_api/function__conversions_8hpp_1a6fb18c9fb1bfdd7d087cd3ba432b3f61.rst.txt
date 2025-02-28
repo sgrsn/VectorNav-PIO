@@ -1,0 +1,14 @@
+.. _exhale_function__conversions_8hpp_1a6fb18c9fb1bfdd7d087cd3ba432b3f61:
+
+Function VN::Conversions::quat2dcm
+==================================
+
+- Defined in :ref:`file_plugins_Math_Conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Conversions::quat2dcm(const Quat&)
+   :project: VectorNav SDK

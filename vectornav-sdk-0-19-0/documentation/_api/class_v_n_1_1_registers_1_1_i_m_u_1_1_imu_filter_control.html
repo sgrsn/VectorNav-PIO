@@ -1,0 +1,503 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Class ImuFilterControl &#8212; VectorNav SDK 0.19.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class ImuMeas" href="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_meas.html" />
+    <link rel="prev" title="Class GyroCal" href="class_v_n_1_1_registers_1_1_i_m_u_1_1_gyro_cal.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_meas.html" title="Class ImuMeas"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="class_v_n_1_1_registers_1_1_i_m_u_1_1_gyro_cal.html" title="Class GyroCal"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pages/api_index.html" >VNSDK API</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="full_api_index.html" accesskey="U">Full API Index</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Class ImuFilterControl</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="class-imufiltercontrol">
+<span id="exhale-class-class-v-n-1-1-registers-1-1-i-m-u-1-1-imu-filter-control"></span><h1>Class ImuFilterControl<a class="headerlink" href="#class-imufiltercontrol" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_Interface_Registers.hpp.html#file-include-interface-registers-hpp"><span class="std std-ref">File Registers.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">VN::ConfigurationRegister</span></code> (<a class="reference internal" href="class_v_n_1_1_configuration_register.html#exhale-class-class-v-n-1-1-configuration-register"><span class="std std-ref">Class ConfigurationRegister</span></a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControlE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControlE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControlE"></span><span id="VN::Registers::IMU::ImuFilterControl"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ImuFilterControl</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">VN</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="class_v_n_1_1_configuration_register.html#_CPPv4N2VN21ConfigurationRegisterE" title="VN::ConfigurationRegister"><span class="n"><span class="pre">ConfigurationRegister</span></span></a><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControlE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="class_v_n_1_1_register.html#class_v_n_1_1_register"><span class="std std-ref">Register</span></a> 85 - IMU Filtering Configuration  </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl16ImuFilterControlEv">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl16ImuFilterControlEv"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl16ImuFilterControlEv"></span><span id="VN::Registers::IMU::ImuFilterControl::ImuFilterControl"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1ae52cece38018ba5702585c226f7f4661"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ImuFilterControl</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl16ImuFilterControlEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl4nameEv">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl4nameEv"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl4nameEv"></span><span id="VN::Registers::IMU::ImuFilterControl::name"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1a3012ded8f5969be6d952b34874d7382b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">name</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl4nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the name of the register. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl10fromStringERK12AsciiMessage">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl10fromStringERK12AsciiMessage"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl10fromStringERK12AsciiMessage"></span><span id="VN::Registers::IMU::ImuFilterControl::fromString__AsciiMessageCR"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1adadf360f40d0d5cf112509838bd5336f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fromString</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef__command_8hpp_1ac3acfe4b91a3c68083e27bef5cd68c2b.html#_CPPv4N2VN12AsciiMessageE" title="VN::AsciiMessage"><span class="n"><span class="pre">AsciiMessage</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sensorResponse</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl10fromStringERK12AsciiMessage" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Populates the contents of this register from a string. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An error occurred. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN9Registers3IMU16ImuFilterControl8toStringEv">
+<span id="_CPPv3NK2VN9Registers3IMU16ImuFilterControl8toStringEv"></span><span id="_CPPv2NK2VN9Registers3IMU16ImuFilterControl8toStringEv"></span><span id="VN::Registers::IMU::ImuFilterControl::toStringC"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1a9d11b1f98f5f9e0ceaa54f37a84fa964"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="typedef__command_8hpp_1ac3acfe4b91a3c68083e27bef5cd68c2b.html#_CPPv4N2VN12AsciiMessageE" title="VN::AsciiMessage"><span class="n"><span class="pre">AsciiMessage</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toString</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK2VN9Registers3IMU16ImuFilterControl8toStringEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl13magWindowSizeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl13magWindowSizeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl13magWindowSizeE"></span><span id="VN::Registers::IMU::ImuFilterControl::magWindowSize__uint16_t"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1af21d3a549413dcd4e965be5bf531e62e"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">magWindowSize</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl13magWindowSizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl15accelWindowSizeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl15accelWindowSizeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl15accelWindowSizeE"></span><span id="VN::Registers::IMU::ImuFilterControl::accelWindowSize__uint16_t"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1a2a26a440532e32b30ac384328756e52c"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">accelWindowSize</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl15accelWindowSizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14gyroWindowSizeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14gyroWindowSizeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14gyroWindowSizeE"></span><span id="VN::Registers::IMU::ImuFilterControl::gyroWindowSize__uint16_t"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1a59f5d081b33ee0a3474e098379c8f24d"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gyroWindowSize</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14gyroWindowSizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14tempWindowSizeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14tempWindowSizeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14tempWindowSizeE"></span><span id="VN::Registers::IMU::ImuFilterControl::tempWindowSize__uint16_t"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1ac8ba934692854090526b105057f7c7c6"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tempWindowSize</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14tempWindowSizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14presWindowSizeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14presWindowSizeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14presWindowSizeE"></span><span id="VN::Registers::IMU::ImuFilterControl::presWindowSize__uint16_t"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1aaa1a2a51fa971b396bd56b82b8ff30e8"></span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">presWindowSize</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14presWindowSizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl13magFilterModeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl13magFilterModeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl13magFilterModeE"></span><span id="VN::Registers::IMU::ImuFilterControl::magFilterMode__MagFilterMode"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1a2d35c04209b9e7239c2c6c2e9a63e204"></span><a class="reference internal" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterModeE" title="VN::Registers::IMU::ImuFilterControl::MagFilterMode"><span class="n"><span class="pre">MagFilterMode</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">magFilterMode</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl13magFilterModeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl15accelFilterModeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl15accelFilterModeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl15accelFilterModeE"></span><span id="VN::Registers::IMU::ImuFilterControl::accelFilterMode__AccelFilterMode"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1ac3dad66d3307b7e933d554cf79ca3a8f"></span><a class="reference internal" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterModeE" title="VN::Registers::IMU::ImuFilterControl::AccelFilterMode"><span class="n"><span class="pre">AccelFilterMode</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">accelFilterMode</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl15accelFilterModeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14gyroFilterModeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14gyroFilterModeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14gyroFilterModeE"></span><span id="VN::Registers::IMU::ImuFilterControl::gyroFilterMode__GyroFilterMode"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1aabef45bc8bd32432e2d5b25e25ca5943"></span><a class="reference internal" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterModeE" title="VN::Registers::IMU::ImuFilterControl::GyroFilterMode"><span class="n"><span class="pre">GyroFilterMode</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gyroFilterMode</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14gyroFilterModeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14tempFilterModeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14tempFilterModeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14tempFilterModeE"></span><span id="VN::Registers::IMU::ImuFilterControl::tempFilterMode__TempFilterMode"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1aac36d38b9147a25f698a5e4b3cc277a7"></span><a class="reference internal" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterModeE" title="VN::Registers::IMU::ImuFilterControl::TempFilterMode"><span class="n"><span class="pre">TempFilterMode</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tempFilterMode</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14tempFilterModeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14presFilterModeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14presFilterModeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14presFilterModeE"></span><span id="VN::Registers::IMU::ImuFilterControl::presFilterMode__PresFilterMode"></span><span class="target" id="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1adcf63e402188137147c469c4ca5d5a15"></span><a class="reference internal" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterModeE" title="VN::Registers::IMU::ImuFilterControl::PresFilterMode"><span class="n"><span class="pre">PresFilterMode</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">presFilterMode</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">}</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14presFilterModeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterModeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl15AccelFilterModeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl15AccelFilterModeE"></span><span id="VN::Registers::IMU::ImuFilterControl::AccelFilterMode"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_accel_filter_mode"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AccelFilterMode</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterModeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode15AccelFilterModeEv">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode15AccelFilterModeEv"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode15AccelFilterModeEv"></span><span id="VN::Registers::IMU::ImuFilterControl::AccelFilterMode::AccelFilterMode"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_accel_filter_mode_1a7a61c9faa05add272f52127f03a6f190"></span><span class="sig-name descname"><span class="n"><span class="pre">AccelFilterMode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode15AccelFilterModeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode15AccelFilterModeE7uint8_t">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode15AccelFilterModeE7uint8_t"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode15AccelFilterModeE7uint8_t"></span><span id="VN::Registers::IMU::ImuFilterControl::AccelFilterMode::AccelFilterMode__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_accel_filter_mode_1aed4606702c33819a1456a03305ecc0ab"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AccelFilterMode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">in</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode15AccelFilterModeE7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN9Registers3IMU16ImuFilterControl15AccelFilterModecv7uint8_tEv">
+<span id="_CPPv3NK2VN9Registers3IMU16ImuFilterControl15AccelFilterModecv7uint8_tEv"></span><span id="_CPPv2NK2VN9Registers3IMU16ImuFilterControl15AccelFilterModecv7uint8_tEv"></span><span id="VN::Registers::IMU::ImuFilterControl::AccelFilterMode::castto-uint8_t-operatorC"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_accel_filter_mode_1adec64a8df8d8c6a0dde30d0d35896b7a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2VN9Registers3IMU16ImuFilterControl15AccelFilterModecv7uint8_tEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterModeaSERK7uint8_t">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl15AccelFilterModeaSERK7uint8_t"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl15AccelFilterModeaSERK7uint8_t"></span><span id="VN::Registers::IMU::ImuFilterControl::AccelFilterMode::assign-operator__uint8_tCR"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_accel_filter_mode_1a352fadd84b0578586e922d6d5b9520b3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterModeE" title="VN::Registers::IMU::ImuFilterControl::AccelFilterMode"><span class="n"><span class="pre">AccelFilterMode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterModeaSERK7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode6uncompE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode6uncompE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode6uncompE"></span><span id="VN::Registers::IMU::ImuFilterControl::AccelFilterMode::uncomp__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_accel_filter_mode_1a18f89f46d97d32f5871669116e66fd26"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uncomp</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode6uncompE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode4compE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode4compE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode4compE"></span><span id="VN::Registers::IMU::ImuFilterControl::AccelFilterMode::comp__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_accel_filter_mode_1a123fb56da21fc9897b865d1c88f488f7"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl15AccelFilterMode4compE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterModeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14GyroFilterModeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14GyroFilterModeE"></span><span id="VN::Registers::IMU::ImuFilterControl::GyroFilterMode"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_gyro_filter_mode"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GyroFilterMode</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterModeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode14GyroFilterModeEv">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode14GyroFilterModeEv"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode14GyroFilterModeEv"></span><span id="VN::Registers::IMU::ImuFilterControl::GyroFilterMode::GyroFilterMode"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_gyro_filter_mode_1aef487d685598406c01a5ca9128bd16a9"></span><span class="sig-name descname"><span class="n"><span class="pre">GyroFilterMode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode14GyroFilterModeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode14GyroFilterModeE7uint8_t">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode14GyroFilterModeE7uint8_t"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode14GyroFilterModeE7uint8_t"></span><span id="VN::Registers::IMU::ImuFilterControl::GyroFilterMode::GyroFilterMode__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_gyro_filter_mode_1a06b6deba228c73ed2d2918f7f680b83f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GyroFilterMode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">in</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode14GyroFilterModeE7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN9Registers3IMU16ImuFilterControl14GyroFilterModecv7uint8_tEv">
+<span id="_CPPv3NK2VN9Registers3IMU16ImuFilterControl14GyroFilterModecv7uint8_tEv"></span><span id="_CPPv2NK2VN9Registers3IMU16ImuFilterControl14GyroFilterModecv7uint8_tEv"></span><span id="VN::Registers::IMU::ImuFilterControl::GyroFilterMode::castto-uint8_t-operatorC"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_gyro_filter_mode_1a96bbc9314fab1dccd8bfc323c0d0f006"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2VN9Registers3IMU16ImuFilterControl14GyroFilterModecv7uint8_tEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterModeaSERK7uint8_t">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14GyroFilterModeaSERK7uint8_t"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14GyroFilterModeaSERK7uint8_t"></span><span id="VN::Registers::IMU::ImuFilterControl::GyroFilterMode::assign-operator__uint8_tCR"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_gyro_filter_mode_1a7b597c8bde7792179d81b935a5e38681"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterModeE" title="VN::Registers::IMU::ImuFilterControl::GyroFilterMode"><span class="n"><span class="pre">GyroFilterMode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterModeaSERK7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode6uncompE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode6uncompE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode6uncompE"></span><span id="VN::Registers::IMU::ImuFilterControl::GyroFilterMode::uncomp__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_gyro_filter_mode_1a99930c550d84b51cffe1c9f88046dc66"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uncomp</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode6uncompE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode4compE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode4compE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode4compE"></span><span id="VN::Registers::IMU::ImuFilterControl::GyroFilterMode::comp__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_gyro_filter_mode_1a974af9d5f4a195000a85644d71f2751e"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14GyroFilterMode4compE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterModeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl13MagFilterModeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl13MagFilterModeE"></span><span id="VN::Registers::IMU::ImuFilterControl::MagFilterMode"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_mag_filter_mode"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MagFilterMode</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterModeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterMode13MagFilterModeEv">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl13MagFilterMode13MagFilterModeEv"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl13MagFilterMode13MagFilterModeEv"></span><span id="VN::Registers::IMU::ImuFilterControl::MagFilterMode::MagFilterMode"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_mag_filter_mode_1a9df4d2421cf97a895cfe40825848f776"></span><span class="sig-name descname"><span class="n"><span class="pre">MagFilterMode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterMode13MagFilterModeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterMode13MagFilterModeE7uint8_t">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl13MagFilterMode13MagFilterModeE7uint8_t"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl13MagFilterMode13MagFilterModeE7uint8_t"></span><span id="VN::Registers::IMU::ImuFilterControl::MagFilterMode::MagFilterMode__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_mag_filter_mode_1a483931e41aa3a486c681d19efac1e75a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MagFilterMode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">in</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterMode13MagFilterModeE7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN9Registers3IMU16ImuFilterControl13MagFilterModecv7uint8_tEv">
+<span id="_CPPv3NK2VN9Registers3IMU16ImuFilterControl13MagFilterModecv7uint8_tEv"></span><span id="_CPPv2NK2VN9Registers3IMU16ImuFilterControl13MagFilterModecv7uint8_tEv"></span><span id="VN::Registers::IMU::ImuFilterControl::MagFilterMode::castto-uint8_t-operatorC"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_mag_filter_mode_1afe6c2393f7fd257c0bd59478d17eb88a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2VN9Registers3IMU16ImuFilterControl13MagFilterModecv7uint8_tEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterModeaSERK7uint8_t">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl13MagFilterModeaSERK7uint8_t"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl13MagFilterModeaSERK7uint8_t"></span><span id="VN::Registers::IMU::ImuFilterControl::MagFilterMode::assign-operator__uint8_tCR"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_mag_filter_mode_1a6cfc592945f1bb0a644593064a53ddfe"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterModeE" title="VN::Registers::IMU::ImuFilterControl::MagFilterMode"><span class="n"><span class="pre">MagFilterMode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterModeaSERK7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterMode6uncompE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl13MagFilterMode6uncompE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl13MagFilterMode6uncompE"></span><span id="VN::Registers::IMU::ImuFilterControl::MagFilterMode::uncomp__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_mag_filter_mode_1ae51931660d6b83e1dfed214e98e7e7d6"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uncomp</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterMode6uncompE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterMode4compE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl13MagFilterMode4compE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl13MagFilterMode4compE"></span><span id="VN::Registers::IMU::ImuFilterControl::MagFilterMode::comp__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_mag_filter_mode_1a90184054fde53c571a6419e6d2631a54"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl13MagFilterMode4compE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterModeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14PresFilterModeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14PresFilterModeE"></span><span id="VN::Registers::IMU::ImuFilterControl::PresFilterMode"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_pres_filter_mode"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PresFilterMode</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterModeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterMode14PresFilterModeEv">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14PresFilterMode14PresFilterModeEv"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14PresFilterMode14PresFilterModeEv"></span><span id="VN::Registers::IMU::ImuFilterControl::PresFilterMode::PresFilterMode"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_pres_filter_mode_1ab9703afcbff5b1e210c1dd1e12d4d54a"></span><span class="sig-name descname"><span class="n"><span class="pre">PresFilterMode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterMode14PresFilterModeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterMode14PresFilterModeE7uint8_t">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14PresFilterMode14PresFilterModeE7uint8_t"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14PresFilterMode14PresFilterModeE7uint8_t"></span><span id="VN::Registers::IMU::ImuFilterControl::PresFilterMode::PresFilterMode__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_pres_filter_mode_1ad9ea15dcb903e7feda09de4dbd716bbc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PresFilterMode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">in</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterMode14PresFilterModeE7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN9Registers3IMU16ImuFilterControl14PresFilterModecv7uint8_tEv">
+<span id="_CPPv3NK2VN9Registers3IMU16ImuFilterControl14PresFilterModecv7uint8_tEv"></span><span id="_CPPv2NK2VN9Registers3IMU16ImuFilterControl14PresFilterModecv7uint8_tEv"></span><span id="VN::Registers::IMU::ImuFilterControl::PresFilterMode::castto-uint8_t-operatorC"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_pres_filter_mode_1ad415fda4ef82d1de7ec68b79ddf53cf9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2VN9Registers3IMU16ImuFilterControl14PresFilterModecv7uint8_tEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterModeaSERK7uint8_t">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14PresFilterModeaSERK7uint8_t"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14PresFilterModeaSERK7uint8_t"></span><span id="VN::Registers::IMU::ImuFilterControl::PresFilterMode::assign-operator__uint8_tCR"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_pres_filter_mode_1a1ac853e259d10ba2eee5be4c1f02adce"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterModeE" title="VN::Registers::IMU::ImuFilterControl::PresFilterMode"><span class="n"><span class="pre">PresFilterMode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterModeaSERK7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterMode6uncompE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14PresFilterMode6uncompE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14PresFilterMode6uncompE"></span><span id="VN::Registers::IMU::ImuFilterControl::PresFilterMode::uncomp__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_pres_filter_mode_1a6d1d771c7126c257cecdcf49abdd599b"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uncomp</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterMode6uncompE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterMode4compE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14PresFilterMode4compE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14PresFilterMode4compE"></span><span id="VN::Registers::IMU::ImuFilterControl::PresFilterMode::comp__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_pres_filter_mode_1a7a9ae293e18494c9f60dcf5f0cf49fb5"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14PresFilterMode4compE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterModeE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14TempFilterModeE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14TempFilterModeE"></span><span id="VN::Registers::IMU::ImuFilterControl::TempFilterMode"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_temp_filter_mode"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TempFilterMode</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterModeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterMode14TempFilterModeEv">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14TempFilterMode14TempFilterModeEv"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14TempFilterMode14TempFilterModeEv"></span><span id="VN::Registers::IMU::ImuFilterControl::TempFilterMode::TempFilterMode"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_temp_filter_mode_1a4d33f94bbf8ad6de55d8ede5792760f2"></span><span class="sig-name descname"><span class="n"><span class="pre">TempFilterMode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterMode14TempFilterModeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterMode14TempFilterModeE7uint8_t">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14TempFilterMode14TempFilterModeE7uint8_t"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14TempFilterMode14TempFilterModeE7uint8_t"></span><span id="VN::Registers::IMU::ImuFilterControl::TempFilterMode::TempFilterMode__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_temp_filter_mode_1ace37efc3356f9d59957814b062ccfc50"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TempFilterMode</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">in</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterMode14TempFilterModeE7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN9Registers3IMU16ImuFilterControl14TempFilterModecv7uint8_tEv">
+<span id="_CPPv3NK2VN9Registers3IMU16ImuFilterControl14TempFilterModecv7uint8_tEv"></span><span id="_CPPv2NK2VN9Registers3IMU16ImuFilterControl14TempFilterModecv7uint8_tEv"></span><span id="VN::Registers::IMU::ImuFilterControl::TempFilterMode::castto-uint8_t-operatorC"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_temp_filter_mode_1a83b5c6949bf789ffdf659d794007c4fe"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK2VN9Registers3IMU16ImuFilterControl14TempFilterModecv7uint8_tEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterModeaSERK7uint8_t">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14TempFilterModeaSERK7uint8_t"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14TempFilterModeaSERK7uint8_t"></span><span id="VN::Registers::IMU::ImuFilterControl::TempFilterMode::assign-operator__uint8_tCR"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_temp_filter_mode_1af5a57e7137f24f27ba753cf4b0f86a01"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterModeE" title="VN::Registers::IMU::ImuFilterControl::TempFilterMode"><span class="n"><span class="pre">TempFilterMode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterModeaSERK7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterMode6uncompE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14TempFilterMode6uncompE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14TempFilterMode6uncompE"></span><span id="VN::Registers::IMU::ImuFilterControl::TempFilterMode::uncomp__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_temp_filter_mode_1ac32670a77cded7125b5344e91a219042"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uncomp</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterMode6uncompE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterMode4compE">
+<span id="_CPPv3N2VN9Registers3IMU16ImuFilterControl14TempFilterMode4compE"></span><span id="_CPPv2N2VN9Registers3IMU16ImuFilterControl14TempFilterMode4compE"></span><span id="VN::Registers::IMU::ImuFilterControl::TempFilterMode::comp__uint8_t"></span><span class="target" id="struct_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control_1_1_temp_filter_mode_1adf403a86538cfed5f491604e48fb7d7f"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">comp</span></span></span><a class="headerlink" href="#_CPPv4N2VN9Registers3IMU16ImuFilterControl14TempFilterMode4compE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../Documentation.html" title="Documentation">
+          <img class="logo" src="../_static/VectorNav_LogoStacked_ForWeb_RGB_Full-Color.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../Documentation.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/MigrationGuide.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/GettingStarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/KeyFunctionality.html">Key Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/AdvancedFunctionality.html">Advanced Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/MemoryConstrained.html">Memory Constrained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/NonOsUsage.html">Non-Os Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/Plugins.html">Plugins</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/api_index.html">VNSDK API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="class_v_n_1_1_sensor.html">Class Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="class_v_n_1_1_composite_data.html">Class CompositeData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registers_api.html">Register API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="full_api_index.html">Full API Index</a></li>
+</ul>
+</li>
+</ul>
+</div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="class_v_n_1_1_registers_1_1_i_m_u_1_1_gyro_cal.html"
+                          title="Previous page">&larr; Class GyroCal</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_meas.html"
+                          title="Next page">&rarr; Class ImuMeas</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_api/class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_filter_control.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="class_v_n_1_1_registers_1_1_i_m_u_1_1_imu_meas.html" title="Class ImuMeas"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="class_v_n_1_1_registers_1_1_i_m_u_1_1_gyro_cal.html" title="Class GyroCal"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pages/api_index.html" >VNSDK API</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="full_api_index.html" >Full API Index</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Class ImuFilterControl</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, VectorNav Technologies.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

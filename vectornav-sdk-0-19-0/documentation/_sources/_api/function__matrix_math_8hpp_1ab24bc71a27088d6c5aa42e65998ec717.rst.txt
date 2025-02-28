@@ -1,0 +1,14 @@
+.. _exhale_function__matrix_math_8hpp_1ab24bc71a27088d6c5aa42e65998ec717:
+
+Template Function VN::element_mul
+=================================
+
+- Defined in :ref:`file_plugins_Math_MatrixMath.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::element_mul(Matrix<m, n, T>, const Matrix<m, n, T>&)
+   :project: VectorNav SDK

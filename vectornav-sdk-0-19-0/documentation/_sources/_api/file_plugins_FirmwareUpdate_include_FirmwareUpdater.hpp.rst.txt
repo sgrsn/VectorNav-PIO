@@ -1,0 +1,72 @@
+
+.. _file_plugins_FirmwareUpdate_include_FirmwareUpdater.hpp:
+
+File FirmwareUpdater.hpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_plugins_FirmwareUpdate_include>` (``plugins\FirmwareUpdate\include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``plugins\FirmwareUpdate\include\FirmwareUpdater.hpp``)
+-------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_plugins_FirmwareUpdate_include_FirmwareUpdater.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``HAL/File.hpp``
+
+- ``Interface/Command.hpp``
+
+- ``Interface/Sensor.hpp``
+
+- ``TemplateLibrary/String.hpp``
+
+- ``VnXml.hpp`` (:ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`)
+
+- ``iostream``
+
+- ``string``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+
+
+- :ref:`exhale_class_class_v_n_1_1_debug_switches`
+
+- :ref:`exhale_class_class_v_n_1_1_firmware_updater`
+
+- :ref:`exhale_class_class_v_n_1_1_microcontroller`
+
+- :ref:`exhale_class_class_v_n_1_1_service_port_switch`
+

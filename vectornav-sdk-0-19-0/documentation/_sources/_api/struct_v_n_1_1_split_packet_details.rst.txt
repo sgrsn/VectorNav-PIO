@@ -1,0 +1,17 @@
+.. _exhale_struct_struct_v_n_1_1_split_packet_details:
+
+Struct SplitPacketDetails
+=========================
+
+- Defined in :ref:`file_include_Implementation_FbPacketProtocol.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: VN::SplitPacketDetails
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

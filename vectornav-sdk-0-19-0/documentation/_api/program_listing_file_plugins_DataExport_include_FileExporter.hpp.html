@@ -1,0 +1,293 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Program Listing for File FileExporter.hpp &#8212; VectorNav SDK 0.19.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Program Listing for File FileExporter.hpp</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="program-listing-for-file-fileexporter-hpp">
+<span id="program-listing-file-plugins-dataexport-include-fileexporter-hpp"></span><h1>Program Listing for File FileExporter.hpp<a class="headerlink" href="#program-listing-for-file-fileexporter-hpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_plugins_DataExport_include_FileExporter.hpp.html#file-plugins-dataexport-include-fileexporter-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">plugins\DataExport\include\FileExporter.hpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef DATAEXPORT_FILEEXPORTER_HPP</span>
+<span class="cp">#define DATAEXPORT_FILEEXPORTER_HPP</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;filesystem&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Exporter.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SkippedByteExporter.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;HAL/File.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;TemplateLibrary/Vector.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Interface/Registers.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Implementation/PacketSynchronizer.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Implementation/AsciiPacketDispatcher.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Implementation/FaPacketDispatcher.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Implementation/FbPacketDispatcher.hpp&quot;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">VN</span>
+<span class="p">{</span>
+
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">EXPORTER_CAPACITY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="k">constexpr</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">ASYNC_ERROR_QUEUE_CAPACITY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FileExporter</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">FileExporter</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">processFile</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Filesystem</span><span class="o">::</span><span class="n">FilePath</span><span class="o">&amp;</span><span class="w"> </span><span class="n">fileName</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">fileSizeInBytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">file_size</span><span class="p">(</span><span class="n">fileName</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">(</span><span class="n">fileSizeInBytes</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">InputFile</span><span class="w"> </span><span class="n">inputFile</span><span class="p">(</span><span class="n">fileName</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">inputFile</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">buffer</span><span class="p">.</span><span class="n">get</span><span class="p">()),</span><span class="w"> </span><span class="n">fileSizeInBytes</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">ByteBuffer</span><span class="w"> </span><span class="n">byteBuffer</span><span class="p">(</span><span class="n">buffer</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span><span class="w"> </span><span class="n">fileSizeInBytes</span><span class="p">,</span><span class="w"> </span><span class="n">fileSizeInBytes</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">PacketSynchronizer</span><span class="w"> </span><span class="n">packetSynchronizer</span><span class="p">(</span><span class="n">byteBuffer</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="n">AsyncError</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">_asyncErrorQueue</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">error</span><span class="p">));</span><span class="w"> </span><span class="p">});</span>
+<span class="w">        </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">addDispatcher</span><span class="p">(</span><span class="o">&amp;</span><span class="n">_asciiPacketDispatcher</span><span class="p">);</span>
+<span class="w">        </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">addDispatcher</span><span class="p">(</span><span class="o">&amp;</span><span class="n">_faPacketDispatcher</span><span class="p">);</span>
+<span class="w">        </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">addDispatcher</span><span class="p">(</span><span class="o">&amp;</span><span class="n">_fbPacketDispatcher</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">Registers</span><span class="o">::</span><span class="n">System</span><span class="o">::</span><span class="n">BinaryOutputMeasurements</span><span class="w"> </span><span class="n">bor</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_exporters</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">_faPacketDispatcher</span><span class="p">.</span><span class="n">addSubscriber</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">getQueuePtr</span><span class="p">(),</span><span class="w"> </span><span class="n">bor</span><span class="p">.</span><span class="n">toBinaryHeader</span><span class="p">().</span><span class="n">toMeasurementHeader</span><span class="p">(),</span><span class="w"> </span><span class="n">FaPacketDispatcher</span><span class="o">::</span><span class="n">SubscriberFilterType</span><span class="o">::</span><span class="n">AnyMatch</span><span class="p">);</span>
+<span class="w">            </span><span class="n">_asciiPacketDispatcher</span><span class="p">.</span><span class="n">addSubscriber</span><span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">getQueuePtr</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;VN&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">AsciiPacketDispatcher</span><span class="o">::</span><span class="n">SubscriberFilterType</span><span class="o">::</span><span class="n">StartsWith</span><span class="p">);</span>
+
+<span class="w">            </span><span class="n">e</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">registerSkippedByteBuffer</span><span class="p">(</span><span class="n">_skippedByteExporter</span><span class="o">-&gt;</span><span class="n">getQueuePtr</span><span class="p">());</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_skippedByteExporter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">_skippedByteExporter</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">dispatchNextPacket</span><span class="p">())</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">_exporters</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">e</span><span class="o">-&gt;</span><span class="n">stop</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_skippedByteExporter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">_skippedByteExporter</span><span class="o">-&gt;</span><span class="n">stop</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">_parsingStats</span><span class="p">.</span><span class="n">validFaPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">getValidPacketCount</span><span class="p">(</span><span class="n">PacketSynchronizer</span><span class="o">::</span><span class="n">SyncBytes</span><span class="p">{</span><span class="mh">0xFA</span><span class="p">});</span>
+<span class="w">        </span><span class="n">_parsingStats</span><span class="p">.</span><span class="n">invalidFaPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">getInvalidPacketCount</span><span class="p">(</span><span class="n">PacketSynchronizer</span><span class="o">::</span><span class="n">SyncBytes</span><span class="p">{</span><span class="mh">0xFA</span><span class="p">});</span>
+<span class="w">        </span><span class="n">_parsingStats</span><span class="p">.</span><span class="n">validAsciiPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">getValidPacketCount</span><span class="p">(</span><span class="n">PacketSynchronizer</span><span class="o">::</span><span class="n">SyncBytes</span><span class="p">{</span><span class="sc">&#39;$&#39;</span><span class="p">});</span>
+<span class="w">        </span><span class="n">_parsingStats</span><span class="p">.</span><span class="n">invalidAsciiPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">getInvalidPacketCount</span><span class="p">(</span><span class="n">PacketSynchronizer</span><span class="o">::</span><span class="n">SyncBytes</span><span class="p">{</span><span class="sc">&#39;$&#39;</span><span class="p">});</span>
+<span class="w">        </span><span class="n">_parsingStats</span><span class="p">.</span><span class="n">validFbPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">getValidPacketCount</span><span class="p">(</span><span class="n">PacketSynchronizer</span><span class="o">::</span><span class="n">SyncBytes</span><span class="p">{</span><span class="mh">0xFB</span><span class="p">});</span>
+<span class="w">        </span><span class="n">_parsingStats</span><span class="p">.</span><span class="n">invalidFbPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">getInvalidPacketCount</span><span class="p">(</span><span class="n">PacketSynchronizer</span><span class="o">::</span><span class="n">SyncBytes</span><span class="p">{</span><span class="mh">0xFB</span><span class="p">});</span>
+<span class="w">        </span><span class="n">_parsingStats</span><span class="p">.</span><span class="n">skippedByteCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">getSkippedByteCount</span><span class="p">();</span>
+<span class="w">        </span><span class="n">_parsingStats</span><span class="p">.</span><span class="n">receivedByteCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">packetSynchronizer</span><span class="p">.</span><span class="n">getReceivedByteCount</span><span class="p">();</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">addExporter</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Exporter</span><span class="o">&gt;&amp;&amp;</span><span class="w"> </span><span class="n">exporterToAdd</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_exporters</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">exporterToAdd</span><span class="p">));</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">addSkippedByteExporter</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">SkippedByteExporter</span><span class="o">&gt;&amp;&amp;</span><span class="w"> </span><span class="n">exporterToAdd</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">_skippedByteExporter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">exporterToAdd</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">ParsingStats</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">validFaPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">invalidFaPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">validAsciiPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">invalidAsciiPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">validFbPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">invalidFbPacketCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">skippedByteCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">receivedByteCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">ParsingStats</span><span class="w"> </span><span class="nf">getParsingStats</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">_parsingStats</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="n">MeasurementQueue</span><span class="w"> </span><span class="n">_measurementQueue</span><span class="p">{</span><span class="n">Config</span><span class="o">::</span><span class="n">PacketDispatchers</span><span class="o">::</span><span class="n">compositeDataQueueCapacity</span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">CommandProcessor</span><span class="w"> </span><span class="n">_commandProcessor</span><span class="p">{[]([[</span><span class="n">maybe_unused</span><span class="p">]]</span><span class="w"> </span><span class="n">AsyncError</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{}};</span>
+
+<span class="w">    </span><span class="n">AsciiPacketDispatcher</span><span class="w"> </span><span class="n">_asciiPacketDispatcher</span><span class="p">{</span><span class="o">&amp;</span><span class="n">_measurementQueue</span><span class="p">,</span><span class="w"> </span><span class="n">Config</span><span class="o">::</span><span class="n">PacketDispatchers</span><span class="o">::</span><span class="n">cdEnabledMeasTypes</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_commandProcessor</span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">FaPacketDispatcher</span><span class="w"> </span><span class="n">_faPacketDispatcher</span><span class="p">{</span><span class="o">&amp;</span><span class="n">_measurementQueue</span><span class="p">,</span><span class="w"> </span><span class="n">Config</span><span class="o">::</span><span class="n">PacketDispatchers</span><span class="o">::</span><span class="n">cdEnabledMeasTypes</span><span class="p">};</span>
+<span class="w">    </span><span class="n">FbPacketDispatcher</span><span class="w"> </span><span class="n">_fbPacketDispatcher</span><span class="p">{</span><span class="o">&amp;</span><span class="n">_faPacketDispatcher</span><span class="p">,</span><span class="w"> </span><span class="n">Config</span><span class="o">::</span><span class="n">PacketFinders</span><span class="o">::</span><span class="n">fbBufferCapacity</span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">Vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Exporter</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">EXPORTER_CAPACITY</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_exporters</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">SkippedByteExporter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_skippedByteExporter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Queue_Mutexed</span><span class="o">&lt;</span><span class="n">AsyncError</span><span class="p">,</span><span class="w"> </span><span class="n">ASYNC_ERROR_QUEUE_CAPACITY</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_asyncErrorQueue</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ParsingStats</span><span class="w"> </span><span class="n">_parsingStats</span><span class="p">{};</span>
+<span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">FileExporter</span><span class="o">::</span><span class="n">ParsingStats</span><span class="o">&amp;</span><span class="w"> </span><span class="n">stats</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">totalValidPackets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validFaPacketCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validAsciiPacketCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validFbPacketCount</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">validFaPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validFaPacketCount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">totalValidPackets</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">validAsciiPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validAsciiPacketCount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">totalValidPackets</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">validFbPercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validFbPacketCount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">totalValidPackets</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">skippedBytePercent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">skippedByteCount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">receivedByteCount</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Valid FA Packets: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validFaPacketCount</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fixed</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">validFaPercent</span>
+<span class="w">       </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;%)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Invalid FA Packets: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">invalidFaPacketCount</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Valid ASCII Packets: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validAsciiPacketCount</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fixed</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">       </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">validAsciiPercent</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;%)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Invalid ASCII Packets: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">invalidAsciiPacketCount</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Valid FB Packets: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validFbPacketCount</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fixed</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">validFbPercent</span>
+<span class="w">       </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;%)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Invalid FB Packets: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">invalidFbPacketCount</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Skipped Bytes: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">skippedByteCount</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">fixed</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">skippedBytePercent</span>
+<span class="w">       </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;%)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Received Bytes: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">receivedByteCount</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Total Valid Packet Count: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">totalValidPackets</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">os</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setw</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Overall Packet Count: &quot;</span>
+<span class="w">       </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validFaPacketCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">invalidFaPacketCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validAsciiPacketCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">invalidAsciiPacketCount</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="n">validFbPacketCount</span><span class="w"> </span><span class="o">+</span>
+<span class="w">              </span><span class="n">stats</span><span class="p">.</span><span class="n">invalidFbPacketCount</span>
+<span class="w">       </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace VN</span>
+
+<span class="cp">#endif  </span><span class="c1">// DATAEXPORT_FILEEXPORTER_HPP</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../Documentation.html" title="Documentation">
+          <img class="logo" src="../_static/VectorNav_LogoStacked_ForWeb_RGB_Full-Color.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../Documentation.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pages/MigrationGuide.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/GettingStarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/KeyFunctionality.html">Key Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/AdvancedFunctionality.html">Advanced Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/MemoryConstrained.html">Memory Constrained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/NonOsUsage.html">Non-Os Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/Plugins.html">Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/api_index.html">VNSDK API</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_api/program_listing_file_plugins_DataExport_include_FileExporter.hpp.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Program Listing for File FileExporter.hpp</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, VectorNav Technologies.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

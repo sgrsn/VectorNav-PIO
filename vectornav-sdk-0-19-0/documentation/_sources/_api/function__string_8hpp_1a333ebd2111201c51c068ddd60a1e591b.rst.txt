@@ -1,0 +1,14 @@
+.. _exhale_function__string_8hpp_1a333ebd2111201c51c068ddd60a1e591b:
+
+Template Function VN::operator+(const char, const String<Capacity>&)
+====================================================================
+
+- Defined in :ref:`file_include_TemplateLibrary_String.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::operator+(const char, const String<Capacity>&)
+   :project: VectorNav SDK

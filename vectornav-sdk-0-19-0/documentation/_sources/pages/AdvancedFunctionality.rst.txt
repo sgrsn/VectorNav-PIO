@@ -1,0 +1,241 @@
+Advanced Functionality
+######################
+
+
+Non-Blocking Commands
+=====================
+In some cases, it is necessary to send commands without blocking, perform other operations, and later return to validate the unit's response. This is what the generic :func:`VN::Sensor::sendCommand` method is for. To do so:
+   #. Create the ``Command`` object that we would like to send to the unit
+
+      .. literalinclude:: ../../Examples/Commands/main.cpp
+         :linenos:
+         :lineno-match:
+         :language: c++
+         :start-at: KnownMagneticDisturbance
+         :end-at: KnownMagneticDisturbance
+         :caption: Command Instantiation (Examples/Commands/main.cpp)
+
+   #. Call the ``sendCommand`` method with our ``Command`` object and the waitMode specified as ``Sensor::SendCommandBlockMode::None``
+
+      .. literalinclude:: ../../Examples/Commands/main.cpp
+         :linenos:
+         :lineno-match:
+         :language: c++
+         :start-at: &kmd
+         :end-at: &kmd
+         :caption: Send Command (Examples/Commands/main.cpp)
+
+A full list of available commands can be found in :ref:`file_include_Interface_Commands.hpp`.
+
+The command will then be sent to the unit and added to a queue, waiting for a corresponding response from the unit. When a command response (i.e. non-measurement ASCII packet) is seen from the unit, the response will attempt to be matched with the oldest command sent in the queue.
+If the response matches, the function exits. If not, it will continue through the queue (popping each command from the queue) until either the response is matched to a command or the queue is empty. This is done because VectorNav units always respond to commands in the order in which they were received. Any synchronous VnError is considered a valid response to any command.
+
+When you are ready to check the unit's response, you can do so using :func:`VN::Command::getResponse`;
+
+.. literalinclude:: ../../Examples/Commands/main.cpp
+   :linenos:
+   :lineno-match:
+   :language: c++
+   :start-at: getResponse()
+   :end-before: getError()
+   :caption: Print Command Response (Examples/Commands/main.cpp)
+
+If the response is empty, a couple of things may be happening:
+   * The command is still in the command queue, awaiting a response
+      If this is the case, :func:`Command::isAwaitingResponse` will return ``true``. Whether a command is "awaiting a response" is not time-based; rather, it will be awaiting a response until any command response attempts to match with that command. As such, the correct response could either be to check again later (if only a brief period has elapsed) or to resend the command, assuming it was not received.
+
+   .. code-block:: cpp
+      :caption: Command Is Awaiting Response
+
+      if (kmd.isAwaitingResponse()) {
+         // The kmd command is still in the queue. It could either be too early to have heard a response, or this command should be resent.
+      }
+
+   * The command has received an invalid response
+      In this case, a response has attempted to be matched with the ``Command`` object. This likely means that the unit did not hear the command and was responding to a subsequent command. Most likely, we should try to resend the command.
+
+Now that we know we have a valid response, we should make sure the response is not a VnError using :func:`VN::Command::getError` (if the response is any VnError, the unit did not apply the command). 
+
+.. literalinclude:: ../../Examples/Commands/main.cpp
+   :linenos:
+   :lineno-match:
+   :language: c++
+   :start-at: getError()
+   :end-at: }
+   :caption: Ensuring Response Isn't Error (Examples/Commands/main.cpp)
+
+If the value returned from ``getError`` is empty, no error occurred and the command was accepted by the unit.
+
+If the value returned is not empty, the error can either be printed to a log using :func:`VN::VnException::what` or identified using :func:`VN::VnException::errorCode`. Every possible :class:`VN::VnException` in the SDK is guaranteed to have an error code, and each error code is present in the enum class :enum:`VN::Error`. 
+
+Because *Read Register* and *Write Register* are simply specialized commands to the unit, sending the commands non-blocking is very similar to sending any other command non-blocking. The only additional step is the conversion between the ``Register`` object and the ``Command`` object.
+
+Non-Blocking Read Register
+--------------------------
+
+Just like any other *Read Register* command, we first need to instantiate our ``Register`` object.
+
+.. code-block:: c++
+   :caption: Instantiating Register Object
+
+   VpeBasicControl vpeBasicControl;
+
+We then can produce a ``Command`` object for the *Read Register* command using the :func:`VN::Register::toReadCommand` method.
+
+.. code-block:: c++
+   :caption: Register To Read Command
+
+   Command vpeBasicControlRRGCommand = vpeBasicControl.toReadCommand();
+
+Now that we have a ``Command`` object, we can send it non-blocking using the steps in :ref:`pages/AdvancedFunctionality:Non-Blocking Commands`. After checking for a response and ensuring the response is valid, we can repopulate the original ``Register`` object fields using :func:`VN::Register::fromCommand`.
+
+.. code-block:: c++
+   :caption: Register From Read Command
+
+   bool errorOccured = vpeBasicControl.fromCommand(vpeBasicControlRRGCommand);
+
+Assuming the command received a non-error, valid response, the fields of ``vpeBasicControl`` are now populated with the values from the VectorNav unit, and we can access them as normal members of the object.
+
+Non-Blocking Write Register
+---------------------------
+
+Writing a register without blocking is very similar to reading a register without blocking. The only difference is the method called to create the *Write Register* command rather than the *Read Register* command.
+
+Very similar to the first step in :ref:`pages/KeyFunctionality:Writing Registers`, we create our ``Register`` object, populating it with the desired configuration values.
+
+.. literalinclude:: ../../Examples/Commands/main.cpp
+   :linenos:
+   :lineno-match:
+   :language: c++
+   :start-after: using VpeBasicControl
+   :end-before: toWriteCommand
+   :caption: Instantiating Register Object (Examples/Commands/main.cpp)
+
+We then can produce a ``Command`` object for the *Write Register* command using the :func:`VN::ConfigurationRegister::toWriteCommand` method.
+
+.. literalinclude:: ../../Examples/Commands/main.cpp
+   :linenos:
+   :lineno-match:
+   :language: c++
+   :start-at: toWriteCommand
+   :end-at: toWriteCommand
+   :caption: Register To Write Command (Examples/Commands/main.cpp)
+
+Now that we have our ``Command`` object for the *Write Register* command, we can send it to the unit and validate acceptance following the steps in :ref:`pages/AdvancedFunctionality:Non-Blocking Commands`.
+
+Subscribe to an Unparsed Packet
+===============================
+In some cases, it is desired to subscribe to specific measurement packets without using the ``CompositeData`` object. For this, the :func:`VN::Sensor::subscribeToMessage` method can be used. The interface we will use to receive the packets is a :type:`VN::PacketQueue`, on which the ``Sensor`` object will place any matching packet. The constructor requires a single argument of the queue capacity:
+
+.. code-block:: c++
+   :caption: Instantiating Filtered Packet Queue
+
+   PacketQueue PacketQueue(5);
+
+Regardless of whether the full packet can be parsed, so long as the validated packet can be identified and the packet header meets the requirements of the specified filter, the packet will be placed on the registered queue.
+
+To unsubscribe from a message, :func:`VN::Sensor::unsubscribeFromMessage` can be used.
+
+Subscribing to ASCII Measurement Packets
+----------------------------------------
+
+For ASCII measurement packets, we can define a filter using the enums provided in :type:`VN::Sensor::AsciiSubscriberFilterType` (aliased from :enum:`VN::AsciiPacketDispatcher::SubscriberFilterType`)
+
+For example, if we would like to subscribe to the *VNINS* message, we can use the following call:
+
+.. code-block:: c++
+   :caption: Subscribing to VNINS
+
+   sensor.subscribeToMessage(&PacketQueue, "VNINS", Sensor::AsciiSubscriberFilterType::StartsWith);
+
+or, if we would like to subscribe to any NMEA message (that is, any message whose header does not begin with VN), we can use the following call:
+
+.. code-block:: c++
+   :caption: Subscribing to Non-VN ASCII Packets
+
+   sensor.subscribeToMessage(&PacketQueue, "VN", Sensor::AsciiSubscriberFilterType::DoesNotStartWith);
+
+A maximum of :member:`Config::Sensor::asciiPacketSubscriberCapacity` ASCII packet filters can be registered concurrently.
+
+Subscribing to Binary Measurement Packets
+-----------------------------------------
+For a binary measurement, we can define a filter using the enums provided in :type:`VN::Sensor::FaSubscriberFilterType` (aliased from :enum:`VN::FaPacketDispatcher::SubscriberFilterType`)
+
+A maximum of :member:`Config::Sensor::faPacketSubscriberCapacity` binary packet filters can be registered concurrently.
+
+Receiving Unparsed Bytes
+========================
+Most applications are only interested in validated packets, received either as command responses or as measurements in a ``CompositeData`` object. 
+Although validated packets are sufficient in most uses, the VNSDK also includes the ability to receive and log all bytes.
+This section details how to receive bytes from the unit which are not necessarily part of any known packet.
+
+All Received Bytes
+------------------
+It is possible to receive all bytes received from the unit. The most common application for this is to log each byte to a file. Because we don't want to bottleneck the packet finding and measurement parsing occurring on the *listening thread* with any possible File I/O, we need to provide an output buffer to the ``Sensor`` object, using which we can access the bytes of interest.
+
+We first create a :class:`VN::ByteBuffer` object of the appropriate size, then register it with the ``Sensor`` object using :func:`VN::Sensor::registerReceivedByteBuffer`. All subsequent received bytes will be placed on that queue, to be read when necessary.
+
+.. code-block:: c++
+   :caption: Instantiate and Register Byte Buffer
+
+   ByteBuffer receivedByteBuffer(4096 * 2);
+   sensor.registerReceivedByteBuffer(&receivedByteBuffer);
+
+When we would like our byte buffer to cease being populated, we can deregister the buffer using the :func:`VN::Sensor::deregisterReceivedByteBuffer` method.
+
+.. code-block:: c++
+   :caption: Deregister Received Byte Buffer
+
+   sensor.deregisterReceivedByteBuffer();
+
+Only one byte buffer at a time can be registered for all received bytes.
+
+Skipped Bytes
+-------------
+
+A skipped byte is any byte received by the ``Sensor`` object that is not part of a valid packet. 
+Logging this can be useful when identifying dropped packets due to hardware noise, or when using an experimental message type that is unsupported by the SDK. 
+
+Very similar to registering a received byte buffer, we need to instantiate and register a ``ByteBuffer`` object as the interface to access the skipped bytes using :func:`VN::Sensor::registerSkippedByteBuffer`. We can do this using
+
+.. code-block:: c++
+   :caption: Instantiate and Register Skipped Byte Buffer
+
+   ByteBuffer skippedByteBuffer(4096 * 2);
+   sensor.registerSkippedByteBuffer(&skippedByteBuffer);
+
+and can later deregister this buffer using the :func:`VN::Sensor::deregisterSkippedByteBuffer` method:
+
+.. code-block:: c++
+   :caption: Deregister Skipped Byte Buffer
+
+   sensor.deregsiterSkippedByteBuffer();
+
+Only one byte buffer at a time can be registered for skipped bytes.
+
+Receiving Unexpected ASCII Messages
+===================================
+As discussed in :ref:`pages/AdvancedFunctionality:Non-Blocking Commands`, each outgoing command (whether set to ``blocking`` or not) is placed in a queue to await a response. Any non-measurement, valid ASCII messages from the unit that is not expected by a command in that queue will be placed on the *unexpected message queue*. In most cases, this will include asynchronous VN Error messages, defined following :class:`VN::SensorExceptions::SensorAsynchronous` as 
+
+* :class:`VN::SensorExceptions::HardFault`
+* :class:`VN::SensorExceptions::WatchdogReset`
+* :class:`VN::SensorExceptions::OutputBufferOverflow`
+* :class:`VN::SensorExceptions::ErrorBufferOverflow`
+
+In rare cases, a message can be placed on this queue because of hardware noise. It is possible the unit received (and is responding to) a command that was not sent by the SDK or that the response message was corrupted in reception, but remained a valid packet by the CRC check. For robustness, it is best to log the `unexpected message queue` and monitor it for any messages.
+
+The unexpected message queue can be accessed using :func:`VN::Sensor::unexpectedQueueSize` and :func:`VN::Sensor::getUnexpectedMessage`.
+
+.. FB Packets
+.. ==========
+ .. warning::
+..    Todo
+
+Debugging
+=========
+The file :ref:`file_include_Debug.hpp` contains helpful macros for SDK debug logging. Standard debugging is available in two levels, each with their own macro (``VN_DEBUG_1``, ``VN_DEBUG_2``) that are called upon various SDK events but are disabled by default. The debug messages default to off (``0``) but can be enabled by setting ``CURRENT_VN_DEBUG_LEVEL`` to the desired level.
+In addition, ``VN_ASSERT`` and ``VN_ABORT`` are provided to output the filename and line number on which an assert failed, or an abort is called.
+
+.. caution:: 
+   While ``VN_DEBUG`` can be helpful for debugging, high-rate measurement data often induces latency due to the speed of ``std::cout``, introducing a new issue. In this case, it may be beneficial to instead add each received debug message to a ``Vector`` and output every message together in batches, or at the end of the test.
+   This can be accomplished using ``VN_LIGHTWEIGHT_DEBUG``.

@@ -1,0 +1,90 @@
+
+.. _file_include_Implementation_BinaryHeader.hpp:
+
+File BinaryHeader.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_Implementation>` (``include\Implementation``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\Implementation\BinaryHeader.hpp``)
+--------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_Implementation_BinaryHeader.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Implementation/MeasurementDatatypes.hpp``
+
+- ``TemplateLibrary/String.hpp``
+
+- ``TemplateLibrary/Vector.hpp``
+
+- ``cstddef``
+
+- ``cstdint``
+
+- ``cstdio``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_Implementation_FaPacketDispatcher.hpp`
+
+- :ref:`file_include_Implementation_FaPacketProtocol.hpp`
+
+- :ref:`file_include_Implementation_FbPacketDispatcher.hpp`
+
+- :ref:`file_include_Interface_CompositeData.hpp`
+
+- :ref:`file_include_Interface_Registers.hpp`
+
+- :ref:`file_plugins_DataExport_include_ExporterCsv.hpp`
+
+- :ref:`file_plugins_DataExport_include_ExporterRinex.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+
+- :ref:`exhale_class_class_v_n_1_1_binary_header`
+
+- :ref:`exhale_class_class_v_n_1_1_binary_header_iterator`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function__binary_header_8hpp_1a0f5de4546e66f11d6d7b9f84bf9dc43a`
+

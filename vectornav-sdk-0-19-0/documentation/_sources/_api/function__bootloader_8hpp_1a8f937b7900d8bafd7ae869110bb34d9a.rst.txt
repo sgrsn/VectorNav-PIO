@@ -1,0 +1,14 @@
+.. _exhale_function__bootloader_8hpp_1a8f937b7900d8bafd7ae869110bb34d9a:
+
+Function VN::Bootloader::autoconfigureBootloader
+================================================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_Bootloader.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Bootloader::autoconfigureBootloader(Sensor *, const Sensor::BaudRate)
+   :project: VectorNav SDK

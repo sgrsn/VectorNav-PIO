@@ -1,0 +1,160 @@
+
+.. _program_listing_file_plugins_FirmwareUpdate_include_FirmwareUpdater.hpp:
+
+Program Listing for File FirmwareUpdater.hpp
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_plugins_FirmwareUpdate_include_FirmwareUpdater.hpp>` (``plugins\FirmwareUpdate\include\FirmwareUpdater.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef FIRMWAREUPDATE_FIRMWAREUPDATER_HPP
+   #define FIRMWAREUPDATE_FIRMWAREUPDATER_HPP
+   
+   #include <iostream>
+   #include <string>
+   
+   #include "HAL/File.hpp"
+   #include "Interface/Command.hpp"
+   #include "Interface/Sensor.hpp"
+   #include "TemplateLibrary/String.hpp"
+   #include "VnXml.hpp"
+   
+   namespace VN
+   {
+   
+   class FirmwareUpdater
+   {
+   public:
+       using Processor = SetBootLoader::Processor;
+   
+       struct File
+       {
+           Filesystem::FilePath filePath;  
+           Processor processor;            
+       };
+   
+       struct Params
+       {
+           Params() : firmwareBaudRate(Sensor::BaudRate::Baud115200), bootloaderBaudRate(Sensor::BaudRate::Baud115200) {}
+           Params(Sensor::BaudRate firmwareBaudRate, Sensor::BaudRate bootloaderBaudRate)
+               : firmwareBaudRate(firmwareBaudRate), bootloaderBaudRate(bootloaderBaudRate)
+           {
+           }
+           Sensor::BaudRate firmwareBaudRate;    
+           Sensor::BaudRate bootloaderBaudRate;  
+       };
+   
+       using FilePaths = Vector<File, 6>;
+   
+       FirmwareUpdater() {}
+   
+       bool updateFirmware(Sensor* sensor, Filesystem::FilePath vnXmlPath, Params params = Params());
+   
+       bool updateFirmware(Sensor* sensor, InputFile& vnXmlFile, Params params = Params());
+   
+       bool updateFirmware(Sensor* sensor, FilePaths files, Params params = Params());
+   
+       bool updateFirmware(Sensor* sensor, InputFile& vnxFile, const Processor processor, Params params = Params());
+   
+   private:
+       using ModelString = String<20>;
+   
+       bool _tryUpdateNavFirmwareFromBootloader(InputFile& vnXmlFile, const VN::VnXml::Metadata& vnXmlMetadata);
+       bool _tryUpdateNavFirmwareFromBootloader(InputFile& vnxFile, Processor processor);
+   
+       bool _isCompatible(const Processor processor) const;
+   
+       bool _pollSensorModelAndFirmwareVersion();
+       static bool _updateProcessor(Sensor* sensor, InputFile& firmwareFile, const Sensor::BaudRate firmwareBaudRate, const Sensor::BaudRate bootloaderBaudRate,
+                                    const size_t beginningLineNumber, const size_t numLinesInFirmware);
+   
+       // Switch processors
+       bool _getCurrentProcessor();
+   
+       bool _switchToNavProcessor();
+   
+       bool _switchToImuProcessor();
+   
+       bool _switchToGnssProcessor();
+   
+       // Firmware update helpers
+       static bool _updateFirmware(Sensor* sensor, InputFile& firmwareFile, const size_t lineNumberBeginning, const size_t numLinesInFirmware);
+   
+       bool _tryOpenFile(const Filesystem::FilePath& filePath);
+   
+       size_t _calculateNumberOfLinesInFile(InputFile& filePath) const;
+   
+       InputFile _fileH{true};
+       size_t _totalLinesInFile = 0;
+       Sensor* _sensor;
+       ModelString _model;
+       std::string _firmwareVersion;
+       Sensor::BaudRate _navBaudRate = Sensor::BaudRate::Baud115200;
+       Sensor::BaudRate _imuBaudRate = Sensor::BaudRate::Baud115200;   // This baud rate should remain at 115200, because it is independent of the nav baud rate
+       Sensor::BaudRate _gnssBaudRate = Sensor::BaudRate::Baud115200;  // This baud rate should remain at 115200, because it is independent of the nav baud rate
+       Sensor::BaudRate _bootloaderBaudRate = Sensor::BaudRate::Baud115200;
+   
+       Processor _currentProcessor;
+   };
+   
+   class DebugSwitches : public Command
+   {
+   public:
+       enum class Switch : uint8_t
+       {
+           PowerToGPS = 1,
+           Boot0State = 2,
+           Processor = 3
+       } debugSwitch;
+       enum class State : uint8_t
+       {
+           Off = 0,
+           On = 1,
+           Main = 0,
+           GPS = 1
+       } state;  // BETTER WAY to HANDLE THIS??
+   
+       DebugSwitches(const Switch debugSwitch_, const State state_) : Command("DBS"), debugSwitch(debugSwitch_), state(state_) {};
+   
+       AsciiMessage getCommandString() noexcept override
+       {
+           std::snprintf(_commandString.begin(), _commandString.capacity(), "DBS,%d,%d", static_cast<uint8_t>(debugSwitch), static_cast<uint8_t>(state));
+           return _commandString;
+       }
+   };
+   
+   class ServicePortSwitch : public Command
+   {
+   public:
+       ServicePortSwitch() : Command("SPS") {}
+   
+       AsciiMessage getCommandString() noexcept override
+       {
+           std::snprintf(_commandString.begin(), _commandString.capacity(), "SPS,1,1,115200");
+           return _commandString;
+       }
+   };
+   
+   class Microcontroller : public Command
+   {
+   public:
+       enum class Processor : uint8_t
+       {
+           IMU = 1,
+           CoProcessor = 2,
+           GPS = 3
+       } processor;
+       Microcontroller(const Processor processor_) : Command("MCU"), processor(processor_) {};
+   
+       AsciiMessage getCommandString() noexcept override
+       {
+           std::snprintf(_commandString.begin(), _commandString.capacity(), "MCU,%d", static_cast<uint8_t>(processor));
+           return _commandString;
+       }
+   };
+   
+   }  // namespace VN
+   #endif  // FIRMWAREUPDATE_FIRMWAREUPDATER_HPP

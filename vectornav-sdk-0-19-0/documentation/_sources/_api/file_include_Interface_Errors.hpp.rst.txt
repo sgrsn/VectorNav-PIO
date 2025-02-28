@@ -1,0 +1,120 @@
+
+.. _file_include_Interface_Errors.hpp:
+
+File Errors.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_Interface>` (``include\Interface``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\Interface\Errors.hpp``)
+---------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_Interface_Errors.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Config.hpp`` (:ref:`file_include_Config.hpp`)
+
+- ``TemplateLibrary/String.hpp``
+
+- ``cstring``
+
+- ``stdint.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_HAL_Serial_Base.hpp`
+
+- :ref:`file_include_HAL_Serial_Linux.hpp`
+
+- :ref:`file_include_Implementation_CommandProcessor.hpp`
+
+- :ref:`file_include_Implementation_PacketSynchronizer.hpp`
+
+- :ref:`file_include_Interface_Command.hpp`
+
+- :ref:`file_include_Interface_Sensor.hpp`
+
+- :ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`
+
+- :ref:`file_plugins_RegisterScan_RegisterScan.cpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_struct_v_n_1_1_async_error`
+
+- :ref:`exhale_class_class_v_n_1_1_enum_check`
+
+- :ref:`exhale_class_class_v_n_1_1_enum_check_3_01_enum_type_01_4`
+
+- :ref:`exhale_class_class_v_n_1_1_enum_check_3_01_enum_type_00_01_v_00_01_next_8_8_8_01_4`
+
+
+Enums
+-----
+
+
+- :ref:`exhale_enum__errors_8hpp_1a1176d97ac8230053c095d40f6ddd9541`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function__errors_8hpp_1a48a0d4e28bdfe3eb34e6518e9bf68533`
+
+- :ref:`exhale_function__errors_8hpp_1a3d123bd4576b3f4e309f9f490317ccb7`
+
+- :ref:`exhale_function__errors_8hpp_1a330a009fd14755c55a5a2c40e2cf4583`
+
+- :ref:`exhale_function__errors_8hpp_1a7ec6dd141f2d55d3d6d6c8c9ffac27fd`
+
+
+Defines
+-------
+
+
+- :ref:`exhale_define__errors_8hpp_1a824517c54dc515081505f464e98ad68d`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef__errors_8hpp_1a21bf15df0ad9aaadc6d9eb5832b660ea`
+
+- :ref:`exhale_typedef__errors_8hpp_1ae3837d21bd03010a1e70aa2bec8a4639`
+

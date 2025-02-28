@@ -1,0 +1,17 @@
+.. _exhale_struct_struct_v_n_1_1_vn_xml_1_1_component:
+
+Struct Component
+================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_VnXml.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: VN::VnXml::Component
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,14 @@
+.. _exhale_function__bootloader_8hpp_1a6d70c54d9af921dc60f7ff6dc21f2d6f:
+
+Function VN::Bootloader::errorCodeToString
+==========================================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_Bootloader.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Bootloader::errorCodeToString(Error)
+   :project: VectorNav SDK

@@ -1,0 +1,26 @@
+.. _exhale_class_class_v_n_1_1_file_exporter:
+
+Class FileExporter
+==================
+
+- Defined in :ref:`file_plugins_DataExport_include_FileExporter.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: VN::FileExporter
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

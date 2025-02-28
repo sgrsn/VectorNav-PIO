@@ -1,0 +1,14 @@
+.. _exhale_define__debug_8hpp_1ab8c00e0f390025b85b3b9e828c668cec:
+
+Define VN_CURRENT_DEBUG_LEVEL
+=============================
+
+- Defined in :ref:`file_include_Debug.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: VN_CURRENT_DEBUG_LEVEL
+   :project: VectorNav SDK

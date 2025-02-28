@@ -1,0 +1,14 @@
+.. _exhale_function__bootloader_8hpp_1a8dc61bf25c32fdb33571fcb29a843480:
+
+Function VN::Bootloader::operator<<
+===================================
+
+- Defined in :ref:`file_plugins_FirmwareUpdate_include_Bootloader.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Bootloader::operator<<(std::ostream&, const Error&)
+   :project: VectorNav SDK

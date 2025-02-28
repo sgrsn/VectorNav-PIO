@@ -1,0 +1,77 @@
+
+.. _program_listing_file_include_Implementation_AsciiPacketDispatcher.hpp:
+
+Program Listing for File AsciiPacketDispatcher.hpp
+==================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_Implementation_AsciiPacketDispatcher.hpp>` (``include\Implementation\AsciiPacketDispatcher.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef IMPLEMENTATION_ASCIIPACKETDISPATCHER_HPP
+   #define IMPLEMENTATION_ASCIIPACKETDISPATCHER_HPP
+   
+   #include <cstdint>
+   #include <functional>
+   #include <optional>
+   
+   #include "Implementation/PacketDispatcher.hpp"
+   #include "Implementation/MeasurementDatatypes.hpp"
+   #include "Implementation/CommandProcessor.hpp"
+   #include "Implementation/AsciiPacketProtocol.hpp"
+   #include "Implementation/QueueDefinitions.hpp"
+   #include "Config.hpp"
+   
+   namespace VN
+   {
+   class AsciiPacketDispatcher : public PacketDispatcher
+   {
+   public:
+       AsciiPacketDispatcher(MeasurementQueue* measurementQueue, EnabledMeasurements enabledMeasurements, CommandProcessor* commandProcessor)
+           : PacketDispatcher{{'$'}}, _compositeDataQueue(measurementQueue), _enabledMeasurements(enabledMeasurements), _commandProcessor(commandProcessor)
+       {
+       }
+   
+       PacketDispatcher::FindPacketRetVal findPacket(const ByteBuffer& byteBuffer, const size_t syncByteIndex) noexcept override;
+   
+       void dispatchPacket(const ByteBuffer& byteBuffer, const size_t syncByteIndex) noexcept override;
+   
+       enum class SubscriberFilterType
+       {
+           StartsWith,
+           DoesNotStartWith
+       };
+   
+       bool addSubscriber(PacketQueue_Interface* subscriber, const AsciiHeader& headerToUse, SubscriberFilterType filterType) noexcept;
+   
+       void removeSubscriber(PacketQueue_Interface* subscriberToRemove) noexcept;
+       void removeSubscriber(PacketQueue_Interface* subscriberToRemove, const AsciiHeader& headerToUse) noexcept;
+   
+   private:
+       MeasurementQueue* _compositeDataQueue;
+       [[maybe_unused]] EnabledMeasurements _enabledMeasurements;
+   
+       AsciiPacketProtocol::Metadata _latestPacketMetadata;
+       CommandProcessor* _commandProcessor;
+       struct Subscriber
+       {
+           PacketQueue_Interface* queueToPush;
+           AsciiHeader headerFilter;
+           SubscriberFilterType filterType;
+       };
+   
+       static const auto SUBSCRIBER_CAPACITY = Config::PacketDispatchers::asciiPacketSubscriberCapacity;
+       using Subscribers = Vector<Subscriber, SUBSCRIBER_CAPACITY>;
+       Subscribers _subscribers;
+   
+       bool _tryPushToCompositeDataQueue(const ByteBuffer& byteBuffer, const size_t syncByteIndex, const AsciiPacketProtocol::Metadata& metadata,
+                                         AsciiPacketProtocol::AsciiMeasurementHeader measEnum) noexcept;
+       void _invokeSubscribers(const ByteBuffer& byteBuffer, const size_t syncByteIndex, const AsciiPacketProtocol::Metadata& metadata) noexcept;
+       bool _tryPushToSubscriber(const ByteBuffer& byteBuffer, const size_t syncByteIndex, const AsciiPacketProtocol::Metadata& metadata,
+                                 Subscriber& subscriber) noexcept;
+   };
+   }  // namespace VN
+   
+   #endif  // IMPLEMENTATION_ASCIIPACKETDISPATCHER_HPP

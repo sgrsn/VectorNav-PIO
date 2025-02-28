@@ -1,0 +1,26 @@
+.. _exhale_class_class_v_n_1_1_lin_alg_1_1_linear_least_squares:
+
+Class LinearLeastSquares
+========================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: VN::LinAlg::LinearLeastSquares
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:

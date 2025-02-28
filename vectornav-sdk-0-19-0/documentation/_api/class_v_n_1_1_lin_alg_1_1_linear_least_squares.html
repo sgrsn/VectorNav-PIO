@@ -1,0 +1,288 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Class LinearLeastSquares &#8212; VectorNav SDK 0.19.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class LockGuard" href="class_v_n_1_1_lock_guard.html" />
+    <link rel="prev" title="Class EigenDecomposition" href="class_v_n_1_1_lin_alg_1_1_eigen_decomposition.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="class_v_n_1_1_lock_guard.html" title="Class LockGuard"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="class_v_n_1_1_lin_alg_1_1_eigen_decomposition.html" title="Class EigenDecomposition"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pages/api_index.html" >VNSDK API</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="full_api_index.html" accesskey="U">Full API Index</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Class LinearLeastSquares</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="class-linearleastsquares">
+<span id="exhale-class-class-v-n-1-1-lin-alg-1-1-linear-least-squares"></span><h1>Class LinearLeastSquares<a class="headerlink" href="#class-linearleastsquares" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_plugins_Math_LinearAlgebra.hpp.html#file-plugins-math-linearalgebra-hpp"><span class="std std-ref">File LinearAlgebra.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquaresE">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquaresE"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquaresE"></span><span id="VN::LinAlg::LinearLeastSquares"></span><span class="target" id="class_v_n_1_1_lin_alg_1_1_linear_least_squares"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LinearLeastSquares</span></span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquaresE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquares8LlsErrorE">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquares8LlsErrorE"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquares8LlsErrorE"></span><span class="target" id="class_v_n_1_1_lin_alg_1_1_linear_least_squares_1ab423342c551ff6caa03c5427b9068523"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LlsError</span></span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares8LlsErrorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquares8LlsError4NoneE">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquares8LlsError4NoneE"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquares8LlsError4NoneE"></span><span class="target" id="class_v_n_1_1_lin_alg_1_1_linear_least_squares_1ab423342c551ff6caa03c5427b9068523a6adf97f83acf6453d4a6a4b1070f3754"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">None</span></span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares8LlsError4NoneE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquares8LlsError16InsufficientDataE">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquares8LlsError16InsufficientDataE"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquares8LlsError16InsufficientDataE"></span><span class="target" id="class_v_n_1_1_lin_alg_1_1_linear_least_squares_1ab423342c551ff6caa03c5427b9068523a9e32e294e8358345f2b9b52b7f8b41fa"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InsufficientData</span></span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares8LlsError16InsufficientDataE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquares8LlsError24FailedEigenDecompositionE">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquares8LlsError24FailedEigenDecompositionE"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquares8LlsError24FailedEigenDecompositionE"></span><span class="target" id="class_v_n_1_1_lin_alg_1_1_linear_least_squares_1ab423342c551ff6caa03c5427b9068523ad58250e8b5b0be3c54178815f63c6ca7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FailedEigenDecomposition</span></span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares8LlsError24FailedEigenDecompositionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquares18LinearLeastSquaresEv">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquares18LinearLeastSquaresEv"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquares18LinearLeastSquaresEv"></span><span id="VN::LinAlg::LinearLeastSquares::LinearLeastSquares"></span><span class="target" id="class_v_n_1_1_lin_alg_1_1_linear_least_squares_1a0019c17739c9f6938b72e672f90b6bd1"></span><span class="sig-name descname"><span class="n"><span class="pre">LinearLeastSquares</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares18LinearLeastSquaresEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveE20LeastSquaresSolutionI1n1TER6MatrixI1n1n1TER6MatrixI1nXL1EE1TE1T">
+<span id="_CPPv3I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveER6MatrixI1n1n1TER6MatrixI1nXL1EE1TE1T"></span><span id="_CPPv2I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveER6MatrixI1n1n1TER6MatrixI1nX1E1TE1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="class_v_n_1_1_lin_alg_1_1_linear_least_squares_1a277331559c86f93d6671337e61d6179f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution"><span class="n"><span class="pre">LeastSquaresSolution</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveE20LeastSquaresSolutionI1n1TER6MatrixI1n1n1TER6MatrixI1nXL1EE1TE1T" title="VN::LinAlg::LinearLeastSquares::solve::n"><span class="n"><span class="pre">n</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveE20LeastSquaresSolutionI1n1TER6MatrixI1n1n1TER6MatrixI1nXL1EE1TE1T" title="VN::LinAlg::LinearLeastSquares::solve::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">solve</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="struct_v_n_1_1_matrix.html#_CPPv4I_6size_t_6size_t0EN2VN6MatrixE" title="VN::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveE20LeastSquaresSolutionI1n1TER6MatrixI1n1n1TER6MatrixI1nXL1EE1TE1T" title="VN::LinAlg::LinearLeastSquares::solve::n"><span class="n"><span class="pre">n</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveE20LeastSquaresSolutionI1n1TER6MatrixI1n1n1TER6MatrixI1nXL1EE1TE1T" title="VN::LinAlg::LinearLeastSquares::solve::n"><span class="n"><span class="pre">n</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveE20LeastSquaresSolutionI1n1TER6MatrixI1n1n1TER6MatrixI1nXL1EE1TE1T" title="VN::LinAlg::LinearLeastSquares::solve::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">HTH</span></span>, <a class="reference internal" href="struct_v_n_1_1_matrix.html#_CPPv4I_6size_t_6size_t0EN2VN6MatrixE" title="VN::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveE20LeastSquaresSolutionI1n1TER6MatrixI1n1n1TER6MatrixI1nXL1EE1TE1T" title="VN::LinAlg::LinearLeastSquares::solve::n"><span class="n"><span class="pre">n</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveE20LeastSquaresSolutionI1n1TER6MatrixI1n1n1TER6MatrixI1nXL1EE1TE1T" title="VN::LinAlg::LinearLeastSquares::solve::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">HTy</span></span>, <a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveE20LeastSquaresSolutionI1n1TER6MatrixI1n1n1TER6MatrixI1nXL1EE1TE1T" title="VN::LinAlg::LinearLeastSquares::solve::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">condition_threshold</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares5solveE20LeastSquaresSolutionI1n1TER6MatrixI1n1n1TER6MatrixI1nXL1EE1TE1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares21findMinimumEigenValueE1TRK6MatrixI1nXL1EE1TE">
+<span id="_CPPv3I_6size_t0EN2VN6LinAlg18LinearLeastSquares21findMinimumEigenValueERK6MatrixI1nXL1EE1TE"></span><span id="_CPPv2I_6size_t0EN2VN6LinAlg18LinearLeastSquares21findMinimumEigenValueERK6MatrixI1nX1E1TE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="class_v_n_1_1_lin_alg_1_1_linear_least_squares_1a892589b099d1f8ff9987a55dc15f6a7c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares21findMinimumEigenValueE1TRK6MatrixI1nXL1EE1TE" title="VN::LinAlg::LinearLeastSquares::findMinimumEigenValue::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">findMinimumEigenValue</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="struct_v_n_1_1_matrix.html#_CPPv4I_6size_t_6size_t0EN2VN6MatrixE" title="VN::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares21findMinimumEigenValueE1TRK6MatrixI1nXL1EE1TE" title="VN::LinAlg::LinearLeastSquares::findMinimumEigenValue::n"><span class="n"><span class="pre">n</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares21findMinimumEigenValueE1TRK6MatrixI1nXL1EE1TE" title="VN::LinAlg::LinearLeastSquares::findMinimumEigenValue::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">vec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares21findMinimumEigenValueE1TRK6MatrixI1nXL1EE1TE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE">
+<span id="_CPPv3I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE"></span><span id="_CPPv2I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="struct_v_n_1_1_lin_alg_1_1_linear_least_squares_1_1_least_squares_solution"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LeastSquaresSolution</span></span></span><a class="headerlink" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution8solutionE">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution8solutionE"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution8solutionE"></span><span id="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::solution__Matrix:n.1.T:"></span><span class="target" id="struct_v_n_1_1_lin_alg_1_1_linear_least_squares_1_1_least_squares_solution_1ad406d2e108272f94486bed97e878ce1c"></span><a class="reference internal" href="struct_v_n_1_1_matrix.html#_CPPv4I_6size_t_6size_t0EN2VN6MatrixE" title="VN::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::n"><span class="n"><span class="pre">n</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">solution</span></span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution8solutionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution12eigenVectorsE">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution12eigenVectorsE"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution12eigenVectorsE"></span><span id="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::eigenVectors__Matrix:n.n.T:"></span><span class="target" id="struct_v_n_1_1_lin_alg_1_1_linear_least_squares_1_1_least_squares_solution_1a014059413182ae20578eb54ec16d5d0a"></span><a class="reference internal" href="struct_v_n_1_1_matrix.html#_CPPv4I_6size_t_6size_t0EN2VN6MatrixE" title="VN::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::n"><span class="n"><span class="pre">n</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::n"><span class="n"><span class="pre">n</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eigenVectors</span></span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution12eigenVectorsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution15eigenValuesRealE">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution15eigenValuesRealE"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution15eigenValuesRealE"></span><span id="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::eigenValuesReal__Matrix:n.1.T:"></span><span class="target" id="struct_v_n_1_1_lin_alg_1_1_linear_least_squares_1_1_least_squares_solution_1af0d75d2903e89dde24f0ae6e3747c0aa"></span><a class="reference internal" href="struct_v_n_1_1_matrix.html#_CPPv4I_6size_t_6size_t0EN2VN6MatrixE" title="VN::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::n"><span class="n"><span class="pre">n</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eigenValuesReal</span></span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution15eigenValuesRealE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution15eigenValuesImagE">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution15eigenValuesImagE"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution15eigenValuesImagE"></span><span id="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::eigenValuesImag__Matrix:n.1.T:"></span><span class="target" id="struct_v_n_1_1_lin_alg_1_1_linear_least_squares_1_1_least_squares_solution_1a8e26c1b3177af36885898b264c3dbaf3"></span><a class="reference internal" href="struct_v_n_1_1_matrix.html#_CPPv4I_6size_t_6size_t0EN2VN6MatrixE" title="VN::Matrix"><span class="n"><span class="pre">Matrix</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::n"><span class="n"><span class="pre">n</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eigenValuesImag</span></span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution15eigenValuesImagE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution3FOME">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution3FOME"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution3FOME"></span><span id="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::FOM__T"></span><span class="target" id="struct_v_n_1_1_lin_alg_1_1_linear_least_squares_1_1_least_squares_solution_1a53ec15dbe1e4db7c36689aedcbb13332"></span><a class="reference internal" href="#_CPPv4I_6size_t0EN2VN6LinAlg18LinearLeastSquares20LeastSquaresSolutionE" title="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FOM</span></span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution3FOME" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution5errorE">
+<span id="_CPPv3N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution5errorE"></span><span id="_CPPv2N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution5errorE"></span><span id="VN::LinAlg::LinearLeastSquares::LeastSquaresSolution::error__LlsError"></span><span class="target" id="struct_v_n_1_1_lin_alg_1_1_linear_least_squares_1_1_least_squares_solution_1a2960a0e0d7f26a43494706f4f1db9afd"></span><a class="reference internal" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares8LlsErrorE" title="VN::LinAlg::LinearLeastSquares::LlsError"><span class="n"><span class="pre">LlsError</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">error</span></span></span><a class="headerlink" href="#_CPPv4N2VN6LinAlg18LinearLeastSquares20LeastSquaresSolution5errorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../Documentation.html" title="Documentation">
+          <img class="logo" src="../_static/VectorNav_LogoStacked_ForWeb_RGB_Full-Color.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../Documentation.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/MigrationGuide.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/GettingStarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/KeyFunctionality.html">Key Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/AdvancedFunctionality.html">Advanced Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/MemoryConstrained.html">Memory Constrained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/NonOsUsage.html">Non-Os Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/Plugins.html">Plugins</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/api_index.html">VNSDK API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="class_v_n_1_1_sensor.html">Class Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="class_v_n_1_1_composite_data.html">Class CompositeData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registers_api.html">Register API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="full_api_index.html">Full API Index</a></li>
+</ul>
+</li>
+</ul>
+</div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="class_v_n_1_1_lin_alg_1_1_eigen_decomposition.html"
+                          title="Previous page">&larr; Class EigenDecomposition</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="class_v_n_1_1_lock_guard.html"
+                          title="Next page">&rarr; Class LockGuard</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_api/class_v_n_1_1_lin_alg_1_1_linear_least_squares.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="class_v_n_1_1_lock_guard.html" title="Class LockGuard"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="class_v_n_1_1_lin_alg_1_1_eigen_decomposition.html" title="Class EigenDecomposition"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pages/api_index.html" >VNSDK API</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="full_api_index.html" >Full API Index</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Class LinearLeastSquares</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, VectorNav Technologies.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

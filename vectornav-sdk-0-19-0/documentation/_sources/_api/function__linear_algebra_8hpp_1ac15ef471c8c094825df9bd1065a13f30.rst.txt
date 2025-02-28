@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1ac15ef471c8c094825df9bd1065a13f30:
+
+Template Function VN::LinAlg::inverse(const Matrix<2, 2, T>&)
+=============================================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::inverse(const Matrix<2, 2, T>&)
+   :project: VectorNav SDK

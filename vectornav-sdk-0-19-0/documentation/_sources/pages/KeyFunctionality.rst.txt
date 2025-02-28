@@ -1,0 +1,395 @@
+Key Functionality
+#################
+
+Establishing Communication
+==========================
+
+Connecting to the Unit
+----------------------
+It is first necessary to create a :class:`VN::Sensor` object, using which we will send commands to the VectorNav unit.
+
+.. literalinclude:: ../../Examples/GettingStarted/main.cpp
+   :language: c++
+   :start-at: Sensor sensor
+   :end-at: Sensor sensor
+   :dedent: 4
+
+We can then connect to the VectorNav unit using the :func:`VN::Sensor::autoConnect` method.
+
+.. literalinclude:: ../../Examples/GettingStarted/main.cpp
+   :language: c++
+   :start-at: autoConnect
+   :end-at: autoConnect
+   :dedent: 4
+
+.. tip::
+   If the baud rate is known, the :func:`VN::Sensor::connect` method can be used, which accepts an extra parameter of the expected baud rate. This is a quicker call, as it does not require scanning all the baud rates.
+   However, this method does not perform any verification of connectivity, so it is recommended to call :func:`VN::Sensor::verifySensorConnectivity` to ensure communication.
+
+   .. code-block:: cpp
+      :emphasize-lines: 3
+
+      Error connectError = sensor.connect("COM8", Sensor::BaudRate::Baud115200);
+      if (connectError != Error::None) { return; }
+      if (!sensor.verifySensorConnectivity()) {
+         // The sensor did not connect. Most likely the COM port was incorrect, the hardware is not properly connected, or the baud rate is incorrect.
+      }
+   
+   If ``autoConnect`` is used, no ``verifySensorConnectivity`` call is necessary, as it verifies connectivity through the auto connection process at each baud rate. It is therefore the slower of the two methods, by default requiring a maximum of 4.5 seconds.
+
+   To maintain robustness while utilizing the speed of the ``connect`` method, the ``autoConnect`` method can be used as a fallback if ``verifySensorConnectivity`` fails:
+
+   .. code-block:: cpp
+      :emphasize-lines: 2,4,5
+
+      Sensor sensor;
+      Error latestError = sensor.connect("COM8", Sensor::BaudRate::Baud115200);
+      if (latestError != Error::None) { return; }
+      if (!sensor.verifySensorConnectivity()) {
+               latestError = sensor.autoConnect();
+               if (latestError != Error::None) {
+                  std::cout << "Error: Sensor failed to connect.\n";
+                  return;
+               }
+         }
+         auto connectedBaudRate = sensor.connectedBaudRate().value();
+         std::cout << "Warning: sensor is not configured to expected baud rate.\n\tExpected: " + expectedBaudRate + "\n\tActual: " << std::to_string(static_cast<uint16_t>(connectedBaudRate)) << + "\n";
+      }
+
+Both ``connect`` and ``autoConnect`` will additionally begin a new *listening thread* (This does not occur if threading is disabled. For more information see :ref:`pages/NonOsUsage:Single-Threaded Operation`). 
+
+Changing Baud Rate
+------------------
+
+Once communication has been established, the baud rate can be reconfigured at any point using the :func:`VN::Sensor::changeBaudRate` method.
+
+.. code-block:: cpp
+
+   sensor.changeBaudRate(Sensor::BaudRate::Baud921600);
+
+.. note::
+   The `changeBaudRate` method will send a command to the unit to reconfigure its baud rate, disconnect from serial, and reconnect to the serial port at the specified new baud rate.
+
+.. tip::
+   To ensure the baud rate change persists over a unit power cycle, a :func:`VN::Sensor::writeSettings` command should be sent.
+   
+   .. code-block:: cpp
+
+      sensor.writeSettings();
+
+Disconnecting From the Unit
+---------------------------
+
+To disconnect from the unit, the :func:`VN::Sensor::disconnect` method can be called, which also closes the *listening thread*.
+
+.. code-block:: cpp
+
+   sensor.disconect();
+
+Accessing Registers
+===================
+All configuration settings and many measurements are stored in one of 256 registers, which are accessible via synchronous polling and synchronous writing. The VNSDK contains the complete register definitions in :ref:`file_include_Interface_Registers.hpp`, each defined as a class with each register field a public class member.
+All of the register classes exist in the :ref:`namespace_VN__Registers` and a namespace for the register group. Alternatively, each register is aliased under the :ref:`namespace_VN__Registers__ById` by their register ID. For example, the *Synchronization Control* register can either be accessed as :class:`VN::Registers::System::SyncControl` or :type:`VN::Registers::ById::Reg32`.
+
+Both measurement registers and configuration registers can be read, whereas only configuration registers can be written. This is accomplished best using the :func:`VN::Sensor::readRegister` and :func:`VN::Sensor::writeRegister` methods, which are discussed in the following sections. 
+
+The ``readRegister`` and ``writeRegister`` methods are calls which block until reception of the unit's response, with a timeout length of :member:`VN::Config::Sensor::commandSendTimeoutLength` (set in :ref:`file_include_Config.hpp`). If no response is received in time and retry is enabled, each method will retry the call according to the number of :member:`VN::Config::Sensor::commandSendRetriesAllowed` (set in :ref:`file_include_Config.hpp`). If all retries fail to receive a response, each method will return ``Error::ResponseTimeout``. If the unit responds with a valid, non-VnError response within the timeout length, the fields of the passed ``Register`` object will be populated with the unit's response.
+
+The fields in each ``Register`` object will match the fields listed in the sensor's latest ICD, which can be downloaded directly from VectorNav's website.
+
+.. note::
+   The ``readRegister`` and ``writeRegister`` methods are blocking calls. If non-blocking calls are required, refer to :ref:`pages/AdvancedFunctionality:Non-Blocking Read Register` or :ref:`pages/AdvancedFunctionality:Non-Blocking Write Register` for more information.
+
+Reading Registers
+-----------------
+
+As discussed in :ref:`pages/KeyFunctionality:Accessing Registers`, the :func:`VN::Sensor::readRegister` method is the preferred method to read registers. To do so, you must:
+
+   #. Create a ``Register`` object to be populated by the received response
+   #. Call the ``readRegister`` method
+   #. Access the received values in the original ``Register`` object
+
+.. literalinclude:: ../../Examples/GettingStarted/main.cpp
+   :language: c++
+   :start-after: // [2]
+   :end-before: // [3]
+   :dedent: 4
+
+Writing Registers
+-----------------
+
+As discussed in :ref:`pages/KeyFunctionality:Accessing Registers`, the :func:`VN::Sensor::writeRegister` method is the preferred method to read registers. To do so, you must:
+
+   #. Create a ``Register`` object
+   #. Populate the ``Register`` object with the desired values to configure the unit
+   #. Call the ``writeRegister`` method
+
+.. literalinclude:: ../../Examples/GettingStarted/main.cpp
+   :language: c++
+   :start-after: // [4]
+   :end-before: else
+   :dedent: 4
+
+.. tip::
+   To ensure that a register value was not unintentionally changed, it may be preferred to first read a register, change only the desired parameter, and then write the register back to the unit. This can be accomplished as follows:
+
+   .. code-block:: c++
+
+      using namespace Registers::System;
+      SyncControl syncControl;
+
+      Error latestError = sensor.readRegister(&syncControl);    // Populate the syncControl object with the values currently on the unit
+      if (latestError != Error::None) { return latestError; }
+      syncControl.syncInMode = SyncControl::SyncInMode::Count;  // Edit only the parameter we'd like to set
+      latestError = sensor.writeRegister(&syncControl);
+      if (latestError != Error::None) { return latestError; }
+
+
+Reading Measurements
+====================
+By default, all asynchronous measurements (except *gnssSatInfo* and *gnssRawMeas*), whether sourced from ASCII or binary outputs, are made available as a :class:`VN::CompositeData` object on the ``MeasurementQueue`` contained within the ``Sensor`` object once the packet is parsed.
+
+The Composite Data Object
+-------------------------
+A ``CompositeData`` object contains each measurement group (e.g. `Attitude`) as public members, each of which is a structure containing each measurement type (e.g. `Ypr`). Exactly one ``CompositeData`` object is populated for each measurement message, each of which contain a subset of the possible measurement types. Because a measurement message likely does not contain each enabled measurement, the measurement type members are each a `std::optional <https://en.cppreference.com/w/cpp/utility/optional>`_ of the underlying datatypes defined in the sensor's `ICD <https://www.vectornav.com/resources/technical-documentation/interface-control-documents>`_. For example, `accel` is documented in the ICD in the `Imu` measurement group and is a ``Vec3f``. As such, it can be accessed in a ``CompositeData`` object as:
+
+.. literalinclude:: ../../Examples/GettingStarted/main.cpp
+   :language: c++
+   :start-at: Vec3f
+   :end-at: Vec3f
+   :dedent: 12
+
+.. note::
+   The ``CompositeData`` class does not contain the `Common` group. As such, any measurement types populated via a binary measurement in the `Common` group will show up in the underlying group. For example, a binary message which contains `ypr` from the `Common` group will be populated in the ``attitude`` member of a ``CompositeData`` object.
+
+.. note::
+   By default, each CompositeData object requires 896-1184 bytes of memory (depending on how much packing the compiler does). The CompositeData class can be reduced for use in memory-constrained environments. For more information, see :ref:`pages/MemoryConstrained:Composite Data Memory Reduction`
+
+.. By my manual adding up ICD VN-300 public 1.1.0.1:
+.. Time:     59  + 10 = 69
+.. Imu:      112 + 12 = 124
+.. Gnss:     152 + 16 = 168
+.. Attitude: 140 + 10 = 150
+.. Ins:      130 + 11 = 141
+.. Gnss2:    152 + 16 = 168
+.. Total:    745 + 75 = 820
+
+.. By calling sizeof:
+.. Time:     120
+.. Imu:      156
+.. Gnss:     224
+.. Attitude: 180
+.. Ins:      184
+.. Gnss2:    224
+
+.. Extra (output with sizeof):
+   .. 8 (8) timestamp, 2 (4) asciiappendstatus, 4 (8) asciiAppendTime = 20
+   .. (48) BinaryHeader, (11) AsciiHeader
+.. Total:    1088 => 1184 (79 extras)
+
+.. 769 bytes for measurements alone (VN-300, 0.5.0.5, public no satinforawmeas, gnss1+2). 59+110+142+186+130+142. 69 outputs
+
+How to Read a Measurement
+-------------------------
+
+#. Get a ``CompositeData`` object from the ``MeasurementQueue``.
+
+   This can be done in two ways:
+
+   * Use :func:`VN::Sensor::getNextMeasurement`, which will block until the set timeout. If there is already a ``CompositeData`` object on the queue when called, it will return that object without blocking.
+   * Use :func:`VN::Sensor::getMostRecentMeasurement`
+   
+   Both of these methods return a an `OwningPtr`, which means that you must check to ensure that the returned value is not null. This can be done with a simple boolean comparison (shown below) or using a direct equality comparison to `nullptr`.
+
+   .. literalinclude:: ../../Examples/GettingStarted/main.cpp
+      :language: c++
+      :start-at: getNextMeasurement
+      :end-at: if (!compositeData) continue;
+      :emphasize-lines: 3
+      :dedent: 8
+
+#. Validate that the measurement you want is in the :class:`VN::CompositeData` object. This can be done in two ways:
+
+   * Use the :func:`VN::CompositeData::matchesMessage` method
+      This method checks to see which message populated this particular composite data object, using an exact match. If a composite data object matches a particular header or message, each included measurement type is guaranteed to have a value, so you can safely call `value() <https://en.cppreference.com/w/cpp/utility/optional/value>`_.
+      
+      This approach is especially useful if you are sending measurements via multiple output registers at once, and would like to take different actions for each one.
+
+      .. literalinclude:: ../../Examples/GettingStarted/main.cpp
+         :language: c++
+         :start-after: if (!compositeData) continue;
+         :end-before: else
+         :emphasize-lines: 1, 7
+         :dedent: 8
+
+      As shown in the above example, the ``matchesMessage`` method can accept either a string literal in the case of ASCII messages, or the ``BinaryOutputRegister`` object we used earlier to configure the register in the case of a binary message.
+
+   * Use the `has_value <https://en.cppreference.com/w/cpp/utility/optional/operator_bool>`_ method on each measurement you're interested in.
+      Each measurement type of the :class:`VN::CompositeData` object is a `std::optional <https://en.cppreference.com/w/cpp/utility/optional>`_, so you can directly check if the value has been set by using `has_value <https://en.cppreference.com/w/cpp/utility/optional/operator_bool>`_. 
+      This is most useful if you do not necessarily know or care from which message a particular measurement came, and would like to perform some action whenever a measurement is available.
+
+      To achieve a similar result, the above example could instead be written as:
+
+      .. code-block:: c++
+         :emphasize-lines: 1, 5, 9
+
+         if (compositeData->time.TimeStartup.has_value()) {
+            std::cout << "Found timeStartup measurement.\n";
+            std::cout << "\tTime: " << compositeData->time.TimeStartup.value() << "\n";
+         }
+         if (compositeData->imu.Accel.has_value()) {
+            Vec3f accel = compositeData->imu.Accel.value();
+            std::cout << "\tAccel X: " << accel[0] << "\n\tAccel Y: " << accel[1] << "\n\tAccel Z: " << accel[2] << "\n";
+         }
+         if (compositeData->attitude.Ypr.has_value()) {
+            std::cout << "Found ypr measurement.\n";
+
+            Vec3f ypr = compositeData->attitude.Ypr.value();
+            std::cout << "\tYaw: " << ypr[0] << "\n\tPitch: " << ypr[1] << "\n\tRoll: " << ypr[2] << std::endl;
+         }
+
+#. Access measurement value
+
+   Now that we know the measurement has a value, we can safely access the underlying measurement value. This can be done with the ``value`` call as:
+
+   .. literalinclude:: ../../Examples/GettingStarted/main.cpp
+      :language: c++
+      :start-after: if (!compositeData) continue;
+      :end-before: else {
+      :emphasize-lines: 4, 5, 10
+      :dedent: 8
+
+.. caution::
+   The ``MeasurementQueue`` has limited space, and memory is not released to be overwritten until each referent ``OwningPtr``  has been destroyed (the destructor has been run). It operates similarly to a `std::shared_ptr <https://en.cppreference.com/w/cpp/memory/shared_ptr>`_ in that any copy or move of the original ``OwningPtr`` maintains a lock on the underlying memory to prevent accidental overwriting. As such, it is necessary to ensure each ``OwningPtr`` is not stored every loop, or the ``MeasurementQueue`` will fill up and cease to populated, causing dropped measurements.
+   
+   In most cases, no special code is necessary: either a normal function scope or a normal loop will cause the destructor (or move operator) to be called per measurement read.
+   For example, each of these patterns are safe:
+
+   Example 1:
+
+   .. code-block:: cpp
+
+      while (1) {
+         const auto cdPtr = sensor.getNextMeasurement();
+         if (cdPtr) { /* Do something with the data */ }
+         // ...
+         // Do some other work in main loop
+      };
+
+
+   Example 2:
+
+   .. code-block:: cpp
+
+      while (1) {
+         if (const auto cdPtr = sensor.getNextMeasurement(); cdPtr) { /* Do something with the data */ }
+         // ...
+         // Do some other work in main loop
+      };
+
+   Example 3:
+
+   .. code-block:: cpp
+
+      Sensor::CompositeDataQueueReturn cdPtr;
+      while (1) {
+         cdPtr = sensor.getNextMeasurement();
+         if (cdPtr) { /* Do something with the data */ }
+         // ...
+         // Do some other work in main loop
+      };
+
+   Example 4:
+
+   .. code-block:: cpp
+
+      void handleVectorNavData(Sensor& sensor) {
+         const auto cdPtr = sensor.getNextMeasurement();
+         if (cdPtr) { /* Do something with the data */ }
+         // ...
+         // Do some other work in function scope
+      }
+
+      while (1) {
+         handleVectorNavData(sensor);
+         // ...
+         // Do some other work in main loop
+      };
+
+   But the owning pointer should **not** be preserved. For example of what **not** to do:
+
+   .. code-block:: cpp
+
+      std::vector<Sensor::CompositeDataQueueReturn> myCdObjects;
+
+      while (1) {
+         if (cdPtr) { myCdObjects.emplace_back(sensor.getNextMeasurement()); }
+         // ...
+         // Do some other work in main loop
+      };
+
+   If the information from the ``CompositeData`` must be preserved, it is best to copy that object from the queue to a new object. For example, the above example can instead be written as:
+
+   .. code-block:: cpp
+
+      std::vector<CompositeData> myCdObjects;
+
+      while (1) {
+         const auto cdPtr = sensor.getNextMeasurement();
+         if (cdPtr) { myCdObjects.push_back(*cdPtr); }
+         // ...
+         // Do some other work in main loop
+      };
+
+   Which will copy the value of the ``CompositeData`` object on the queue to the vector to be consumed later, allowing the original ``OwningPtr`` to be descoped on the next loop and memory overwritten.
+
+
+Sending Commands
+================
+Each command able to be sent to the unit is available as a public method of the :class:`VN::Sensor` class. They are all blocking calls; if non-blocking commands are necessary, refer to the :ref:`pages/AdvancedFunctionality:Non-Blocking Commands` section.
+
+To send a command, simply call the public method with the necessary parameters, if applicable. For example, to send a `Set Initial Heading` command, you can call
+
+.. code-block:: c++
+
+   sensor.setInitialHeading(45);
+
+Error Handling
+==============
+The VNSDK is unable to throw exceptions, so all errors are returned as a :enum:`VN::Error` where appropriate. Errors can be generated either synchronously—a direct result of a user call—or asynchronously—occurring independent of a user call.
+
+Synchronous Errors
+------------------
+Errors generated synchronously are propagated up the call stack via return values and returned to the user on the API call which generated the error. They can be checked as normal enumeration values to ``Error::None``. Additionally, each ``Error`` is overloaded to print the enumeration name upon the ``<<`` operator for printing convenience.
+
+.. literalinclude:: ../../Examples/GettingStarted/main.cpp
+   :language: c++
+   :start-at: Error latestError
+   :end-at: }
+   :dedent: 4
+
+Synchronous errors are generated via any blocking ``Sensor`` method; this most often is due to ``Serial`` errors when connecting to a port or unit VnError replies from a sensor when configuring registers or sending commands.
+
+.. caution:: 
+   Synchronous errors raised due to a non-blocking :func:`VN::Sensor::sendCommand` call are not returned up the stack. For an example, see :ref:`pages/AdvancedFunctionality:Non-Blocking Commands`.
+   When using :func:`VN::Sensor::sendCommand` while blocking, errors will be returned up the stack as expected.
+   
+   Regardless of the selected ``SendCommandBlockMode``, the synchronous error from the unit will be attached to the ``Command`` object and can be accessed using :func:`VN::Command::getError`.
+
+Asynchronous Errors
+-------------------
+Errors generated asynchronously are not reported up the call stack. Instead, they are packaged into a :struct:`VN::AsyncError` and placed on an ``AsyncErrorQueue`` to be read by the user. The queue can be accessed by :func:`VN::Sensor::getAsynchronousError` and :func:`VN::Sensor::asynchronousErrorQueueSize`. 
+
+.. code-block:: c++
+
+   auto error_maybe = sensor.getAsynchronousError();
+   if (error_maybe.has_value()) {
+      std::cerr << "Asynchronous error received " << std::to_string(static_cast<uint16_t>(error_maybe->error)) << " : " << error_maybe->message << std::endl;
+   }
+
+Depending on the application, it may be recommended to check the asynchronous error queue periodically for logging, or set up a thread to exclusively monitor the asynchronous error queue and perform corrective actions based on the error generated.
+
+Errors generated asynchronously are most often unit-sent asynchronous VnErrors messages sent from the unit, any valid but unexpected non-measurement ASCII message received from the unit, or serial port failures occurring after initial connection.
+
+.. Note::
+   To keep behavior consistent between threaded and non-threaded operation, errors generated only because a call is blocking are considered asynchronous and are placed on the ``AsyncErrorQueue`` rather than propagated up the stack.

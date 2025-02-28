@@ -1,0 +1,46 @@
+
+.. _program_listing_file_plugins_RegisterScan_RegisterScan.hpp:
+
+Program Listing for File RegisterScan.hpp
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_plugins_RegisterScan_RegisterScan.hpp>` (``plugins\RegisterScan\RegisterScan.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #include <string>
+   #include <cstdint>
+   #include <functional>
+   #include <vector>
+   #include <filesystem>
+   
+   #include "Interface/Sensor.hpp"
+   #include "Interface/Registers.hpp"
+   
+   namespace VN
+   {
+   class SensorConfigurator
+   {
+   public:
+       SensorConfigurator(Sensor& sensor, std::string port) : sensor(sensor), port(port) {};
+   
+       bool ConfigureSensor(std::vector<std::unique_ptr<ConfigurationRegister>>& config);
+   
+       bool SaveConfiguration(std::filesystem::path path);
+   
+       bool LoadConfiguration(std::filesystem::path path);
+   
+   private:
+       Sensor& sensor;
+       std::string port;
+   
+       static constexpr bool SUCCESS = false;
+       static constexpr bool FAIL = true;
+   
+       std::unique_ptr<VN::ConfigurationRegister> GetRegisterByIndex(uint32_t idx);
+   
+       std::vector<std::unique_ptr<VN::ConfigurationRegister>> registerScan();
+   };
+   }  // namespace VN

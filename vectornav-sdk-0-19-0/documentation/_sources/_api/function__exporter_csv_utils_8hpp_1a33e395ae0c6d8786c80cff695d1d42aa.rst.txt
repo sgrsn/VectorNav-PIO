@@ -1,0 +1,14 @@
+.. _exhale_function__exporter_csv_utils_8hpp_1a33e395ae0c6d8786c80cff695d1d42aa:
+
+Function VN::getMeasurementString(const AsciiPacketProtocol::AsciiMeasurementHeader&)
+=====================================================================================
+
+- Defined in :ref:`file_plugins_DataExport_include_ExporterCsvUtils.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::getMeasurementString(const AsciiPacketProtocol::AsciiMeasurementHeader&)
+   :project: VectorNav SDK

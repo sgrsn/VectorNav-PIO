@@ -1,0 +1,14 @@
+.. _exhale_function__linear_algebra_8hpp_1a444bc7d5f0ceb6c2d4bb12fc55ac694a:
+
+Template Function VN::LinAlg::norm
+==================================
+
+- Defined in :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::LinAlg::norm(const Matrix<m, 1, T>&)
+   :project: VectorNav SDK

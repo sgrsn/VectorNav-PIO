@@ -1,0 +1,84 @@
+
+.. _file_include_Implementation_PacketSynchronizer.hpp:
+
+File PacketSynchronizer.hpp
+===========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_Implementation>` (``include\Implementation``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\Implementation\PacketSynchronizer.hpp``)
+--------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_Implementation_PacketSynchronizer.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Config.hpp`` (:ref:`file_include_Config.hpp`)
+
+- ``Implementation/PacketDispatcher.hpp``
+
+- ``Interface/Errors.hpp``
+
+- ``TemplateLibrary/ByteBuffer.hpp``
+
+- ``TemplateLibrary/Vector.hpp``
+
+- ``algorithm``
+
+- ``cstdint``
+
+- ``functional``
+
+- ``memory``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_Interface_Sensor.hpp`
+
+- :ref:`file_plugins_DataExport_include_FileExporter.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+
+- :ref:`exhale_class_class_v_n_1_1_packet_synchronizer`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable__packet_synchronizer_8hpp_1a596e05660dbfc4ca5e1ef9f2d2275430`
+

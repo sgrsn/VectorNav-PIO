@@ -1,0 +1,72 @@
+
+.. _file_plugins_DataExport_include_ExporterImr.hpp:
+
+File ExporterImr.hpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_plugins_DataExport_include>` (``plugins\DataExport\include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``plugins\DataExport\include\ExporterImr.hpp``)
+-----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_plugins_DataExport_include_ExporterImr.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Config.hpp`` (:ref:`file_include_Config.hpp`)
+
+- ``Exporter.hpp`` (:ref:`file_plugins_DataExport_include_Exporter.hpp`)
+
+- ``HAL/File.hpp``
+
+- ``Implementation/FaPacketProtocol.hpp``
+
+- ``Interface/CompositeData.hpp``
+
+- ``TemplateLibrary/ByteBuffer.hpp``
+
+- ``cmath``
+
+- ``cstddef``
+
+- ``cstdint``
+
+- ``cstdio``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+
+
+- :ref:`exhale_class_class_v_n_1_1_exporter_imr`
+

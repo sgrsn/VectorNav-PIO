@@ -1,0 +1,78 @@
+
+.. _program_listing_file_plugins_DataExport_include_Exporter.hpp:
+
+Program Listing for File Exporter.hpp
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_plugins_DataExport_include_Exporter.hpp>` (``plugins\DataExport\include\Exporter.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef DATAEXPORT_EXPORTER_HPP
+   #define DATAEXPORT_EXPORTER_HPP
+   
+   #include <atomic>
+   #include <cstdio>
+   #include <HAL/Thread.hpp>
+   
+   #if THREADING_ENABLE
+   #include "HAL/Thread.hpp"
+   #endif
+   #include "Implementation/QueueDefinitions.hpp"
+   
+   namespace VN
+   {
+   
+   class Exporter
+   {
+   public:
+       Exporter(const size_t& packetCapacity) : _queue{packetCapacity} {}
+   
+       virtual ~Exporter() = default;
+   
+       virtual void exportToFile() = 0;
+   
+   #if THREADING_ENABLE
+       bool start()
+       {
+           if (_thread == nullptr) { _logging = true; }
+           else { return true; }
+           _thread = std::make_unique<Thread>(&Exporter::_export, this);
+           return false;
+       }
+   
+       void stop()
+       {
+           _logging = false;
+           _thread->join();
+       }
+   
+       bool isLogging() const { return _logging; }
+   #endif
+   
+       PacketQueue_Interface* getQueuePtr() { return &_queue; }
+   
+   protected:
+       PacketQueue<1000> _queue;
+   #if THREADING_ENABLE
+       std::atomic<bool> _logging = false;
+       std::unique_ptr<Thread> _thread = nullptr;
+   
+   private:
+       void _export()
+       {
+           while (_logging)
+           {
+               thisThread::sleepFor(1ms);
+               exportToFile();
+           }
+           exportToFile();
+       }
+   #endif
+   };
+   
+   }  // namespace VN
+   
+   #endif  // DATAEXPORT_EXPORTER_HPP

@@ -1,0 +1,312 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Class CommandProcessor &#8212; VectorNav SDK 0.19.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class ConfigurationRegister" href="class_v_n_1_1_configuration_register.html" />
+    <link rel="prev" title="Class Command" href="class_v_n_1_1_command.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="class_v_n_1_1_configuration_register.html" title="Class ConfigurationRegister"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="class_v_n_1_1_command.html" title="Class Command"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pages/api_index.html" >VNSDK API</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="full_api_index.html" accesskey="U">Full API Index</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Class CommandProcessor</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="class-commandprocessor">
+<span id="exhale-class-class-v-n-1-1-command-processor"></span><h1>Class CommandProcessor<a class="headerlink" href="#class-commandprocessor" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_Implementation_CommandProcessor.hpp.html#file-include-implementation-commandprocessor-hpp"><span class="std std-ref">File CommandProcessor.hpp</span></a></p></li>
+</ul>
+<section id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
+<section id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessorE">
+<span id="_CPPv3N2VN16CommandProcessorE"></span><span id="_CPPv2N2VN16CommandProcessorE"></span><span id="VN::CommandProcessor"></span><span class="target" id="class_v_n_1_1_command_processor"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CommandProcessor</span></span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The <a class="reference internal" href="#class_v_n_1_1_command_processor"><span class="std std-ref">CommandProcessor</span></a> class is the handshake between the user-facing code (such as <a class="reference internal" href="class_v_n_1_1_sensor.html#class_v_n_1_1_sensor"><span class="std std-ref">Sensor</span></a>) and the communication code interfacing with the sensor (such as <a class="reference internal" href="class_v_n_1_1_serial.html#class_v_n_1_1_serial"><span class="std std-ref">Serial</span></a> and PacketProcessor). Consequently, it exists on multiple threads (all exists on the main thread except for matchReponse, which is called from the high-priority thread) with an internal queue to handle the cross-thread communication. Its chief responsibility is to facilitate the communication of commands between the user and the sensor, tracking received responses (sent via matchResponse) and correlating them with known-sent commands. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor19AsyncErrorQueuePushE">
+<span id="_CPPv3N2VN16CommandProcessor19AsyncErrorQueuePushE"></span><span id="_CPPv2N2VN16CommandProcessor19AsyncErrorQueuePushE"></span><span class="target" id="class_v_n_1_1_command_processor_1a71a6646c72d39d9dbff303b654f776c8"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AsyncErrorQueuePush</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">(</span></span><a class="reference internal" href="struct_v_n_1_1_async_error.html#_CPPv4N2VN10AsyncErrorE" title="VN::AsyncError"><span class="n"><span class="pre">AsyncError</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor19AsyncErrorQueuePushE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor16CommandProcessorE19AsyncErrorQueuePush">
+<span id="_CPPv3N2VN16CommandProcessor16CommandProcessorE19AsyncErrorQueuePush"></span><span id="_CPPv2N2VN16CommandProcessor16CommandProcessorE19AsyncErrorQueuePush"></span><span id="VN::CommandProcessor::CommandProcessor__AsyncErrorQueuePush"></span><span class="target" id="class_v_n_1_1_command_processor_1a6ed0f26a8c7eb3d598ce58be6259d69e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CommandProcessor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N2VN16CommandProcessor19AsyncErrorQueuePushE" title="VN::CommandProcessor::AsyncErrorQueuePush"><span class="n"><span class="pre">AsyncErrorQueuePush</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">asyncErrorQueuePush</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor16CommandProcessorE19AsyncErrorQueuePush" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor15registerCommandEP7CommandK12Microseconds">
+<span id="_CPPv3N2VN16CommandProcessor15registerCommandEP7CommandK12Microseconds"></span><span id="_CPPv2N2VN16CommandProcessor15registerCommandEP7CommandK12Microseconds"></span><span id="VN::CommandProcessor::registerCommand__CommandP.MicrosecondsC"></span><span class="target" id="class_v_n_1_1_command_processor_1acab7bd35aed0fedb71ee399a110bbd8f"></span><a class="reference internal" href="#_CPPv4N2VN16CommandProcessor21RegisterCommandReturnE" title="VN::CommandProcessor::RegisterCommandReturn"><span class="n"><span class="pre">RegisterCommandReturn</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">registerCommand</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="class_v_n_1_1_command.html#_CPPv4N2VN7CommandE" title="VN::Command"><span class="n"><span class="pre">Command</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCommand</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef__duration_8hpp_1ae3816326b66a8edd8d1a06232a996f23.html#_CPPv4N2VN12MicrosecondsE" title="VN::Microseconds"><span class="n"><span class="pre">Microseconds</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">timeoutThreshold</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Config</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">CommandProcessor</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="variable__config_8hpp_1ad8d027d8c696eebdc345f1255d2a47f6.html#_CPPv4N2VN6Config16CommandProcessor27commandRemovalTimeoutLengthE" title="VN::Config::CommandProcessor::commandRemovalTimeoutLength"><span class="n"><span class="pre">commandRemovalTimeoutLength</span></span></a><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor15registerCommandEP7CommandK12Microseconds" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor13matchResponseERK12AsciiMessageRKN19AsciiPacketProtocol8MetadataE">
+<span id="_CPPv3N2VN16CommandProcessor13matchResponseERK12AsciiMessageRKN19AsciiPacketProtocol8MetadataE"></span><span id="_CPPv2N2VN16CommandProcessor13matchResponseERK12AsciiMessageRKN19AsciiPacketProtocol8MetadataE"></span><span id="VN::CommandProcessor::matchResponse__AsciiMessageCR.AsciiPacketProtocol::MetadataCR"></span><span class="target" id="class_v_n_1_1_command_processor_1a013f020b295c7b58a8bb310e4e4afa23"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">matchResponse</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef__command_8hpp_1ac3acfe4b91a3c68083e27bef5cd68c2b.html#_CPPv4N2VN12AsciiMessageE" title="VN::AsciiMessage"><span class="n"><span class="pre">AsciiMessage</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">response</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">AsciiPacketProtocol</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="struct_v_n_1_1_ascii_packet_protocol_1_1_metadata.html#_CPPv4N2VN19AsciiPacketProtocol8MetadataE" title="VN::AsciiPacketProtocol::Metadata"><span class="n"><span class="pre">Metadata</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">metadata</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor13matchResponseERK12AsciiMessageRKN19AsciiPacketProtocol8MetadataE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN16CommandProcessor9queueSizeEv">
+<span id="_CPPv3NK2VN16CommandProcessor9queueSizeEv"></span><span id="_CPPv2NK2VN16CommandProcessor9queueSizeEv"></span><span id="VN::CommandProcessor::queueSizeC"></span><span class="target" id="class_v_n_1_1_command_processor_1a84ab80c6c1729ef34be7d6c1c3ffa65d"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">queueSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK2VN16CommandProcessor9queueSizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK2VN16CommandProcessor13queueCapacityEv">
+<span id="_CPPv3NK2VN16CommandProcessor13queueCapacityEv"></span><span id="_CPPv2NK2VN16CommandProcessor13queueCapacityEv"></span><span id="VN::CommandProcessor::queueCapacityC"></span><span class="target" id="class_v_n_1_1_command_processor_1a51fa8e0438ba3c4ddbef47d9f7da0e11"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">queueCapacity</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK2VN16CommandProcessor13queueCapacityEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor23popCommandFromQueueBackEv">
+<span id="_CPPv3N2VN16CommandProcessor23popCommandFromQueueBackEv"></span><span id="_CPPv2N2VN16CommandProcessor23popCommandFromQueueBackEv"></span><span id="VN::CommandProcessor::popCommandFromQueueBack"></span><span class="target" id="class_v_n_1_1_command_processor_1a44639c4f6b06cc0ef90d7d91d1aaed23"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">popCommandFromQueueBack</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor23popCommandFromQueueBackEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor15getFrontCommandEv">
+<span id="_CPPv3N2VN16CommandProcessor15getFrontCommandEv"></span><span id="_CPPv2N2VN16CommandProcessor15getFrontCommandEv"></span><span id="VN::CommandProcessor::getFrontCommand"></span><span class="target" id="class_v_n_1_1_command_processor_1a4711954e725e952cf3d2e9ed07d47ef6"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N2VN16CommandProcessor9QueueItemE" title="VN::CommandProcessor::QueueItem"><span class="n"><span class="pre">QueueItem</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getFrontCommand</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor15getFrontCommandEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor9QueueItemE">
+<span id="_CPPv3N2VN16CommandProcessor9QueueItemE"></span><span id="_CPPv2N2VN16CommandProcessor9QueueItemE"></span><span id="VN::CommandProcessor::QueueItem"></span><span class="target" id="struct_v_n_1_1_command_processor_1_1_queue_item"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">QueueItem</span></span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor9QueueItemE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor9QueueItem3cmdE">
+<span id="_CPPv3N2VN16CommandProcessor9QueueItem3cmdE"></span><span id="_CPPv2N2VN16CommandProcessor9QueueItem3cmdE"></span><span id="VN::CommandProcessor::QueueItem::cmd__CommandP"></span><span class="target" id="struct_v_n_1_1_command_processor_1_1_queue_item_1a497e4c35429d44ff206d1552e0240a20"></span><a class="reference internal" href="class_v_n_1_1_command.html#_CPPv4N2VN7CommandE" title="VN::Command"><span class="n"><span class="pre">Command</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">cmd</span></span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor9QueueItem3cmdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor9QueueItem16timeoutThresholdE">
+<span id="_CPPv3N2VN16CommandProcessor9QueueItem16timeoutThresholdE"></span><span id="_CPPv2N2VN16CommandProcessor9QueueItem16timeoutThresholdE"></span><span id="VN::CommandProcessor::QueueItem::timeoutThreshold__Microseconds"></span><span class="target" id="struct_v_n_1_1_command_processor_1_1_queue_item_1a5439fe1329400cc0027249415e43ffc1"></span><a class="reference internal" href="typedef__duration_8hpp_1ae3816326b66a8edd8d1a06232a996f23.html#_CPPv4N2VN12MicrosecondsE" title="VN::Microseconds"><span class="n"><span class="pre">Microseconds</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timeoutThreshold</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Config</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">CommandProcessor</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="variable__config_8hpp_1ad8d027d8c696eebdc345f1255d2a47f6.html#_CPPv4N2VN6Config16CommandProcessor27commandRemovalTimeoutLengthE" title="VN::Config::CommandProcessor::commandRemovalTimeoutLength"><span class="n"><span class="pre">commandRemovalTimeoutLength</span></span></a><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor9QueueItem16timeoutThresholdE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor21RegisterCommandReturnE">
+<span id="_CPPv3N2VN16CommandProcessor21RegisterCommandReturnE"></span><span id="_CPPv2N2VN16CommandProcessor21RegisterCommandReturnE"></span><span id="VN::CommandProcessor::RegisterCommandReturn"></span><span class="target" id="struct_v_n_1_1_command_processor_1_1_register_command_return"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RegisterCommandReturn</span></span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor21RegisterCommandReturnE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor21RegisterCommandReturn5ErrorE">
+<span id="_CPPv3N2VN16CommandProcessor21RegisterCommandReturn5ErrorE"></span><span id="_CPPv2N2VN16CommandProcessor21RegisterCommandReturn5ErrorE"></span><span class="target" id="struct_v_n_1_1_command_processor_1_1_register_command_return_1a6cd8b087c96dcddb3a244e3d6d307aec"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Error</span></span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor21RegisterCommandReturn5ErrorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor21RegisterCommandReturn5Error4NoneE">
+<span id="_CPPv3N2VN16CommandProcessor21RegisterCommandReturn5Error4NoneE"></span><span id="_CPPv2N2VN16CommandProcessor21RegisterCommandReturn5Error4NoneE"></span><span class="target" id="struct_v_n_1_1_command_processor_1_1_register_command_return_1a6cd8b087c96dcddb3a244e3d6d307aeca6adf97f83acf6453d4a6a4b1070f3754"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">None</span></span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor21RegisterCommandReturn5Error4NoneE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor21RegisterCommandReturn5Error16CommandQueueFullE">
+<span id="_CPPv3N2VN16CommandProcessor21RegisterCommandReturn5Error16CommandQueueFullE"></span><span id="_CPPv2N2VN16CommandProcessor21RegisterCommandReturn5Error16CommandQueueFullE"></span><span class="target" id="struct_v_n_1_1_command_processor_1_1_register_command_return_1a6cd8b087c96dcddb3a244e3d6d307aecab5453beee1ff651f4c513650151ab13a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CommandQueueFull</span></span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor21RegisterCommandReturn5Error16CommandQueueFullE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor21RegisterCommandReturn5Error13CommandResentE">
+<span id="_CPPv3N2VN16CommandProcessor21RegisterCommandReturn5Error13CommandResentE"></span><span id="_CPPv2N2VN16CommandProcessor21RegisterCommandReturn5Error13CommandResentE"></span><span class="target" id="struct_v_n_1_1_command_processor_1_1_register_command_return_1a6cd8b087c96dcddb3a244e3d6d307aecacc154ea4c864fec0f4cbd4121a064bad"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CommandResent</span></span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor21RegisterCommandReturn5Error13CommandResentE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor21RegisterCommandReturn5errorE">
+<span id="_CPPv3N2VN16CommandProcessor21RegisterCommandReturn5errorE"></span><span id="_CPPv2N2VN16CommandProcessor21RegisterCommandReturn5errorE"></span><span id="VN::CommandProcessor::RegisterCommandReturn::error__VN::CommandProcessor::RegisterCommandReturn::Error"></span><span class="target" id="struct_v_n_1_1_command_processor_1_1_register_command_return_1a237ff30de32a87f97470c7fbf4d23a1e"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="n"><span class="pre">VN</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N2VN16CommandProcessorE" title="VN::CommandProcessor"><span class="n"><span class="pre">CommandProcessor</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N2VN16CommandProcessor21RegisterCommandReturnE" title="VN::CommandProcessor::RegisterCommandReturn"><span class="n"><span class="pre">RegisterCommandReturn</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N2VN16CommandProcessor21RegisterCommandReturn5ErrorE" title="VN::CommandProcessor::RegisterCommandReturn::Error"><span class="n"><span class="pre">Error</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">error</span></span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor21RegisterCommandReturn5errorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N2VN16CommandProcessor21RegisterCommandReturn7messageE">
+<span id="_CPPv3N2VN16CommandProcessor21RegisterCommandReturn7messageE"></span><span id="_CPPv2N2VN16CommandProcessor21RegisterCommandReturn7messageE"></span><span id="VN::CommandProcessor::RegisterCommandReturn::message__AsciiMessage"></span><span class="target" id="struct_v_n_1_1_command_processor_1_1_register_command_return_1ad57ed5350f1ea35d898cb946738bcced"></span><a class="reference internal" href="typedef__command_8hpp_1ac3acfe4b91a3c68083e27bef5cd68c2b.html#_CPPv4N2VN12AsciiMessageE" title="VN::AsciiMessage"><span class="n"><span class="pre">AsciiMessage</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message</span></span></span><a class="headerlink" href="#_CPPv4N2VN16CommandProcessor21RegisterCommandReturn7messageE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../Documentation.html" title="Documentation">
+          <img class="logo" src="../_static/VectorNav_LogoStacked_ForWeb_RGB_Full-Color.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../Documentation.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pages/MigrationGuide.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/GettingStarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/KeyFunctionality.html">Key Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/AdvancedFunctionality.html">Advanced Functionality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/MemoryConstrained.html">Memory Constrained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/NonOsUsage.html">Non-Os Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/Plugins.html">Plugins</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../pages/api_index.html">VNSDK API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="class_v_n_1_1_sensor.html">Class Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="class_v_n_1_1_composite_data.html">Class CompositeData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registers_api.html">Register API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="full_api_index.html">Full API Index</a></li>
+</ul>
+</li>
+</ul>
+</div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="class_v_n_1_1_command.html"
+                          title="Previous page">&larr; Class Command</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="class_v_n_1_1_configuration_register.html"
+                          title="Next page">&rarr; Class ConfigurationRegister</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_api/class_v_n_1_1_command_processor.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="class_v_n_1_1_configuration_register.html" title="Class ConfigurationRegister"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="class_v_n_1_1_command.html" title="Class Command"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../Documentation.html">VectorNav SDK 0.19.0 documentation</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../pages/api_index.html" >VNSDK API</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="full_api_index.html" >Full API Index</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Class CommandProcessor</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, VectorNav Technologies.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.0.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

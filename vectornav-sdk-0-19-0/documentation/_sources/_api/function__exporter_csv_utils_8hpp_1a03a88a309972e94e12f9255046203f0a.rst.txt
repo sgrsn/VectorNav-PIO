@@ -1,0 +1,14 @@
+.. _exhale_function__exporter_csv_utils_8hpp_1a03a88a309972e94e12f9255046203f0a:
+
+Function VN::getMeasurementString(FaPacketExtractor&, const CsvTypeInfo&, char \*, const uint16_t)
+==================================================================================================
+
+- Defined in :ref:`file_plugins_DataExport_include_ExporterCsvUtils.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::getMeasurementString(FaPacketExtractor&, const CsvTypeInfo&, char *, const uint16_t)
+   :project: VectorNav SDK

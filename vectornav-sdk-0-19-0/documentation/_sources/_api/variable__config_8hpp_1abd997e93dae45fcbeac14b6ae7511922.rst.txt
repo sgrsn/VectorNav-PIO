@@ -1,0 +1,14 @@
+.. _exhale_variable__config_8hpp_1abd997e93dae45fcbeac14b6ae7511922:
+
+Variable VN::Config::Serial::numBytesToReadPerGetData
+=====================================================
+
+- Defined in :ref:`file_include_Config.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: VN::Config::Serial::numBytesToReadPerGetData
+   :project: VectorNav SDK

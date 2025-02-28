@@ -1,0 +1,14 @@
+.. _exhale_define__errors_8hpp_1a824517c54dc515081505f464e98ad68d:
+
+Define DEBUG_MESSAGE_ENABLE
+===========================
+
+- Defined in :ref:`file_include_Interface_Errors.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: DEBUG_MESSAGE_ENABLE
+   :project: VectorNav SDK

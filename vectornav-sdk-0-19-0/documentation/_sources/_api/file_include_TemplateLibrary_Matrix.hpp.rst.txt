@@ -1,0 +1,103 @@
+
+.. _file_include_TemplateLibrary_Matrix.hpp:
+
+File Matrix.hpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir_include_TemplateLibrary>` (``include\TemplateLibrary``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include\TemplateLibrary\Matrix.hpp``)
+---------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_TemplateLibrary_Matrix.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Debug.hpp`` (:ref:`file_include_Debug.hpp`)
+
+- ``algorithm``
+
+- ``array``
+
+- ``cmath``
+
+- ``initializer_list``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_Implementation_MeasurementDatatypes.hpp`
+
+- :ref:`file_plugins_Math_Conversions.hpp`
+
+- :ref:`file_plugins_Math_LinearAlgebra.hpp`
+
+- :ref:`file_plugins_Math_MatrixMath.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_VN`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_struct_v_n_1_1_matrix`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef__matrix_8hpp_1ae633df235f3a41d76befde811b4c33c5`
+
+- :ref:`exhale_typedef__matrix_8hpp_1a9589ff42d841811f5df8976038117a3e`
+
+- :ref:`exhale_typedef__matrix_8hpp_1a07aea8f1720db264210bda0cd4564229`
+
+- :ref:`exhale_typedef__matrix_8hpp_1a436d70d8a4fe05816d5dec938a605145`
+
+- :ref:`exhale_typedef__matrix_8hpp_1aa2f838cc9b2b1f812ceb48621838fb91`
+
+- :ref:`exhale_typedef__matrix_8hpp_1a26360ec25958a3352255ed5572e7cbd0`
+
+- :ref:`exhale_typedef__matrix_8hpp_1a7c161e821fff908e82a4d1dabe367e17`
+
+- :ref:`exhale_typedef__matrix_8hpp_1abb4f8fe842b31fc9ced66510ba20e774`
+
+- :ref:`exhale_typedef__matrix_8hpp_1a30e2a879ebbbdb5fd6587ce658b2ad59`
+
+- :ref:`exhale_typedef__matrix_8hpp_1a8b1caae5630fe8187f8341011004a19b`
+
+- :ref:`exhale_typedef__matrix_8hpp_1a200b22f4b22288a1e9c02b59e0f531c9`
+
+- :ref:`exhale_typedef__matrix_8hpp_1adf2ea782d6429f0b4c647e9f857bcabd`
+
+- :ref:`exhale_typedef__matrix_8hpp_1a1b9603fba8b0640400872d18333c064a`
+

@@ -1,0 +1,14 @@
+.. _exhale_function__errors_8hpp_1a48a0d4e28bdfe3eb34e6518e9bf68533:
+
+Function VN::errorCodeToString
+==============================
+
+- Defined in :ref:`file_include_Interface_Errors.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::errorCodeToString(Error)
+   :project: VectorNav SDK

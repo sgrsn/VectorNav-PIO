@@ -1,0 +1,14 @@
+.. _exhale_function__conversions_8hpp_1a8b888b76e8e72adcaaa5b25ab1768df7:
+
+Function VN::Conversions::yprInRads2Dcm
+=======================================
+
+- Defined in :ref:`file_plugins_Math_Conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: VN::Conversions::yprInRads2Dcm(const Ypr&)
+   :project: VectorNav SDK

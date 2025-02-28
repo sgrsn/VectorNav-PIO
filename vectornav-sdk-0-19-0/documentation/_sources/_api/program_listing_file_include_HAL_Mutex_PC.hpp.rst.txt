@@ -1,0 +1,45 @@
+
+.. _program_listing_file_include_HAL_Mutex_PC.hpp:
+
+Program Listing for File Mutex_PC.hpp
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_HAL_Mutex_PC.hpp>` (``include\HAL\Mutex_PC.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef HAL_MUTEX_PC_HPP
+   #define HAL_MUTEX_PC_HPP
+   
+   #include <mutex>
+   #include "HAL/Mutex_Base.hpp"
+   
+   namespace VN
+   {
+   class Mutex : public Mutex_Base
+   {
+   public:
+       Mutex() {}
+   
+       void lock() override final { _mutex.lock(); }
+       void unlock() override final { _mutex.unlock(); }
+   
+   private:
+       std::mutex _mutex;
+   };
+   
+   class LockGuard : public LockGuard_Base
+   {
+   public:
+       LockGuard(Mutex& mutex) : _mutex(mutex) { _mutex.lock(); }
+   
+       ~LockGuard() { _mutex.unlock(); }
+   
+   private:
+       Mutex& _mutex;
+   };
+   }  // namespace VN
+   
+   #endif  // HAL_MUTEX_PC_HPP

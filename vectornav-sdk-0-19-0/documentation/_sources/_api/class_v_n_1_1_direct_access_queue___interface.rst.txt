@@ -1,0 +1,37 @@
+.. _exhale_class_class_v_n_1_1_direct_access_queue___interface:
+
+Template Class DirectAccessQueue_Interface
+==========================================
+
+- Defined in :ref:`file_include_TemplateLibrary_DirectAccessQueue.hpp`
+
+
+Nested Relationships
+--------------------
+
+
+Nested Types
+************
+
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public VN::DirectAccessQueue< 1000 >`` (:ref:`exhale_class_class_v_n_1_1_direct_access_queue`)
+- ``public VN::DirectAccessQueue< CompositeData, Config::PacketDispatchers::compositeDataQueueCapacity >`` (:ref:`exhale_class_class_v_n_1_1_direct_access_queue`)
+- ``public VN::DirectAccessQueue< ItemType, Capacity >`` (:ref:`exhale_class_class_v_n_1_1_direct_access_queue`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: VN::DirectAccessQueue_Interface
+   :project: VectorNav SDK
+   :members:
+   :protected-members:
+   :undoc-members:
