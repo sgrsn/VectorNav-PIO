@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#include "VnXml.hpp"
+#include "plugins/FirmwareUpdate/VnXml.hpp"
 
 #include "Interface/Command.hpp"
 

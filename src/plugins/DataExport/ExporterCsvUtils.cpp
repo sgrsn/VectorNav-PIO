@@ -21,8 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#include "Exporter.hpp"
-#include "ExporterCsvUtils.hpp"
+#include "plugins/DataExport/Exporter.hpp"
+#include "plugins/DataExport/ExporterCsvUtils.hpp"
 #include "Implementation/FaPacketProtocol.hpp"
 #include "Implementation/AsciiPacketProtocol.hpp"
 

@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#include "Bootloader.hpp"
+#include "plugins/FirmwareUpdate/Bootloader.hpp"
 #include <cstdint>
 #include <algorithm>
 

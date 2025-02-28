@@ -26,7 +26,7 @@
 
 #include "pugixml/pugixml.hpp"
 #include "Interface/Errors.hpp"
-#include "RegisterScan.hpp"
+#include "plugins/RegisterScan/RegisterScan.hpp"
 
 namespace VN
 {

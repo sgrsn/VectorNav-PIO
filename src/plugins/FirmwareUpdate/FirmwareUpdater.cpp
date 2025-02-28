@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#include "FirmwareUpdater.hpp"
+#include "plugins/FirmwareUpdate/FirmwareUpdater.hpp"
 
 #include "HAL/Timer.hpp"
 #include "HAL/Thread.hpp"
@@ -29,7 +29,7 @@
 #include "Interface/Sensor.hpp"
 #include "Debug.hpp"
 
-#include "Bootloader.hpp"
+#include "plugins/FirmwareUpdate/Bootloader.hpp"
 
 namespace VN
 {
