@@ -79,7 +79,7 @@ namespace Config
 namespace PacketFinders
 {
 // Universal
-constexpr uint64_t mainBufferCapacity = 4096;
+constexpr uint64_t mainBufferCapacity = 2048;
 constexpr uint8_t maxNumPacketFinders = 3;                      // FA , Ascii and FB
 constexpr size_t skippedReceivedByteBufferMaxPutLength = 1024;  // bytes in a single loop
 
@@ -95,7 +95,7 @@ constexpr uint16_t asciiPacketMaxLength = 256;
 constexpr uint8_t asciiFieldMaxLength = 20;
 
 // Fb
-constexpr size_t fbPacketMaxLength = 2000;
+constexpr size_t fbPacketMaxLength = 500;
 constexpr uint64_t fbBufferCapacity = fbPacketMaxLength * 2;
 }  // namespace PacketFinders
 
@@ -104,7 +104,7 @@ namespace PacketDispatchers
 // Universal
 constexpr EnabledMeasurements cdEnabledMeasTypes = {
     TIME_GROUP_ENABLE, IMU_GROUP_ENABLE, GNSS_GROUP_ENABLE, ATTITUDE_GROUP_ENABLE, INS_GROUP_ENABLE, GNSS2_GROUP_ENABLE, 0, 0, 0, 0, 0, GNSS3_GROUP_ENABLE};
-constexpr uint8_t compositeDataQueueCapacity = 100;
+constexpr uint8_t compositeDataQueueCapacity = 20;
 
 // Fa
 constexpr uint8_t faPacketSubscriberCapacity = 5;
