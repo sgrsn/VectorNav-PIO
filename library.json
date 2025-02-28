@@ -1,0 +1,23 @@
+{
+    "name": "VectorNav-PIO",
+    "version": "0.0.0",
+    "description": "VectorNav Sensors SDK for PlatformIO",
+    "keywords": "vectornav, imu, sensor, navigation",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/sgrsn/VectorNav-PIO.git"
+    },
+    "authors": [
+      {
+        "name": "Hidaka SATO",
+        "email": "sgrsn1711@gmail.com",
+        "maintainer": true
+      }
+    ],
+    "license": "MIT",
+    "frameworks": "*",
+    "platforms": "*",
+    "build": {
+      "includeDir": "include"
+    }
+  }
