@@ -24,18 +24,6 @@
 #ifndef HAL_SERIAL_HPP
 #define HAL_SERIAL_HPP
 
-#if __SIT__
-#include "Serial_Mock.hpp"
-#elif _WIN32
-#include "HAL/Serial_Windows.hpp"
-#elif __linux__
-#include "HAL/Serial_Linux.hpp"
-#elif __MBED__
 #include "HAL/Serial_Mbed.hpp"
-#elif __WASM__
-#include "HAL/Serial_Wasm.hpp"
-#else
-static_assert(false);
-#endif
 
 #endif  // HAL_SERIAL_HPP

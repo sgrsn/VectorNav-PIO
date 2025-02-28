@@ -24,11 +24,6 @@
 #ifndef HAL_TIMER_HPP
 #define HAL_TIMER_HPP
 
-#if (_WIN32 | __linux__ | __WASM__)
-#include "HAL/Timer_PC.hpp"
-#elif __MBED__
 #include "HAL/Timer_Mbed.hpp"
-#else
-static_assert(false);
-#endif
+
 #endif  // HAL_TIMER_HPP

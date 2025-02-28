@@ -24,13 +24,6 @@
 #ifndef HAL_FILE_HPP
 #define HAL_FILE_HPP
 
-#if (_WIN32 || __linux__)
 #include "HAL/File_PC.hpp"
-#elif __WASM__
-#include "HAL/File_Wasm.hpp"
-
-#else
-static_assert(false);
-#endif
 
 #endif  // HAL_FILE_HPP

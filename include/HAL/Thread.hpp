@@ -24,12 +24,6 @@
 #ifndef HAL_THREAD_HPP
 #define HAL_THREAD_HPP
 
-#if (_WIN32 | __linux__ | __WASM__)
-#include "HAL/Thread_PC.hpp"
-#elif __MBED__
 #include "HAL/Thread_Mbed.hpp"
-#else
-static_assert(false);
-#endif
 
 #endif  // HAL_THREAD_HPP

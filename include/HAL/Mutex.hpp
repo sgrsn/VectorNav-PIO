@@ -28,15 +28,7 @@
 
 #if (THREADING_ENABLE)
 
-#ifdef __CLI__
-#include "HAL/Mutex_CLI.hpp"
-#elif (_WIN32 | __linux__)
-#include "HAL/Mutex_PC.hpp"
-#elif __MBED__
 #include "HAL/Mutex_MBED.hpp"
-#else
-static_assert(false);
-#endif
 
 #else  // THREADING_ENABLE
 
