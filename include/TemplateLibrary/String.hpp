@@ -310,15 +310,29 @@ namespace StringUtils
 // Numeric Conversions
 // ###################
 
-template <class T>
-std::optional<T> fromString(const char* begin, const char* end)
-{
-    static_assert(std::is_arithmetic<T>::value, "Template parameter T must be a numeric type");
+// 一般的な整数型に対するテンプレート
+template <class T, std::enable_if_t<std::is_integral_v<T>, bool> = true>
+std::optional<T> fromString(const char* begin, const char* end) {
+    static_assert(std::is_arithmetic_v<T>, "Template parameter T must be a numeric type");
     T numReturn;
     if (*begin == '+') { begin++; }
     auto [ptr, ec] = std::from_chars(begin, end, numReturn);
     if (ptr != end || ec != std::errc{}) { return std::nullopt; }
     return std::make_optional(numReturn);
+}
+
+// 浮動小数点数に対する特殊化
+template <class T, std::enable_if_t<std::is_floating_point_v<T>, bool> = true>
+std::optional<T> fromString(const char* begin, const char* end) {
+    static_assert(std::is_arithmetic_v<T>, "Template parameter T must be a numeric type");
+    T numReturn;
+    std::string s(begin, end);
+    std::istringstream iss(s);
+    iss >> numReturn;
+    if (!iss.fail() && iss.eof()) {
+        return std::make_optional(numReturn);
+    }
+    return std::nullopt;
 }
 
 #if (defined(__clang__) && __clang_major < 16) || defined(_MSC_VER) || (defined(__GNUC__) && __GNUC__ < 11)
