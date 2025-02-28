@@ -18,6 +18,15 @@
     "frameworks": "*",
     "platforms": "*",
     "build": {
-      "includeDir": "include"
+      "includeDir": "include",
+      "unflags": "-std=gnu++11",
+      "flags": [
+        "-DTHREADING_ENABLE=false",
+        "-DPUGIXML_NO_EXCEPTIONS",
+        "-std=gnu++17"
+      ]
+    },
+    "dependencies": {
+      "TeensyThreads": "https://github.com/ftrias/TeensyThreads.git"
     }
   }
