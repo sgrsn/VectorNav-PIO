@@ -24,6 +24,22 @@
 #ifndef HAL_THREAD_HPP
 #define HAL_THREAD_HPP
 
-#include "HAL/Thread_Mbed.hpp"
+// プラットフォーム検出と適切なスレッド実装の選択
+#if defined(TEENSYDUINO)
+    // Teensy用の実装
+    #include "HAL/Thread_Mbed.hpp"
+#elif defined(ESP32)
+    // ESP32用の実装
+    #include "HAL/Thread_ESP32.hpp"
+#elif defined(ARDUINO_ARCH_STM32) && defined(ARDUINO_CMSIS_RTOS_ENABLED)
+    // STM32 + CMSIS-RTOS用の実装
+    #include "HAL/Thread_STM32.hpp"
+#elif defined(THREADING_ENABLE) && (THREADING_ENABLE == false)
+    // スレッドを明示的に無効化
+    #include "HAL/Thread_Disabled.hpp"
+#else
+    // その他のプラットフォーム用のフォールバック実装
+    #include "HAL/Thread_Disabled.hpp"
+#endif
 
 #endif  // HAL_THREAD_HPP

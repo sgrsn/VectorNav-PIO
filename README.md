@@ -4,6 +4,27 @@ This library enables easy integration of VectorNAV sensors with PlatformIO and A
 ## About
 This library is based on the official VectorNAV SDK and has been adapted to work seamlessly with PlatformIO and Arduino-compatible platforms. It provides a C++ interface for communicating with VectorNAV sensors while maintaining compatibility with the original SDK's functionality.
 
+## Supported Platforms
+
+This library is designed to work with multiple microcontroller platforms:
+
+- **Teensy** - Full threading support using TeensyThreads
+- **ESP32** - Native threading support using FreeRTOS
+- **STM32** - Threading support when CMSIS-RTOS is enabled
+- **Other Arduino-compatible platforms** - Fallback implementation without threading
+
+The library automatically detects the platform and uses the appropriate implementation.
+
+### Disabling Threading
+
+If you want to disable threading on any platform, you can add the following flag to your `platformio.ini` file:
+
+```ini
+build_flags = -DTHREADING_ENABLE=false
+```
+
+This will force the library to use the non-threaded implementation regardless of platform.
+
 ## Installation
 
 Add this library to your PlatformIO project's dependencies in your `platformio.ini` file:
