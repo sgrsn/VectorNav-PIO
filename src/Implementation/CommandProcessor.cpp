@@ -71,6 +71,17 @@ bool CommandProcessor::matchResponse(const AsciiMessage& response, const AsciiPa
     LockGuard guard{_mutex};
     std::cout << "DEBUG: matchResponse acquired mutex" << std::endl;
     
+    // Check if this is a duplicate response that we've already processed
+    if (_hasProcessedResponse && response == _lastProcessedResponse) {
+        // Calculate time since last response
+        auto timeSinceLastResponse = metadata.timestamp - _lastResponseTime;
+        // If the same response comes within 500ms, consider it a duplicate and ignore
+        if (timeSinceLastResponse < std::chrono::milliseconds(500)) {
+            std::cout << "DEBUG: Ignoring duplicate response received within 500ms" << std::endl;
+            return false; // Return false to indicate we've handled this response
+        }
+    }
+    
     while (!_cmdQueue.isEmpty())
     {
         const auto item = _cmdQueue.peek().value();
@@ -157,6 +168,11 @@ bool CommandProcessor::matchResponse(const AsciiMessage& response, const AsciiPa
         _asyncErrorQueuePush(AsyncError(Error::ReceivedUnexpectedMessage, response));
         return true;
     }
+    // If we successfully matched a response, remember it to avoid processing duplicates
+    _lastProcessedResponse = response;
+    _lastResponseTime = metadata.timestamp;
+    _hasProcessedResponse = true;
+    
     std::cout << "DEBUG: matchResponse returning false (response matched)" << std::endl;
     return false;
 }

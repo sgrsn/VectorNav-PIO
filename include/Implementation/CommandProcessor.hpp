@@ -80,6 +80,11 @@ private:
 
     Queue<QueueItem, Config::CommandProcessor::commandProcQueueCapacity> _cmdQueue{};
     mutable Mutex _mutex;
+    
+    // Variables to remember recently processed responses
+    AsciiMessage _lastProcessedResponse;
+    time_point _lastResponseTime;
+    bool _hasProcessedResponse = false;
 };
 
 }  // namespace VN
