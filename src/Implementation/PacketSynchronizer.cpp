@@ -34,21 +34,14 @@ bool PacketSynchronizer::addDispatcher(PacketDispatcher* packetParser) noexcept
 
 bool PacketSynchronizer::dispatchNextPacket() noexcept
 {
-    std::cout << "DEBUG: dispatchNextPacket called" << std::endl;
     size_t byteBufferSize = _primaryByteBuffer.size();
-    std::cout << "DEBUG: byteBufferSize = " << byteBufferSize << std::endl;
     
     if (byteBufferSize == 0 || ((_prevValidity == PacketDispatcher::FindPacketRetVal::Validity::Incomplete) && (byteBufferSize < _prevBytesRequested)))
     {
         // Early return if there's no new data
-        std::cout << "DEBUG: Early return - no new data or incomplete packet" << std::endl;
-        if (_prevValidity == PacketDispatcher::FindPacketRetVal::Validity::Incomplete) {
-            std::cout << "DEBUG: Waiting for more data, have " << byteBufferSize << " bytes, need " << _prevBytesRequested << std::endl;
-        }
         return true;
     }
     _prevByteBufferSize = byteBufferSize;
-    std::cout << "DEBUG: Processing buffer with " << byteBufferSize << " bytes" << std::endl;
     VN_PROFILER_TIME_CURRENT_SCOPE();
     for (size_t fromHeadIndex = 0; fromHeadIndex < byteBufferSize; ++fromHeadIndex)
     {
@@ -57,22 +50,13 @@ bool PacketSynchronizer::dispatchNextPacket() noexcept
             // TODO 133: Modify to handle multi-size sync bytes
             if (currentDispatcher.syncBytes.front() == _primaryByteBuffer.peek_unchecked(fromHeadIndex))
             {
-                std::cout << "DEBUG: Found potential sync byte at index " << fromHeadIndex << ": " 
-                          << static_cast<int>(currentDispatcher.syncBytes.front()) << std::endl;
-                
                 auto retVal = currentDispatcher.packetDispatcher->findPacket(_primaryByteBuffer, fromHeadIndex);
-                std::cout << "DEBUG: findPacket returned validity: " 
-                          << (retVal.validity == PacketDispatcher::FindPacketRetVal::Validity::Valid ? "Valid" : 
-                             (retVal.validity == PacketDispatcher::FindPacketRetVal::Validity::Invalid ? "Invalid" : "Incomplete"))
-                          << ", length: " << retVal.length << std::endl;
                 
                 switch (retVal.validity)
                 {
                     case (PacketDispatcher::FindPacketRetVal::Validity::Valid):
                     {
                         ++currentDispatcher.numValidPackets;
-                        std::cout << "DEBUG: Valid packet found: sync byte=" << static_cast<int>(currentDispatcher.syncBytes.front()) 
-                                  << ", length=" << retVal.length << std::endl;
                         VN_DEBUG_2("Packet found: " + std::to_string(currentDispatcher.syncBytes.front()) + " length: " + std::to_string(retVal.length));
                         currentDispatcher.packetDispatcher->dispatchPacket(_primaryByteBuffer, fromHeadIndex);
 
@@ -86,22 +70,18 @@ bool PacketSynchronizer::dispatchNextPacket() noexcept
                         // at a time while the serial queue overflows.
                         _prevValidity = PacketDispatcher::FindPacketRetVal::Validity::Valid;
                         _prevByteBufferSize -= fromHeadIndex + numPacketBytesToDiscard;
-                        std::cout << "DEBUG: Processed valid packet, returning false to process more data" << std::endl;
                         return false;
                     }
                     case (PacketDispatcher::FindPacketRetVal::Validity::Invalid):
                     {
                         // Keep searching, might have just been a random sync byte.
                         ++currentDispatcher.numInvalidPackets;
-                        std::cout << "DEBUG: Invalid packet, continuing search" << std::endl;
                         continue;
                     }
                     case (PacketDispatcher::FindPacketRetVal::Validity::Incomplete):
                     {
                         // Let's trust that this is probably a packet of this type, so we'll wait for more data and start searching again.
                         // We might as well discard all of the bytes so far, because clearly no one wanted it.
-                        std::cout << "DEBUG: Found incomplete packet, sync byte=" << static_cast<int>(currentDispatcher.syncBytes.front()) 
-                                  << ", bytes available=" << _primaryByteBuffer.size() << std::endl;
                         VN_DEBUG_2("Found possible packet: " + std::to_string(currentDispatcher.syncBytes.front()) +
                                    " bytes available: " + std::to_string(_primaryByteBuffer.size()));
 
@@ -110,7 +90,6 @@ bool PacketSynchronizer::dispatchNextPacket() noexcept
                         // should continue and let the other dispatchers search for packets.
                         bool aboutToOverrun = (_primaryByteBuffer.capacity() - (byteBufferSize - fromHeadIndex)) < _nominalSerialPush;
                         if (aboutToOverrun) { 
-                            std::cout << "DEBUG: Buffer about to overrun, continuing search" << std::endl;
                             continue; 
                         }
 
@@ -120,7 +99,6 @@ bool PacketSynchronizer::dispatchNextPacket() noexcept
                         _prevByteBufferSize -= fromHeadIndex;
                         _prevValidity = PacketDispatcher::FindPacketRetVal::Validity::Incomplete;
                         _prevBytesRequested = retVal.length;
-                        std::cout << "DEBUG: Waiting for more data, need " << retVal.length << " bytes, returning true" << std::endl;
                         return true;
                     }
                     default:
@@ -130,7 +108,6 @@ bool PacketSynchronizer::dispatchNextPacket() noexcept
         }
     }
     // At this point, we can flush the buffer, because no one is interested in any of the data.
-    std::cout << "DEBUG: No valid packets found in buffer, flushing " << byteBufferSize << " bytes" << std::endl;
     _copyToSkippedByteBufferIfEnabled(byteBufferSize);
     _copyToReceivedByteBufferIfEnabled(byteBufferSize);
     _primaryByteBuffer.discard(byteBufferSize);

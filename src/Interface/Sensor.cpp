@@ -58,20 +58,13 @@ Sensor::~Sensor()
 
 Error Sensor::connect(const Serial_Base::PortName& portName, const BaudRate baudRate) noexcept
 {
-    std::cout << "DEBUG: Sensor::connect - Opening port " << portName << " at baud rate " << static_cast<uint32_t>(baudRate) << std::endl;
     Error lastError = _serial.open(portName, static_cast<uint32_t>(baudRate));
     if (lastError != Error::None) { 
-        std::cout << "DEBUG: Sensor::connect - Failed to open port, error: " << static_cast<int>(lastError) << std::endl;
         return lastError; 
     }
-    std::cout << "DEBUG: Sensor::connect - Port opened successfully" << std::endl;
     
 #if (THREADING_ENABLE)
-    std::cout << "DEBUG: Sensor::connect - Starting listening thread (THREADING_ENABLE=true)" << std::endl;
     _startListening();
-    std::cout << "DEBUG: Sensor::connect - Listening thread started" << std::endl;
-#else
-    std::cout << "DEBUG: Sensor::connect - Not starting thread (THREADING_ENABLE=false)" << std::endl;
 #endif
     return Error::None;
 }
@@ -141,17 +134,10 @@ Error Sensor::changeHostBaudRate(const BaudRate newBaudRate) noexcept
 
 void Sensor::disconnect() noexcept
 {
-    std::cout << "DEBUG: Sensor::disconnect called" << std::endl;
 #if (THREADING_ENABLE)
-    std::cout << "DEBUG: Sensor::disconnect - Stopping listening thread (THREADING_ENABLE=true)" << std::endl;
     _stopListening();
-    std::cout << "DEBUG: Sensor::disconnect - Listening thread stopped" << std::endl;
-#else
-    std::cout << "DEBUG: Sensor::disconnect - Not stopping thread (THREADING_ENABLE=false)" << std::endl;
 #endif
-    std::cout << "DEBUG: Sensor::disconnect - Closing serial port" << std::endl;
     _serial.close();
-    std::cout << "DEBUG: Sensor::disconnect - Serial port closed" << std::endl;
 }
 
 // ----------------------
@@ -494,35 +480,22 @@ void Sensor::unsubscribeFromMessage(PacketQueue_Interface* queueToUnsubscribe, c
 // ----------------------------
 
 Error Sensor::loadMainBufferFromSerial() noexcept { 
-    std::cout << "DEBUG: loadMainBufferFromSerial called" << std::endl;
-    Error result = _serial.getData(); 
-    if (result != Error::None) {
-        std::cout << "DEBUG: _serial.getData() returned error: " << static_cast<int>(result) << std::endl;
-    } else {
-        std::cout << "DEBUG: _serial.getData() successful, buffer size: " << _mainByteBuffer.size() << std::endl;
-    }
-    return result;
+    return _serial.getData(); 
 }
 
 bool Sensor::processNextPacket() noexcept { 
-    std::cout << "DEBUG: processNextPacket called" << std::endl;
-    bool result = _packetSynchronizer.dispatchNextPacket(); 
-    std::cout << "DEBUG: dispatchNextPacket returned: " << (result ? "true (needs more data)" : "false (packet processed)") << std::endl;
-    return result;
+    return _packetSynchronizer.dispatchNextPacket(); 
 }
 
 #if (THREADING_ENABLE)
 
 void Sensor::_listen() noexcept
 {
-    std::cout << "DEBUG: Starting _listen thread" << std::endl;
     _mainByteBuffer.reset();
     while (_listening)
     {
-        std::cout << "DEBUG: _listen loop iteration" << std::endl;
         Error lastError = loadMainBufferFromSerial();
         if (lastError != Error::None) { 
-            std::cout << "DEBUG: loadMainBufferFromSerial error: " << static_cast<int>(lastError) << std::endl;
             _asyncErrorQueue.put(AsyncError(lastError)); 
         }
         bool needsMoreData = false;
@@ -531,43 +504,31 @@ void Sensor::_listen() noexcept
             needsMoreData = processNextPacket(); 
             packetProcessCount++;
             if (packetProcessCount > 100) {
-                std::cout << "DEBUG: Processed 100+ packets in a single loop, possible infinite loop" << std::endl;
-                needsMoreData = true; // Force exit from the loop
+                needsMoreData = true; // Force exit from the loop to prevent infinite loops
             }
         }
-        std::cout << "DEBUG: Processed " << packetProcessCount << " packets" << std::endl;
         thisThread::sleepFor(Config::Sensor::listenSleepDuration);
     }
-    std::cout << "DEBUG: Exiting _listen thread" << std::endl;
 }
 
 void Sensor::_startListening() noexcept
 {
-    std::cout << "DEBUG: _startListening called" << std::endl;
     if (_listening) { 
-        std::cout << "DEBUG: Already listening, returning" << std::endl;
         return; 
     }
     _listening = true;
-    std::cout << "DEBUG: Creating listening thread" << std::endl;
     _listeningThread = std::make_unique<Thread>(&Sensor::_listen, this);
-    std::cout << "DEBUG: Listening thread created" << std::endl;
 
     // _listeningThread->setHighestPriority(); // ** Commented as it is compile erroring or failing in runtime.
 }
 
 void Sensor::_stopListening() noexcept
 {
-    std::cout << "DEBUG: _stopListening called" << std::endl;
     if (!_listening) { 
-        std::cout << "DEBUG: Not listening, returning" << std::endl;
         return; 
     }
-    std::cout << "DEBUG: Setting _listening to false" << std::endl;
     _listening = false;
-    std::cout << "DEBUG: Joining listening thread" << std::endl;
     _listeningThread->join();
-    std::cout << "DEBUG: Listening thread joined" << std::endl;
 }
 #endif
 

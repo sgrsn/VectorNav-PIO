@@ -183,13 +183,11 @@ inline Error Serial::getData() noexcept
 {
     if (!_isOpen || !_hwSerial)
     {
-        std::cout << "DEBUG: Serial::getData - Serial port closed" << std::endl;
         return Error::SerialPortClosed;
     }
 
     // 受信バイト数を確認
     int availableBytes = _hwSerial->available();
-    std::cout << "DEBUG: Serial::getData - Available bytes: " << availableBytes << std::endl;
     
     if (availableBytes <= 0)
     {
@@ -198,7 +196,6 @@ inline Error Serial::getData() noexcept
 
     // 今回読み取るバイト数を決定（_inputBuffer のサイズを超えないように）
     size_t toRead = std::min<size_t>(availableBytes, _inputBuffer.size());
-    std::cout << "DEBUG: Serial::getData - Reading " << toRead << " bytes" << std::endl;
 
     // 実際に読み取る
     size_t readCount = 0;
@@ -208,18 +205,14 @@ inline Error Serial::getData() noexcept
         if (c < 0)
         {
             // 読み取り失敗ならループ終了
-            std::cout << "DEBUG: Serial::getData - Read failed at byte " << readCount << std::endl;
             break;
         }
         _inputBuffer[readCount] = static_cast<uint8_t>(c);
     }
 
-    std::cout << "DEBUG: Serial::getData - Successfully read " << readCount << " bytes" << std::endl;
-
     // SDK 側のバッファ (_byteBuffer) に格納
     if (_byteBuffer.put(_inputBuffer.data(), readCount))
     {
-        std::cout << "DEBUG: Serial::getData - Primary buffer full" << std::endl;
         return Error::PrimaryBufferFull;  // バッファあふれ
     }
 
