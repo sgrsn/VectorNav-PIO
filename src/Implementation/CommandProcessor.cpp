@@ -66,31 +66,49 @@ CommandProcessor::RegisterCommandReturn CommandProcessor::registerCommand(Comman
 
 bool CommandProcessor::matchResponse(const AsciiMessage& response, const AsciiPacketProtocol::Metadata& metadata) noexcept
 {  // Should be called on high-priority thread
+    std::cout << "DEBUG: CommandProcessor::matchResponse called with response: " << response.c_str() << std::endl;
+    
     LockGuard guard{_mutex};
+    std::cout << "DEBUG: matchResponse acquired mutex" << std::endl;
+    
     while (!_cmdQueue.isEmpty())
     {
         const auto item = _cmdQueue.peek().value();
         if ((metadata.timestamp - item.cmd->getSentTime()) > item.timeoutThreshold) {
+            std::cout << "DEBUG: Command timed out in queue, removing" << std::endl;
             _cmdQueue.get().value().cmd->setStale();
         } else { break; }
     }
 
     bool responseHasBeenMatched = false;
+    std::cout << "DEBUG: RX: " << response.c_str() << "\t queue size: " << _cmdQueue.size() << std::endl;
     VN_DEBUG_1("RX: " + response + "\t queue size: " + std::to_string(_cmdQueue.size()));
+    
     if (StringUtils::startsWith(response, AsciiMessage("$VNERR,")))
     {
+        std::cout << "DEBUG: Response is an error message" << std::endl;
         if (Command::isMatchingError(response))
         {
+            std::cout << "DEBUG: Error matches a command" << std::endl;
             auto frontCommand = _cmdQueue.get();
             if (frontCommand.has_value())
             {
+                std::cout << "DEBUG: Matching error to front command" << std::endl;
                 // If we get a synchronous error, assume it is the oldest command.
                 if (!frontCommand.value().cmd->matchResponse(response, metadata.timestamp))
                 {
+                    std::cout << "DEBUG: Error: Failed to match error response to command" << std::endl;
                     VN_ABORT();  // We just made sure it is a valid vnerr, should not be possible
                 }
+                else
+                {
+                    std::cout << "DEBUG: Error response matched to command" << std::endl;
+                }
             }
-            else { _asyncErrorQueuePush(AsyncError(Error::ReceivedUnexpectedMessage, response)); }
+            else { 
+                std::cout << "DEBUG: Error: No command in queue to match error response" << std::endl;
+                _asyncErrorQueuePush(AsyncError(Error::ReceivedUnexpectedMessage, response)); 
+            }
         }
         else
         {
@@ -100,29 +118,46 @@ bool CommandProcessor::matchResponse(const AsciiMessage& response, const AsciiPa
             if (errorNum.has_value()) { _asyncErrorQueuePush(AsyncError(static_cast<Error>(errorNum.value()), response)); }
             else { _asyncErrorQueuePush(AsyncError(Error::ReceivedUnexpectedMessage, response)); }
         }
+        std::cout << "DEBUG: Returning true for error response" << std::endl;
         return true;
     }
     else
     {
+        std::cout << "DEBUG: Response is not an error message, trying to match to commands" << std::endl;
         while (!responseHasBeenMatched && !_cmdQueue.isEmpty())
         {
             bool validResponse = false;
             auto frontCommand = _cmdQueue.get();
-            VN_ASSERT(frontCommand.has_value());  // The while loop validates that the command queue is not empty
+            if (!frontCommand.has_value()) {
+                std::cout << "DEBUG: Error: Command queue is empty but !_cmdQueue.isEmpty() was true" << std::endl;
+                break;
+            }
+            
+            std::cout << "DEBUG: Trying to match response to command" << std::endl;
             validResponse = (*frontCommand).cmd->matchResponse(response, metadata.timestamp);
             if (validResponse)
             {
                 responseHasBeenMatched = true;
+                std::cout << "DEBUG: Response matched to command successfully" << std::endl;
                 VN_DEBUG_1("response matched.");
             }  // We don't need an else. Caller should be monitoring cmd object, and we want to limit errors thrown on high-priority thread.
-            else { VN_DEBUG_1("response not matched."); }
+            else { 
+                std::cout << "DEBUG: Response did not match command" << std::endl;
+                VN_DEBUG_1("response not matched."); 
+            }
+        }
+        
+        if (!responseHasBeenMatched) {
+            std::cout << "DEBUG: Response was not matched to any command" << std::endl;
         }
     }
     if (!responseHasBeenMatched)
     {
+        std::cout << "DEBUG: Response was not matched to any command, pushing unexpected message error" << std::endl;
         _asyncErrorQueuePush(AsyncError(Error::ReceivedUnexpectedMessage, response));
         return true;
     }
+    std::cout << "DEBUG: matchResponse returning false (response matched)" << std::endl;
     return false;
 }
 
