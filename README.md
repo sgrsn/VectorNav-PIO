@@ -110,6 +110,34 @@ void loop() {
 }
 ```
 
+## Non-Blocking
+
+Because the getNextMeasurement call is blocking, the single thread must wait about 50 ms, during which time no other processing can take place.
+
+```cpp
+auto compositeData = sensor.getNextMeasurement();
+// Wait until compositeData is available!
+```
+
+To this end, there are two methods available only when threading is disabled: loadMainBufferFromSerial and processNextPacket.
+
+```cpp
+const bool needsMoreData = sensor.processNextPacket();
+if (needsMoreData) 
+{
+  sensor.loadMainBufferFromSerial();
+} 
+else 
+{
+  auto nextMeasurement_maybe = sensor.getNextMeasurement(false);
+  if (nextMeasurement_maybe->matchesMessage(binaryOutput1Register)) 
+  {
+    VN::Vec3f accel = nextMeasurement_maybe->imu.accel.value();
+    std::cout << "Accel: " << accel[0] << ", " << accel[1] << ", " << accel[2] << std::endl;
+  }
+}
+```
+
 ## API Reference
 
 ## License
